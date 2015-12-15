@@ -15,6 +15,12 @@ class YamlConfig (object):
         self.values = yaml.safe_load(f)
         f.close()
 
+    def get_values(self):
+        return self.values
+
+    def set_values(self, values):
+        self.values = values
+
 def timestampToString(ts):
     return datetime.datetime.fromtimestamp(int(ts)).strftime('%d.%m.%Y %H:%M:%S')
 

@@ -89,7 +89,6 @@ app.jinja_env.globals.update(get_short_age=get_short_age)
 # initialize database
 with app.test_request_context():
     init_db()
-    oid = OpenID(app)
     babel = Babel(app)
 
 # helper methods
@@ -268,7 +267,7 @@ def get_image(imgType, imgId = None):
             else:
                 fileName = app.config['PLACEHOLDER']
                 filePath = os.path.join(app.config['scriptPath'], 'static')
-	    elif imgType == 'cache':
+        elif imgType == 'cache':
             fileName = imgId
         elif imgType == 'flag':
             fileName = imgId + '.png'
