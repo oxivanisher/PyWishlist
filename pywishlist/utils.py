@@ -3,6 +3,9 @@
 
 import yaml
 
+import sqlalchemy
+from pywishlist.database import db_session
+
 class YamlConfig (object):
     def __init__(self, filename = None):
         self.filename = filename

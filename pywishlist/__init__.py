@@ -611,6 +611,7 @@ def profile_password_reset_verify(userId, verifyKey):
 # Dashboard routes
 @app.route('/')
 def index():
+    boxes = []
     if session.get('logged_in'):
         linked = False
         links = fetchNetworkLinks(session['userid'])
@@ -619,12 +620,5 @@ def index():
                 linked = True
         if not linked:
             flash(gettext("You have no network connected. Please do so in the 'Network Connections' box."), 'info')
-    boxes = []
-    for box in SystemBoxes.keys():
-        if checkShowBox(session, SystemBoxes[box]):
-            boxes.append(SystemBoxes[box])
-    return render_template('dashboard.html', boxes = boxes)
-
-@app.route('/Dashboard')
-def dashboard():
-    return redirect(url_for('index'))
+        return render_template('index.html', boxes = boxes)
+    return render_template('login.html', boxes = boxes)

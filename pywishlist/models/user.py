@@ -14,14 +14,10 @@ from sqlalchemy.orm import relationship, backref
 from pywishlist.utils import *
 from pywishlist.database import db_session, Base
 
-class WishUserLevel(object):
-    pass
-
 class WishUser(Base):
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
-    nick = Column(String(20), unique=True)
     name = Column(String(20), unique=False)
     email = Column(String(120), unique=True)
     password = Column(String(512), unique=False)
@@ -36,7 +32,6 @@ class WishUser(Base):
     def __init__(self, nick):
         self.log = logging.getLogger(__name__)
         self.log.debug("[User] Initializing WishUser %s" % self.getDisplayName())
-        self.nick = nick
         self.name = None
         self.email = None
         self.password = None
@@ -48,15 +43,9 @@ class WishUser(Base):
         self.locked = True
         self.veryfied = False
         self.verifyKey = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(32))
-        self.load()
 
     def __repr__(self):
         return '<WishUser %r>' % self.nick
-
-    def load(self):
-        self.log = logging.getLogger(__name__)
-        self.loadDonations()
-        self.log.debug("[User] Loaded WishUser %s" % (self.getDisplayName()))
 
     def lock(self):
         self.log.debug("[User] Lock WishUser %s" % (self.getDisplayName()))
@@ -76,9 +65,9 @@ class WishUser(Base):
 
     def getDisplayName(self):
         if self.name:
-            return self.nick + " (" + self.name + ")"
+            return self.name + " (" + self.email + ")"
         else:
-            return self.nick
+            return self.email
 
     def setPassword(self, password):
         self.log.info("[User] Setting new Password for WishUser %s" % (self.getDisplayName()))

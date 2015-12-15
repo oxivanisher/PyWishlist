@@ -18,74 +18,29 @@ class Wish(Base):
     __tablename__ = 'wish'
 
     id = Column(Integer, primary_key=True)
-    nick = Column(String(20), unique=True)
-    name = Column(String(20), unique=False)
-    email = Column(String(120), unique=True)
-    password = Column(String(512), unique=False)
-    joinedDate = Column(Integer, unique=False)
-    lastLoginDate = Column(Integer, unique=False)
-    lastRefreshDate = Column(Integer, unique=False)
-    verifyKey = Column(String(32), unique=False)
-    admin = Column(Boolean)
-    locked = Column(Boolean)
-    veryfied = Column(Boolean)
+    sourceId = Column(Integer, ForeignKey('user.id'))
+    source = relationship('WishUser', backref=backref('links', lazy='dynamic'))
+    creationDate = Column(Integer, unique=False)
+    destination = relationship('WishUser', backref=backref('links', lazy='dynamic'))
+    destinationId = Column(Integer, ForeignKey('user.id'))
+    hiddenId = Column(Integer, ForeignKey('user.id'))
+    hiddenBy = relationship('WishUser', backref=backref('links', lazy='dynamic'))
+    hiddenDate = Column(Integer, unique=False)
+    text = Column(String(512), unique=False)
 
-    def __init__(self, nick):
+    def __init__(self, sourceId, destinationId, text):
         self.log = logging.getLogger(__name__)
-        self.log.debug("[User] Initializing WishUser %s" % self.getDisplayName())
-        self.nick = nick
-        self.name = None
-        self.email = None
-        self.password = None
-        self.linkedNetworks = []
-        self.joinedDate = int(time.time())
-        self.lastLoginDate = 0
-        self.lastRefreshDate = 0
-        self.admin = False
-        self.locked = True
-        self.veryfied = False
-        self.verifyKey = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(32))
-        self.load()
+        self.log.debug("[User] Initializing Wish %s" % (self.id))
+        self.sourceId = sourceId
+        self.destinationId = destinationId
+        self.hiddenId = None
+        self.creationDate = int(time.time())
+        self.hiddenDate = None
+        self.text = text
 
     def __repr__(self):
-        return '<WishUser %r>' % self.nick
+        return '<Wish %r>' % self.id
 
-    def load(self):
-        self.log = logging.getLogger(__name__)
-        self.loadDonations()
-        self.log.debug("[User] Loaded WishUser %s" % (self.getDisplayName()))
-
-    def lock(self):
-        self.log.debug("[User] Lock WishUser %s" % (self.getDisplayName()))
-        self.locked = True
-
-    def unlock(self):
-        self.log.debug("[User] Unlock WishUser %s" % (self.getDisplayName()))
-        self.locked = False
-
-    def verify(self, key):
-        if key == self.verifyKey:
-            self.veryfied = True
-            self.locked = False
-            return True
-        else:
-            return False
-
-    def getDisplayName(self):
-        if self.name:
-            return self.nick + " (" + self.name + ")"
-        else:
-            return self.nick
-
-    def setPassword(self, password):
-        self.log.info("[User] Setting new Password for WishUser %s" % (self.getDisplayName()))
-        hash_object = hashlib.sha512(password)
-        self.password = hash_object.hexdigest()
-
-    def checkPassword(self, password):
-        self.log.info("[User] Checking password for WishUser %s" % (self.getDisplayName()))
-        hash_object = hashlib.sha512(password)
-        if self.password == hash_object.hexdigest():
-            return True
-        else:
-            return False
+    def hide(self, hiddenId):
+        self.hiddenId = hiddenId
+        self.hiddenDate = int(time.time())
