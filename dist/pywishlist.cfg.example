@@ -1,0 +1,27 @@
+# base settings
+DEBUG = True
+ROOTUSER = "admin"
+APPSECRET = 'some key'
+COMPRESS_DEBUG = True
+COMPRESS_MIMETYPES = ['text/html', 'text/css', 'text/xml', 'application/json', 'application/javascript', 'text/javascript']
+FAVICON = "placeholder.png"
+SYSTEMLOGO = "placeholder.png"
+
+# email
+EMAILSERVER = "127.0.0.1"
+EMAILFROM = "yourname@example.com"
+EMAILREPLYTO = ""
+EMAILLOGIN = ""
+EMAILPASSWORD = ""
+
+# database
+SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/pywishlist.db'
+#with mysql: SQLALCHEMY_DATABASE_URI = 'mysql://username:password@localhost/pywishlist?charset=utf8'
+SQLALCHEMY_POOL_RECYCLE = 1800
+SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+
+# available languages
+LANGUAGES = {
+    'en': 'English',
+    'de': 'Deutsch'
+}
