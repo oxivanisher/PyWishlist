@@ -17,7 +17,7 @@ except ImportError:
 try:
     os.environ['PYWISHLIST_CFG']
 except KeyError:
-    os.environ['PYWISHLIST_CFG'] = "../dist/mmofriends.cfg.example"
+    os.environ['PYWISHLIST_CFG'] = "../dist/pywishlist.cfg.example"
 
 dbapp = Flask(__name__)
 dbapp.config.from_envvar('PYWISHLIST_CFG', silent=False)
@@ -33,7 +33,7 @@ def init_db():
     # import all modules here that might define models so that
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
-    import mmofriends.models
+    import pywishlist.models
     Base.metadata.create_all(bind=engine)
 
 # def get_db_tables():

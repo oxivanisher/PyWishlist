@@ -1,0 +1,13 @@
+{%- extends "base.html" -%}
+{%- block title %}{{ _('Bulk Email')}}{% endblock -%}
+{%- block content -%}
+<div class="content_block"><h3>{{ _('Bulk Email')}}</h3>
+<form action="{{ url_for('admin_bulk_email') }}" id="bulkmail" method="post" autocomplete="on">
+	<dl>
+		<dd><input type="text" name="subject" class="backend" autofocus="autofocus" placeholder="{{ _('Subject') }}">
+		<dd><h3>{{ _('Hello') }} Nickname</h3><textarea rows="4" cols="50" name="message">Here goes the text</textarea>{{ _("<br><br>Have fun and see you soon ;)") }}
+		<dd><button class="btn btn-default" type="submit">{{ _('Send') }}</button>
+	</dl>
+</form>
+<h4>{{ retMessage }}</h4>
+</div>{% endblock %}

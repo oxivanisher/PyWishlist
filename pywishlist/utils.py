@@ -72,7 +72,7 @@ def load_image_file_to_email(app, msgRoot, filename):
     newImageName = os.path.splitext(filename)[0]
     fp.close()
     msgImage.add_header('Content-Disposition', 'inline', filename=filename)
-    msgImage.add_header('Content-ID', '<' + newImageName + '@mmofriends.local>')
+    msgImage.add_header('Content-ID', '<' + newImageName + '@pywishlist.local>')
     msgRoot.attach(msgImage)
     return newImageName
 
@@ -133,9 +133,9 @@ def send_email(app, msgto, msgsubject, msgtext, image):
     </head>
     <body>
         <div id="background">
-            <div id="logo"><img src="cid:%s@mmofriends.local" alt="Header Image"></div>
+            <div id="logo"><img src="cid:%s@pywishlist.local" alt="Header Image"></div>
             <div id="content">%s</div>
-            <div id="footer">MMOJunkies Friends <a href="https://github.com/oxivanisher/MMOJunkiesPyFriends">github.com/oxivanisher/MMOJunkiesPyFriends</a></div>
+            <div id="footer">PyWishlist <a href="https://github.com/oxivanisher/PyWishlist">github.com/oxivanisher/PyWishlist</a></div>
         </div>
     </body>
     </html>""" % (msgsubject,

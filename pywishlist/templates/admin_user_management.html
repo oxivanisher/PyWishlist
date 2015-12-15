@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ _('User Management')}}{% endblock %}
+{% block content -%}
+<div class="content_block"><h3>{{ _('Registred Users') }}</h3>
+<table class='table-striped' style='width: 100%;'>
+	<thead>
+		<tr>
+			<th>{{ _('Nickname') }}</th>
+			<th>{{ _('Real Name') }}</th>
+			<th>{{ _('Email') }}</th>
+			<th>{{ _('Website') }}</th>
+			<th>{{ _('Admin') }}</th>
+			<th>{{ _('Locked') }}</th>
+			<th>{{ _('Verified') }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for user in infos.registredUsers %}
+		<tr>
+			<td><a href="{{ url_for('partner_show', partnerId=user.id) }}">{{ user.nick }}</a></td>
+			<td>{{ user.name }}</td>
+			<td>{{ user.email }}</td>
+			<td>{{ user.website }}</td>
+			<td>
+			{%- if session.id == user.id %}
+				{{ user.admin }}
+			{% else %}
+				<a href="{{ url_for('admin_user_management_toggleadmin', userId=user.id) }}">{{ user.admin }}</a></td>
+			{%- endif -%}
+			<td><a href="{{ url_for('admin_user_management_togglelock', userId=user.id) }}">{{ user.locked }}</a></td>
+			<td>{{ user.veryfied }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table></div>
+{% endblock %}

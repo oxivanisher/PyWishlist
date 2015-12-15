@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		{%- block head %}
+		<title>{{ _('PyWishlist') }} {% block title %}{% endblock %}</title>
+		<meta property="og:title" content="{{ _('PyWishlist') }}" />
+		<meta property="og:site_name" content="{{ _('Dashboard') }}"/>
+		<meta name="description" content="{{ _('Online gaming is social. Our website is helping you to find and connect with other people playing the same games as you. Having fun is our mission!') }}">
+		<meta property="og:description" content="{{ _('Online gaming is social. Our website is helping you to find and connect with other people playing the same games as you. Having fun is our mission!') }}" />
+
+		<meta name="author" content="Marc Urben">
+		<meta property="og:url" content="{{ url_for('index', _external=True) }}" />
+		<meta property="og:image" content="{{ url_for('get_image', imgType='network', imgId='OpenGraph', _external = True) }}" />
+
+		<meta name="fragment" content="!">
+		<meta name="keywords" content="wishlist,wunschliste,gift,gifts,geschenk,geschenke,wichtele" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{# Languages -#}
+
+		{#- Languages #}
+		{%- for key, value in config.LANGUAGES.iteritems() %}
+		<link rel="alternate" hreflang="{{ key }}" href="{{ url_for('set_lang', language=key, path=request.path, _external=True) }}" />
+		{%- endfor -%}
+
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:locale:alternate" content="de_DE" />
+		{# Favicon -#}
+		<link rel="shortcut icon" href="{{ url_for('favicon') }}">
+		{# jQuery and jQueryUI -#}
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+		<script src="{{ url_for('static', filename='jquery/jquery.cookie.js') }}"></script>
+		<link href="{{ url_for('static', filename='jquery/jquery-ui.css') }}" rel="stylesheet" />
+		<link href="{{ url_for('static', filename='jquery/jquery-ui.structure.min.css') }}" rel="stylesheet" />
+		<link href="{{ url_for('static', filename='jquery/jquery-ui.theme.min.css') }}" rel="stylesheet" />
+
+		{# Bootstrap -#}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		{# Font Awesome -#}
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet" />
+		{# DataTable (will be replaced with inet include) -#}
+		<script src="{{ url_for('static', filename='jquery/jquery.dataTables.min.js') }}"></script>
+		<link href="{{ url_for('static', filename='friendstable.css') }}" rel="stylesheet" media="all" type="text/css" />
+		<script src="{{ url_for('static', filename='friendstable.js') }}"></script>
+		{# jQCloud -#}
+		<script src="{{ url_for('static', filename='jquery/jqcloud-1.0.4.min.js') }}"></script>
+		<link href="{{ url_for('static', filename='jquery/jqcloud.css') }}" rel="stylesheet" media="all" type="text/css" />
+		{# pywishlist internal stuff -#}
+		<link href="{{ url_for('static', filename='pywishlist.css') }}" rel="stylesheet" media="all" type="text/css" />
+		<script src="{{ url_for('static', filename='pywishlist.js') }}"></script>
+		{%- endblock %}
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse" role="navigation">
+			<div class="container-fluid">
+				{# Brand and toggle get grouped for better mobile display -#}
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				 	<span class="sr-only">{{ _('Toggle navigation') }}</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+				    </button>
+				    <a class="navbar-brand" href="{{ url_for('index') }}" rel="home" title="PyWishlist"><img src="{{ url_for('favicon') }}" class="home_icon" alt="Logo"></a>
+				    {#- <span class="glyphicon glyphicon-home"> #}
+				</div>
+
+				{# Collect the nav links, forms, and other content for toggling -#}
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						{% if session.logged_in -%}
+						{#
+ 						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Friends <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu"> -->
+								<li class="{% if url_for('partner_find') == request.path %}active{% endif %}"><a href="{{ url_for('partner_find') }}"><span class="glyphicon glyphicon-user"></span> {{ _('Find new friends') }}</a></li>
+								<li class="{% if url_for('partner_list') == request.path %}active{% endif %}"><a href="{{ url_for('partner_list') }}"><span class="glyphicon glyphicon-user"></span> {{ _('Online friends') }}</a></li>
+ 							</ul>
+						</li>
+						<li class="dropdown"></li> -#}
+						{% endif -%}
+						<li><a href="#" target="_blank" onclick="return popUpChat();"><span class="glyphicon glyphicon-user"></span> Chat</a></li>
+
+						{#Game Links -#}
+						{% if session.logged_in -%}
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tower"></span> {{ _('Games and Gamers') }} <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+
+								<li><a href="{{ url_for('game_links_show') }}"><span class="glyphicon glyphicon-link"></span> {{ _('Game links') }}</a></li>
+								<li><a href="{{ url_for('game_links_add') }}"><span class="glyphicon glyphicon-link"></span> {{ _('Add game link') }}</a></li>
+
+								<li class="divider"></li>
+								<!-- <li><a href="{{ url_for('network_link') }}"><span class="glyphicon glyphicon-tasks"></span> Connect Network</a></li> -->
+								{%- for net in session.networks %}
+									<li><a href="{{ url_for('network_show', netHandle=net.handle) }}"><span class="glyphicon glyphicon-tasks"></span> {{ net.name }}</a></li>
+								{%- endfor %}
+							</ul>
+						</li>
+						{% endif -%}
+
+						<li class="{% if url_for('about') == request.path %}active{% endif %}"><a href="{{ url_for('about') }}"><span class="glyphicon glyphicon-question-sign"></span> {{ _('About') }}</a></li>
+
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+					{% if session.logged_in -%}
+						{% if session.admin  -%}
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> {{ _('Administration') }} <span class="caret"></span></a>
+		         				<ul class="dropdown-menu" role="menu">
+									<li class="{% if url_for('admin_bulk_email') == request.path %}active{% endif %}"><a href="{{ url_for('admin_bulk_email') }}"><span class="glyphicon glyphicon-envelope"></span> {{ _('Bulk Email') }}</a></li>
+									<li class="{% if url_for('admin_user_management') == request.path %}active{% endif %}"><a href="{{ url_for('admin_user_management') }}"><span class="glyphicon glyphicon-user"></span> {{ _('User Management') }}</a></li>
+									<li class="{% if url_for('admin_system_status') == request.path %}active{% endif %}"><a href="{{ url_for('admin_system_status') }}"><span class="glyphicon glyphicon-eye-open"></span> {{ _('System Status') }}</a></li>
+									<li class="{% if url_for('admin_bgjob_status') == request.path %}active{% endif %}"><a href="{{ url_for('admin_bgjob_status') }}"><span class="glyphicon glyphicon-eye-open"></span> {{ _('BG Jobs Status') }}</a></li>
+									<li class="{% if url_for('admin_celery_status') == request.path %}active{% endif %}"><a href="{{ url_for('admin_celery_status') }}"><span class="glyphicon glyphicon-eye-open"></span> {{ _('Celery Status') }}</a></li>
+									<li class="{% if url_for('network_admin') == request.path %}active{% endif %}"><a href="{{ url_for('network_admin') }}"><span class="glyphicon glyphicon-tasks"></span> {{ _('Networks') }}</a></li>
+									<li class="{% if url_for('dev') == request.path %}active{% endif %}"><a href="{{ url_for('dev') }}"><span class="glyphicon glyphicon-wrench"></span> {{ _('Developer Tools') }}</a></li>
+								</ul>
+							</li>
+						{% endif -%}
+
+						<li><a href="ts3server://{{ config.networkConfig.TS3.exturl }}?port={{ config.networkConfig.TS3.extport }}&nickname={{ session.nick }}&password={{ config.networkConfig.TS3.extpassword }}"><img src="{{ url_for('get_image', imgType='network', imgId='TS3') }}" class="partner_list_icon" title="{{ _('Connect to TS3 Server') }}"></a></li>
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-off"></span> {{ session.nick }}<span class="caret"></span></a>
+	         				<ul class="dropdown-menu" role="menu">
+								<li class="{% if url_for('profile_show') == request.path %}active{% endif %}"><a href="{{ url_for('profile_show') }}"><span class="glyphicon glyphicon-user"></span> {{ _('Your profile settings') }}</a></li>
+								<li class="{% if url_for('partner_show', partnerId=session.userid) == request.path %}active{% endif %}"><a href="{{ url_for('partner_show', partnerId=session.userid) }}"><span class="glyphicon glyphicon-user"></span> {{ _('Your gamer profile') }}</a></li>
+
+								<li class="divider"></li>
+									{%- for key, value in config.LANGUAGES.iteritems() %}
+										{%- if key != session.currentLocale %}
+											<li><a href="{{ url_for('set_lang', language=key) }}"><span class="glyphicon glyphicon-eye-open"></span> {{ value }}</a></li>
+										{%- endif %}
+									{%- endfor %}
+									<li><a href="{{ url_for('set_lang') }}"><span class="glyphicon glyphicon-eye-open"></span> {{ _('Reset') }}</a></li>
+								<li class="divider"></li>
+								<li><a href="{{ url_for('profile_logout') }}"><span class="glyphicon glyphicon-off"></span> {{ _('Logout') }}</a></li>
+							</ul>
+						</li>
+					{% else %}
+						<li class="{% if url_for('profile_register') == request.path %}active{% endif %}"><a href="{{ url_for('profile_register') }}"><span class="glyphicon glyphicon-user"></span> {{ _('Registration') }}</a></li>
+						<li><a href="{{ url_for('profile_login') }}"><span class="glyphicon glyphicon-off"></span> {{ _('Login') }}</a></li>
+					{% endif -%}
+					</ul>
+				</div>{# /.navbar-collapse #}
+			</div>{# /.container-fluid #}
+		</nav>
+		<div class="container" id="flashMessages">
+			{%- block content %}{% endblock -%}
+		</div>
+		{%- with messages = get_flashed_messages(category_filter=["success"]) %}
+			{%- if messages %}
+				<div id="flashDialogSuccess" title="{{ _('Success message') }}">
+				{%- for message in messages %}
+					<div class="flashMessage">{{ message }}</div>
+				{% endfor -%}
+				</div>
+			{% endif -%}
+		{% endwith -%}
+		{%- with messages = get_flashed_messages(category_filter=["error"]) %}
+			{%- if messages %}
+				<div id="flashDialogError" title="{{ _('Error message') }}">
+				{%- for message in messages %}
+					<div class="flashMessage">{{ message }}</div>
+				{% endfor -%}
+				</div>
+			{% endif -%}
+		{% endwith -%}
+		{%- with messages = get_flashed_messages(category_filter=["info"]) %}
+			{%- if messages %}
+				<div id="flashDialogInfo" title="{{ _('Info message') }}">
+				{%- for message in messages %}
+					<div class="flashMessage">{{ message }}</div>
+				{% endfor -%}
+				</div>
+			{% endif -%}
+		{% endwith -%}
+		{#
+ 		{%- block footer -%}
+		<div class="bottombar">
+			<div class="fill">
+				<div class="container">
+					&copy; Copyright 2016 by <a href="http://oxi.ch/">oXiVanisher</a>.
+				</div>
+			</div>
+		</div>
+		{%- endblock %}
+		-#}
+		<script>
+			var seen = {};
+			$('.flashMessage').each(function() {
+			    var txt = $(this).text();
+			    if (seen[txt])
+			        $(this).remove();
+			    else
+			        seen[txt] = true;
+			});
+		</script>
+	</body>
+</html>
