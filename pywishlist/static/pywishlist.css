@@ -1,0 +1,179 @@
+body { padding-bottom: 22px;
+       background-image: url("img/christmas.jpg");
+       background-repeat: no-repeat;
+       background-position: center top;
+       background-color: #808080;
+       background-attachment:fixed;
+}
+
+.content_block {
+  background-color: #FFF;
+  padding: 5px;
+  border: 1px #000;
+/*  opacity: 0.1;
+  filter: alpha(opacity=10); /* For IE8 and earlier */*/
+}
+
+.shadow {
+  -moz-box-shadow:  3px 3px 4px 3px #ccc;
+  -webkit-box-shadow: 3px 3px 4px 3px #ccc;
+  box-shadow:     3px 3px 4px 3px #ccc;
+}
+
+.glow {
+  border:1px solid #000;
+  -webkit-box-shadow:0 0 6px #00ff7e;
+  -moz-box-shadow:0 0 5px #00ff7e;
+  box-shadow:0 0 5px #00ff7e;
+  outline: none;
+}
+
+.partner_list_icon {
+  /*display: block;*/
+  max-width:16px;
+  max-height:16px;
+  width: auto;
+  height: auto;
+  margin-right: 2px;
+}
+
+.home_icon {
+  /*display: block;*/
+  max-width:28px;
+  max-height:28px;
+  width: auto;
+  height: auto;
+  margin-top: -5px;
+}
+
+.link_network_list_icon {
+  /*display: block;*/
+  max-width:30px;
+  max-height:30px;
+  width: auto;
+  height: auto;
+  margin-right: 2px;
+  margin-top: 20px;
+}
+
+.linked_network_list_icon {
+  /*display: block;*/
+  max-width:20px;
+  max-height:20px;
+  width: auto;
+  height: auto;
+  margin-right: 2px;
+}
+
+.partner_detail_avatar {
+  max-width:300px;
+  max-height:300px;
+  width: auto;
+  height: auto;
+}
+
+.position_bottom_right {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+  max-width: 60%;
+}
+
+.position_bottom_left {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  max-width: 30%;
+}
+
+.twitter_news {
+  vertical-align: top;
+  width: 300px;
+  position: fixed;
+  right: 50px;
+  top: 60px;
+  float: left;
+}
+
+.profileAvatar {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.col {
+  border-bottom: 20px solid transparent;
+}
+
+.text-wrap {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+.content-normal {
+  height: 345px;
+}
+
+.content-big {
+  height: 762px;
+}
+
+/* stoef css */
+.box {
+  border: 1px solid black;
+  padding: 0;
+  }
+  .box header {
+    background: #efefef;
+    padding: 10px;
+    text-align: right;
+  }
+  
+  .box section {
+    background: white;
+    /*padding: 10px 10px 10px 10px;*/
+    padding: 5px;
+    /*min-height: 345px;*/
+    overflow-y: auto;
+  }
+  
+  .box footer {
+    background: #87CE36;
+    padding: 5px;
+    vertical-align: bottom;
+    padding-bottom: 0px;
+  }
+
+/*  .status { border-bottom: 20px solid transparent; visibility: hidden; }
+  .status .box {
+    border: 1px solid black;
+    background: #87CE36;
+    padding: 20px;
+    text-align: center;
+  }
+*/
+/* twitch channel */
+.twitchChannels {
+  margin: 0px;
+}

@@ -217,8 +217,7 @@ def add_header(response):
 # main routes
 @app.route('/About')
 def about():
-    twitterData = {'widgetUrl': app.config['TWITTERURL'], 'widgetId': app.config['TWITTERWIDGETID']}
-    return render_template('about.html', twitter = twitterData)
+    return render_template('about.html')
 
 @app.route('/Development')
 def dev():
