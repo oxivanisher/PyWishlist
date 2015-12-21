@@ -29,11 +29,11 @@ class WishUser(Base):
     locked = Column(Boolean)
     veryfied = Column(Boolean)
 
-    def __init__(self, nick):
+    def __init__(self, email, name = None):
         self.log = logging.getLogger(__name__)
+        self.name = name
+        self.email = email
         self.log.debug("[User] Initializing WishUser %s" % self.getDisplayName())
-        self.name = None
-        self.email = None
         self.password = None
         self.linkedNetworks = []
         self.joinedDate = int(time.time())
@@ -43,9 +43,14 @@ class WishUser(Base):
         self.locked = True
         self.veryfied = False
         self.verifyKey = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(32))
+        self.load()
 
     def __repr__(self):
-        return '<WishUser %r>' % self.nick
+        return '<WishUser %r>' % self.email
+
+    def load(self):
+        self.log = logging.getLogger(__name__)
+        self.log.debug("[User] Loaded WishUser %s" % (self.getDisplayName()))
 
     def lock(self):
         self.log.debug("[User] Lock WishUser %s" % (self.getDisplayName()))

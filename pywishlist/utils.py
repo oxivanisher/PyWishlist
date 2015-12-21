@@ -1,9 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
+import os
 import yaml
-
+import logging
 import sqlalchemy
+import textwrap
+import smtplib
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+
 from pywishlist.database import db_session
 
 class YamlConfig (object):
@@ -72,7 +81,6 @@ def get_long_duration(age):
             age -= value * count
             result.append("%s%s" % (int(value), name))
     return ' '.join(result)
-
 
 # emailer functions
 def load_image_file_to_email(app, msgRoot, filename):

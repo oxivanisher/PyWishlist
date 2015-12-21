@@ -4,6 +4,7 @@
 
 import os
 import sys
+import logging
 from flask import Flask
 
 try:

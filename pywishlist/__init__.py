@@ -5,6 +5,7 @@
 import sys
 import os
 import logging
+import urllib
 
 from utils import *
 from models import *
@@ -81,11 +82,6 @@ if not len(app.config['APPSECRET']):
 else:
     app.secret_key = app.config['APPSECRET']
 
-# jinja2 methods
-app.jinja_env.globals.update(timestampToString=timestampToString)
-app.jinja_env.globals.update(get_short_duration=get_short_duration)
-app.jinja_env.globals.update(get_short_age=get_short_age)
-
 # initialize database
 with app.test_request_context():
     init_db()
@@ -97,13 +93,51 @@ def getUserByEmail(email = None):
         try:
             ret = runQuery(WishUser.query.filter(WishUser.email.ilike(email)).first)
         except Exception as e:
-            self.log.warning("[System] SQL Alchemy Error on getUserByEmail: %s" % (e))
+            log.warning("[System] SQL Alchemy Error on getUserByEmail: %s" % (e))
             ret = False
 
         if ret:
             return ret
         else:
             return False
+
+def getUserById(userId = None):
+    with app.test_request_context():
+        if not userId:
+            userId = session.get('userid')
+        try:
+            ret = runQuery(WishUser.query.filter_by(id=userId).first)
+        except Exception as e:
+            log.warning("[System] SQL Alchemy Error on getUserById: %s" % (e))
+            ret = False
+
+        if ret:
+            return ret
+        else:
+            return False
+
+def getOtherUsers():
+    with app.test_request_context():
+        users = []
+        try:
+            ret = runQuery(WishUser.query.all)
+        except Exception as e:
+            log.warning("[System] SQL Alchemy Error on getOtherUsers: %s" % (e))
+            ret = False
+
+        if ret:
+            for user in ret:
+                if user.id != session.get('user_id'):
+                    users.append({'name': user.name, 'id': user.id, 'email': user.email})
+            return users
+        else:
+            return []
+
+# update jinja2 methods
+app.jinja_env.globals.update(timestampToString=timestampToString)
+app.jinja_env.globals.update(get_short_duration=get_short_duration)
+app.jinja_env.globals.update(get_short_age=get_short_age)
+app.jinja_env.globals.update(get_other_users=getOtherUsers)
 
 def checkPassword(password1, password2):
     valid = True
@@ -118,7 +152,6 @@ def checkPassword(password1, password2):
     #and further checks for registration plz
     # - user needs to be uniq!
     # - minimal field length
-    # - is the website a website?
     # - max length (cut oversize)
     return valid
 
@@ -182,7 +215,7 @@ def before_request():
         session['requests'] = 0
 
     if session.get('logmeout') == True:
-        log.warning("[System] Forcing logout of '%s' because '%s'" % (session.get('nick'), session.get('logmeoutreason')))
+        log.warning("[System] Forcing logout of '%s' because '%s'" % (session.get('email'), session.get('logmeoutreason')))
         session['logmeout'] = False
         session['logmeoutreason'] = False
         session.pop('logmeout', None)
@@ -192,7 +225,7 @@ def before_request():
     if session.get('logged_in'):
         try:
             if time.time() - session.get('last_lock_check') > 300:
-                log.debug("[System] Lock check for user '%s'" % (session.get('nick')))
+                log.debug("[System] Lock check for user '%s'" % (session.get('email')))
                 myUser = getUserById(session.get('userid'))
                 if myUser.locked == True:
                     session['logmeout'] = True
@@ -200,9 +233,9 @@ def before_request():
                 if myUser.admin != session.get('admin'):
                     session['logmeout'] = True
                     session['logmeoutreason'] = "Admin rights changed"
-                if myUser.nick != session.get('nick'):
+                if myUser.email != session.get('email'):
                     session['logmeout'] = True
-                    session['logmeoutreason'] = "Nickname changed"
+                    session['logmeoutreason'] = "Email changed"
                 session['last_lock_check'] = time.time()
         except TypeError:
             session['logmeout'] = True
@@ -244,7 +277,7 @@ def set_lang(language=None, path = None):
 # support routes
 @app.route('/favicon.ico')
 def favicon():
-    return redirect(url_for('static', filename=app.config['FAVICON']))
+    return redirect(url_for('static', filename='img/' + app.config['FAVICON']))
 
 @app.route('/Images/<imgType>/', methods = ['GET', 'POST'])
 @app.route('/Images/<imgType>/<imgId>', methods = ['GET', 'POST'])
@@ -259,13 +292,13 @@ def get_image(imgType, imgId = None):
         elif imgType == 'network':
             if imgId == 'System':
                 fileName = app.config['SYSTEMLOGO']
-                filePath = os.path.join(app.config['scriptPath'], 'static')
+                filePath = os.path.join(app.config['scriptPath'], 'static/img')
             elif imgId == 'OpenGraph':
                 fileName = app.config['OPENGRAPHLOGO']
-                filePath = os.path.join(app.config['scriptPath'], 'static')
+                filePath = os.path.join(app.config['scriptPath'], 'static/img')
             else:
                 fileName = app.config['PLACEHOLDER']
-                filePath = os.path.join(app.config['scriptPath'], 'static')
+                filePath = os.path.join(app.config['scriptPath'], 'static/img')
         elif imgType == 'cache':
             fileName = imgId
         elif imgType == 'flag':
@@ -324,10 +357,8 @@ def admin_user_management():
 
         for user in users:
             registredUsers.append({ 'id': user.id,
-                                    'nick': user.nick,
                                     'name': user.name,
                                     'email': user.email,
-                                    'website': user.website,
                                     'admin': user.admin,
                                     'locked': user.locked,
                                     'veryfied': user.veryfied })
@@ -343,7 +374,7 @@ def admin_user_management_togglelock(userId):
     if myUser:
         myUser.load()
         myUser.locked = not myUser.locked
-        log.info("[System] Lock state of '%s' was changed to: %s" % (myUser.nick, myUser.locked))
+        log.info("[System] Lock state of '%s' was changed to: %s" % (myUser.email, myUser.locked))
         db_session.merge(myUser)
         try:
             runQuery(db_session.commit)
@@ -359,7 +390,7 @@ def admin_user_management_toggleadmin(userId):
         if myUser:
             myUser.load()
             myUser.admin = not myUser.admin
-            log.info("[System] Admin state of '%s' was changed to: %s" % (myUser.nick, myUser.admin))
+            log.info("[System] Admin state of '%s' was changed to: %s" % (myUser.email, myUser.admin))
             db_session.merge(myUser)
         try:
             runQuery(db_session.commit)
@@ -378,10 +409,8 @@ def admin_bulk_email():
             try:
                 for user in runQuery(WishUser.query.all):
                     user.load()
-                    if user.nick != "oxi":
-                        continue
                     if send_email(app, user.email, request.form['subject'],
-                        "<h3>%s %s</h3>" % (gettext("Hello"), user.nick) + request.form['message'] + gettext("<br><br>Have fun and see you soon ;)"),
+                        "<h3>%s %s</h3>" % (gettext("Hello"), user.name) + request.form['message'] + gettext("<br><br>Have fun and see you soon ;)"),
                         app.config['EMAILBANNER']):
                         okCount += 1
                     else:
@@ -397,13 +426,12 @@ def admin_bulk_email():
 @app.route('/Profile/Register', methods=['GET', 'POST'])
 def profile_register():
     if request.method == 'POST':
-        if request.form['nick'] and \
+        if request.form['email'] and \
             request.form['password'] and \
-            request.form['password2'] and \
-            request.form['email']:
+            request.form['password2']:
 
-            if len(request.form['nick']) < 3:
-                flash(gettext("Nickname is too short"), 'error')
+            if len(request.form['email']) < 3:
+                flash(gettext("Email address is too short"), 'error')
                 valid = False
             else:
                 valid = checkPassword(request.form['password'], request.form['password2'])
@@ -413,18 +441,10 @@ def profile_register():
             flash(gettext("Please fill out all the fields!"), 'error')
 
         if valid:
-            newUser = WishUser(request.form['nick'])
-            newUser.email = request.form['email']
-            newUser.name = request.form['name']
-            if request.form['website'].startswith("http"):
-                newUser.website = request.form['website']
-            elif len(request.form['website']):
-                newUser.website = "http://" + request.form['website']
-            else:
-                newUser.website = ""
+            newUser = WishUser(request.form['email'], request.form['name'])
             newUser.setPassword(request.form['password'])
-            if request.form['nick'] == app.config['ROOTUSER']:
-                log.info("[System] Registred root user: %s" % request.form['nick'])
+            if request.form['email'] == app.config['ROOTUSER']:
+                log.info("[System] Registred root user: %s" % request.form['email'])
                 newUser.admin = True
                 newUser.locked = False
                 newUser.veryfied = True
@@ -435,7 +455,7 @@ def profile_register():
                 actUrl = url_for('profile_verify', userId=newUser.id, verifyKey=newUser.verifyKey, _external=True)
                 if send_email(app, newUser.email,
                               gettext("PyWishlist Activation Email"),
-                              "<h3>%s %s</h3>" % (gettext("Hello"), request.form['nick']) + gettext("We are happy to welcome you to PyWishlist!<br>Please verify your account with <a href='%(url)s'>this link</a>.<br><br><b>To remove the recurring message in Teamspeak, you have to connect yout TS3 user in the 'Network Connections' box.", url=actUrl) + gettext("<br><br>Have fun and see you soon ;)"),
+                              "<h3>%s %s</h3>" % (gettext("Hello"), request.form['name']) + gettext("We are happy to welcome you to PyWishlist!<br>Please verify your account with <a href='%(url)s'>this link</a>.<br><br>", url=actUrl) + gettext("<br><br>Have fun and see you soon ;)"),
                               app.config['EMAILBANNERWELCOME']):
                     flash(gettext("Please check your mails at %(emailaddr)s", emailaddr=newUser.email), 'info')
                 else:
@@ -467,10 +487,6 @@ def profile_show(do = None):
             else:
                 flash(gettext("Old password not correct!"), 'error')
         elif request.form['do'] == "editprofile":
-            if request.form['website'].startswith("http"):
-                myUser.website = request.form['website']
-            else:
-                myUser.website = "http://" + request.form['website']
             myUser.name = request.form['name']
             userChanged = True
     if userChanged:
@@ -485,7 +501,7 @@ def profile_show(do = None):
     gravatar_url = "//www.gravatar.com/avatar/" + hashlib.md5(myUser.email.lower()).hexdigest() + "?"
     gravatar_url += urllib.urlencode({'d':url_for('static', filename=app.config['PLACEHOLDER'], _external=True), 's':str(size)})
 
-    return render_template('profile_show.html', values = myUser, nicknames = myUser.nicks.all(), userAvatar = gravatar_url)
+    return render_template('profile_show.html', values = myUser, userAvatar = gravatar_url)
 
 @app.route('/Profile/Verify/<userId>/<verifyKey>', methods=['GET'])
 def profile_verify(userId, verifyKey):
@@ -510,12 +526,12 @@ def profile_verify(userId, verifyKey):
 @app.route('/Login', methods=['GET', 'POST'])
 def profile_login():
     if request.method == 'POST':
-        log.info("[System] Trying to login user: %s" % request.form['nick'])
+        log.info("[System] Trying to login user: %s" % request.form['email'])
         myUser = False
         try:
-            myUser = getUserByNick(request.form['nick'])
+            myUser = getUserByEmail(request.form['email'])
         except Exception as e:
-            log.warning('[System] Error finding user: "%s" -> %s' % (request.form['nick'], e))
+            log.warning('[System] Error finding user: "%s" -> %s' % (request.form['email'], e))
             flash(gettext('Error locating your user'), 'error')
             
             return redirect(url_for('profile_logout'))
@@ -529,17 +545,17 @@ def profile_login():
                 flash(gettext("User locked. Please contact an administrator."), 'info')
                 return redirect(url_for('index'))
             elif myUser.checkPassword(request.form['password']):
-                log.info("[System] <%s> logged in" % myUser.nick)
+                log.info("[System] <%s> logged in" % myUser.getDisplayName())
                 session['logged_in'] = True
                 session['userid'] = myUser.id
-                session['nick'] = myUser.nick
+                session['email'] = myUser.email
+                session['name'] = myUser.name
                 session['admin'] = myUser.admin
                 session['logindate'] = time.time()
-                session['networks'] = []
                 session['last_lock_check'] = time.time()
                 session['requests'] = 0
             else:
-                log.info("[System] Invalid password for %s" % myUser.nick)
+                log.info("[System] Invalid password for %s" % myUser.email)
                 flash(gettext('Invalid login'), 'error')
         else:
             flash(gettext('Invalid login'), 'error')
@@ -550,7 +566,7 @@ def profile_login():
 @app.route('/Logout')
 def profile_logout():
     session.pop('logged_in', None)
-    session.pop('nick', None)
+    session.pop('email', None)
     session.pop('admin', None)
     session.pop('logindate', None)
     session.clear()
@@ -574,7 +590,7 @@ def profile_password_reset_request():
         actUrl = url_for('profile_password_reset_verify', userId=myUser.id, verifyKey=myUser.verifyKey, _external=True)
         if send_email(app, myUser.email,
                       gettext("PyWishlist Password Reset"),
-                      gettext("<h3>Hello %(nick)s</h3>You can reset your password with <a href='%(url)s'>this link</a>. If you did not request this password reset, you can just ignore it. Your current password is still valid.</b>", nick=myUser.nick, url=actUrl) + gettext("<br><br>Have fun and see you soon ;)"),
+                      gettext("<h3>Hello %(name)s</h3>You can reset your password with <a href='%(url)s'>this link</a>. If you did not request this password reset, you can just ignore it. Your current password is still valid.</b>", name=myUser.email, url=actUrl) + gettext("<br><br>Have fun and see you soon ;)"),
                       app.config['EMAILBANNER']):
             flash(gettext("Please check your mails at %(emailaddr)s", emailaddr=myUser.email), 'info')
     else:
@@ -594,7 +610,7 @@ def profile_password_reset_verify(userId, verifyKey):
             myUser.setPassword(newPassword)
             if send_email(app, myUser.email,
                           gettext("PyWishlist New Password"),
-                          gettext("<h3>Hello %(nick)s</h3>Your new password is now <b>%(password)s</b>. Please change it right after you logged in.", nick=myUser.nick, password=newPassword) + gettext("<br><br>Have fun and see you soon ;)"),
+                          gettext("<h3>Hello %(name)s</h3>Your new password is now <b>%(password)s</b>. Please change it right after you logged in.", name=myUser.name, password=newPassword) + gettext("<br><br>Have fun and see you soon ;)"),
                           app.config['EMAILBANNER']):
                 flash(gettext("Please check your mails at %(emailaddr)s", emailaddr=myUser.email), 'info')
         else:
@@ -607,17 +623,13 @@ def profile_password_reset_verify(userId, verifyKey):
             self.log.warning("[System] SQL Alchemy Error on password reset verify key: %s" % (e))
     return redirect(url_for('index'))
 
-# Dashboard routes
+@app.route('/Wishlists/<userId>', methods=['GET'])
+def wishlist(userId = None):
+    return render_template('index.html')
+
+# Index
 @app.route('/')
 def index():
-    boxes = []
     if session.get('logged_in'):
-        linked = False
-        links = fetchNetworkLinks(session['userid'])
-        for link in links:
-            if links[link]:
-                linked = True
-        if not linked:
-            flash(gettext("You have no network connected. Please do so in the 'Network Connections' box."), 'info')
-        return render_template('index.html', boxes = boxes)
-    return render_template('login.html', boxes = boxes)
+        return render_template('index.html')
+    return render_template('login.html')

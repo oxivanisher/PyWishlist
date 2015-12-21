@@ -5,10 +5,8 @@
 <table class='table-striped' style='width: 100%;'>
 	<thead>
 		<tr>
-			<th>{{ _('Nickname') }}</th>
-			<th>{{ _('Real Name') }}</th>
 			<th>{{ _('Email') }}</th>
-			<th>{{ _('Website') }}</th>
+			<th>{{ _('Real Name') }}</th>
 			<th>{{ _('Admin') }}</th>
 			<th>{{ _('Locked') }}</th>
 			<th>{{ _('Verified') }}</th>
@@ -17,10 +15,8 @@
 	<tbody>
 		{% for user in infos.registredUsers %}
 		<tr>
-			<td><a href="{{ url_for('partner_show', partnerId=user.id) }}">{{ user.nick }}</a></td>
+			<td><a href="{{ url_for('partner_show', partnerId=user.id) }}">{{ user.email }}</a></td>
 			<td>{{ user.name }}</td>
-			<td>{{ user.email }}</td>
-			<td>{{ user.website }}</td>
 			<td>
 			{%- if session.id == user.id %}
 				{{ user.admin }}

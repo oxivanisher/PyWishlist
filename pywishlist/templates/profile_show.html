@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Profile') }}{% endblock %}
+{% block content -%}
+<div class="content_block">
+
+<table class='table table-striped'>
+<form action="{{ url_for('profile_show') }}" id="profile" method="post">
+	<input type="hidden" name="do" value="editprofile" />
+	<tr><td colspan="2"><h3>{{ _('Profile') }}</h3></td></tr>
+	<tr><td>{{ _('Name') }}</td><td><strong>{{ values.name }}</strong></td></tr>
+	<tr><td>{{ _('Email') }}</td><td><strong>{{ values.email }}</strong></td></tr>
+	<tr><td>{{ _('Real Name') }}:</td><td><input type="text" name="name" class="backend" value="{{ values.name }}"></td></tr>
+	<tr>
+		<td colspan="2">
+			<button class="btn btn-default" type="submit">{{ _('Submit') }}</button>
+			<button class="btn btn-default" type="reset">{{ _('Reset') }}</button>
+		</td>
+	</tr>
+</form>
+
+<form action="{{ url_for('profile_show') }}" id="password" method="post">
+	<input type="hidden" name="do" value="pwchange" />
+	<tr><td colspan="2"><h3>{{ _('Password change') }}</h3></td></tr>
+	<tr><td>{{ _('Old password') }}:</td><td><input type="password" name="oldpassword" class="backend" ></td></tr>
+	<tr><td>{{ _('New password') }}:</td><td><input type="password" name="newpassword1" class="backend" ></td></tr>
+	<tr><td>{{ _('New password again') }}:</td><td><input type="password" name="newpassword2" class="backend" ></td></tr>
+	<tr>
+		<td colspan="2">
+			<button class="btn btn-default" type="submit">{{ _('Submit') }}</button>
+			<button class="btn btn-default" type="reset">{{ _('Reset') }}</button>
+		</td>
+	</tr>
+</form>
+
+</table></div>
+{% endblock %}

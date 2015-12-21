@@ -81,19 +81,14 @@
 						<li class="dropdown"></li> -#}
 						{% endif -%}
 
-						{#Game Links -#}
+						{#Wishlists -#}
 						{% if session.logged_in -%}
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tower"></span> {{ _('Games and Gamers') }} <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tower"></span> {{ _('Wishlists') }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-
-								<li><a href="{{ url_for('game_links_show') }}"><span class="glyphicon glyphicon-link"></span> {{ _('Game links') }}</a></li>
-								<li><a href="{{ url_for('game_links_add') }}"><span class="glyphicon glyphicon-link"></span> {{ _('Add game link') }}</a></li>
-
-								<li class="divider"></li>
-								<!-- <li><a href="{{ url_for('network_link') }}"><span class="glyphicon glyphicon-tasks"></span> Connect Network</a></li> -->
-								{%- for net in session.networks %}
-									<li><a href="{{ url_for('network_show', netHandle=net.handle) }}"><span class="glyphicon glyphicon-tasks"></span> {{ net.name }}</a></li>
+								<li><a href="{{ url_for('wishlist', userId=session.user_id) }}"><span class="glyphicon glyphicon-link"></span> {{ _('Mine') }}</a></li>
+								{%- for user in get_other_users() %}
+									<li><a href="{{ url_for('wishlist', userId=user.id) }}"><span class="glyphicon glyphicon-tasks"></span> {{ user.name }}</a></li>
 								{%- endfor %}
 							</ul>
 						</li>
@@ -119,13 +114,10 @@
 							</li>
 						{% endif -%}
 
-						<li><a href="ts3server://{{ config.networkConfig.TS3.exturl }}?port={{ config.networkConfig.TS3.extport }}&nickname={{ session.nick }}&password={{ config.networkConfig.TS3.extpassword }}"><img src="{{ url_for('get_image', imgType='network', imgId='TS3') }}" class="partner_list_icon" title="{{ _('Connect to TS3 Server') }}"></a></li>
-
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-off"></span> {{ session.nick }}<span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-off"></span> {{ session.name }}<span class="caret"></span></a>
 	         				<ul class="dropdown-menu" role="menu">
 								<li class="{% if url_for('profile_show') == request.path %}active{% endif %}"><a href="{{ url_for('profile_show') }}"><span class="glyphicon glyphicon-user"></span> {{ _('Your profile settings') }}</a></li>
-								<li class="{% if url_for('partner_show', partnerId=session.userid) == request.path %}active{% endif %}"><a href="{{ url_for('partner_show', partnerId=session.userid) }}"><span class="glyphicon glyphicon-user"></span> {{ _('Your gamer profile') }}</a></li>
 
 								<li class="divider"></li>
 									{%- for key, value in config.LANGUAGES.iteritems() %}

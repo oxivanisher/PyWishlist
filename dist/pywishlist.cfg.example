@@ -6,6 +6,9 @@ COMPRESS_DEBUG = True
 COMPRESS_MIMETYPES = ['text/html', 'text/css', 'text/xml', 'application/json', 'application/javascript', 'text/javascript']
 FAVICON = "placeholder.png"
 SYSTEMLOGO = "placeholder.png"
+PLACEHOLDER = "placeholder.png"
+EMAILBANNER = "placeholder.png"
+EMAILBANNERWELCOME = "placeholder.png"
 
 # email
 EMAILSERVER = "127.0.0.1"
