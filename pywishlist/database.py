@@ -23,12 +23,14 @@ except KeyError:
 dbapp = Flask(__name__)
 dbapp.config.from_envvar('PYWISHLIST_CFG', silent=False)
 
-engine = create_engine(dbapp.config['SQLALCHEMY_DATABASE_URI'], convert_unicode=True)
+engine = create_engine(dbapp.config['SQLALCHEMY_DATABASE_URI'],
+                       convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
 Base = declarative_base()
 Base.query = db_session.query_property()
+
 
 def init_db():
     # import all modules here that might define models so that

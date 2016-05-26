@@ -15,8 +15,9 @@ from email.mime.image import MIMEImage
 
 from pywishlist.database import db_session
 
+
 class YamlConfig (object):
-    def __init__(self, filename = None):
+    def __init__(self, filename=None):
         self.filename = filename
         self.values = {}
         if filename:
@@ -33,12 +34,15 @@ class YamlConfig (object):
     def set_values(self, values):
         self.values = values
 
+
 def timestampToString(ts):
-    return datetime.datetime.fromtimestamp(int(ts)).strftime('%d.%m.%Y %H:%M:%S')
+    return datetime.datetime.fromtimestamp(int(ts)).strftime('%d.%m.%Y '
+                                                             '%H:%M:%S')
 
 
 def get_short_age(timestamp):
     return get_short_duration(time.time() - int(timestamp))
+
 
 def get_short_duration(age):
     age = int(age)
@@ -60,8 +64,10 @@ def get_short_duration(age):
     else:
         return '%sy' % (int(age / 31449600))
 
+
 def get_long_age(timestamp):
     return get_long_duration(time.time() - int(timestamp))
+
 
 def get_long_duration(age):
     intervals = (
@@ -82,6 +88,7 @@ def get_long_duration(age):
             result.append("%s%s" % (int(value), name))
     return ' '.join(result)
 
+
 # emailer functions
 def load_image_file_to_email(app, msgRoot, filename):
     fp = open(os.path.join(app.root_path, 'static/img/', filename), 'rb')
@@ -89,9 +96,10 @@ def load_image_file_to_email(app, msgRoot, filename):
     newImageName = os.path.splitext(filename)[0]
     fp.close()
     msgImage.add_header('Content-Disposition', 'inline', filename=filename)
-    msgImage.add_header('Content-ID', '<' + newImageName + '@pywishlist.local>')
+    msgImage.add_header('Content-ID', '<%s@pywishlist.local>' % (newImageName))
     msgRoot.attach(msgImage)
     return newImageName
+
 
 def send_email(app, msgto, msgsubject, msgtext, image):
     try:
@@ -114,25 +122,25 @@ def send_email(app, msgto, msgsubject, msgtext, image):
                 margin: 0px;
                 padding: 0px;
             }
-            #background { 
-                left: 0px; 
-                top: 0px; 
-                position: relative; 
-                margin-left: auto; 
-                margin-right: auto; 
+            #background {
+                left: 0px;
+                top: 0px;
+                position: relative;
+                margin-left: auto;
+                margin-right: auto;
                 width: 601px;
                 height: 500px;
                 overflow: hidden;
                 z-index:0;
             }
-            #logo { 
-                left: 0px; 
-                top: 0px; 
-                position: absolute; 
+            #logo {
+                left: 0px;
+                top: 0px;
+                position: absolute;
                 width: 601px;
                 height: 181px;
                 z-index:2;
-            } 
+            }
             #content {
                 top: 185px;
                 width: 601px;
@@ -150,21 +158,28 @@ def send_email(app, msgto, msgsubject, msgtext, image):
     </head>
     <body>
         <div id="background">
-            <div id="logo"><img src="cid:%s@pywishlist.local" alt="Header Image"></div>
+            <div id="logo"><img src="cid:%s@pywishlist.local"
+                alt="Header Image"></div>
             <div id="content">%s</div>
-            <div id="footer">PyWishlist <a href="https://github.com/oxivanisher/PyWishlist">github.com/oxivanisher/PyWishlist</a></div>
+            <div id="footer">PyWishlist <a
+                href="https://github.com/oxivanisher/PyWishlist">github.com/oxivanisher/PyWishlist</a></div>
         </div>
     </body>
     </html>""" % (msgsubject,
                   load_image_file_to_email(app, msgRoot, image),
-                  msgtext.replace('\n', '<br />').encode('ascii', 'xmlcharrefreplace'))
+                  msgtext.replace('\n', '<br />').encode('ascii',
+                                                         'xmlcharrefreplace'))
 
         newplaintext = ""
         for line in msgtext.split("\n"):
             newplaintext += "\n".join(textwrap.wrap(line)) + "\n"
 
-        part1 = MIMEText(newplaintext.replace('\n', '\r\n').encode("UTF-8"), 'plain', 'UTF-8')
-        part2 = MIMEText(htmltext.replace('\n', '\r\n').encode('UTF-8'), 'html', 'UTF-8')
+        part1 = MIMEText(newplaintext.replace('\n', '\r\n').encode("UTF-8"),
+                         'plain',
+                         'UTF-8')
+        part2 = MIMEText(htmltext.replace('\n', '\r\n').encode('UTF-8'),
+                         'html',
+                         'UTF-8')
         msgAlternative.attach(part1)
         msgAlternative.attach(part2)
 
@@ -175,22 +190,26 @@ def send_email(app, msgto, msgsubject, msgtext, image):
         s.quit()
         return True
     except Exception as e:
-        print 'Email ERROR: ' + str(e) + ' on line ' + str(sys.exc_traceback.tb_lineno)
+        print 'Email ERROR: %s on line %s' % (str(e),
+                                              str(sys.exc_traceback.tb_lineno))
         return False
+
 
 # database functions
 def runQuery(f, retry=30):
     def retryCheck(retry):
         waitForDbConnection()
         if not retry:
-            logging.error("[Utils] DB query retries exeeded. Raising exception.")
+            logging.error("[Utils] DB query retries exeeded. "
+                          "Raising exception.")
             raise
 
     while retry:
         retry -= 1
         try:
             logging.debug("[Utils] DB query successful")
-            return f() # "break" if query was successful and return any results
+            return f()
+            # "break" if query was successful and return any results
         except sqlalchemy.exc.DBAPIError as e:
             if e.connection_invalidated:
                 logging.warning("[Utils] DB connection invalidated: %s" % (e))
@@ -215,7 +234,8 @@ def runQuery(f, retry=30):
 
         time.sleep(0.1)
 
-def waitForDbConnection(maxTries = 0):
+
+def waitForDbConnection(maxTries=0):
     connected = False
     retryCount = 0
     while not connected:
@@ -229,10 +249,12 @@ def waitForDbConnection(maxTries = 0):
 
         if maxTries:
             if retryCount >= maxTries:
-                logging.warning("[Utils] DB connection check unable to connect to DB after %s tries." % retryCount)
+                logging.warning("[Utils] DB connection check unable to "
+                                "connect to DB after %s tries." % retryCount)
                 return False
 
     if retryCount:
-        logging.warning("[Utils] DB connection check connected to DB after %s tries." % retryCount)
+        logging.warning("[Utils] DB connection check connected to DB after "
+                        "%s tries." % retryCount)
 
     return True
