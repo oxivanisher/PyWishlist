@@ -148,8 +148,7 @@ def getOtherUsers():
             for user in ret:
                 if user.id != session.get('user_id'):
                     users.append({'name': user.name,
-                                  'id': user.id,
-                                  'email': user.email})
+                                  'id': user.id})
             return users
         else:
             return []
@@ -749,22 +748,27 @@ def profile_password_reset_verify(userId, verifyKey):
 
 
 # wish methods
-@app.route('/Wishlists/Show', methods=['GET'])
-@app.route('/Wishlists/Show/<userId>', methods=['GET'])
-def show_wishes(userId=None):
+# @app.route('/Wishlists/Show/<userId>', methods=['GET', 'POST'])
+@app.route('/Wishlists/Show', methods=['GET', 'POST'])
+def show_wishes():
     if not session.get('logged_in'):
         return redirect(url_for('index'))
-    if userId:
+    if request.method == 'POST':
         otherUsers = getOtherUsers()
         filteredWishes = []
         for wish in runQuery(Wish.query.all):
-            if wish.destinationId != session.get('userid'):
-                filteredWishes.append(wish)
-            elif wish.sourceId == session.get('userid'):
-                filteredWishes.append(wish)
+            if wish.destinationId == request.form['userId']:
+                # filter(destinationId=request.form['userId'])
+                if wish.destinationId != session.get('userid'):
+                    filteredWishes.append(wish)
+                elif wish.sourceId == session.get('userid'):
+                    filteredWishes.append(wish)
+                else:
+                    filteredWishes.append(wish)
 
         return render_template('show_wishes.html',
-                               wishes=wishes)
+                               wishes=filteredWishes,
+                               user=getUserById(request.form['userId']))
     else:
         return render_template('choose_user.html',
                                users=runQuery(WishUser.query.all))

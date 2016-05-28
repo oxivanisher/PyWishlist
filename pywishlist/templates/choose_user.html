@@ -1,6 +1,12 @@
 {%- extends "base.html" -%}
 {%- block title %}{{ _('Choose user')}}{% endblock -%}
 {%- block content -%}
-<div class="content_block"><h3>{{ _('Choose user')}}</h3>
-Empty page
-</div>{% endblock %}
+<div class="content_block"><form action="{{ url_for('show_wishes') }}" id="choose_user" method="post" autocomplete="off"><h3>{{ _('Choose user')}}</h3>
+<select name="userId">
+{%- for user in users|sort(attribute=name) -%}
+	<option value="{{ user.id }}">{{ user.name }}</option>
+{%- endfor -%}
+</select><br />
+<br />
+<button class="btn btn-default" type="submit">{{ _('Submit') }}</button> <button class="btn btn-default" type="reset">{{ _('Reset') }}</button>
+</form></div>{% endblock %}
