@@ -748,14 +748,32 @@ def profile_password_reset_verify(userId, verifyKey):
     return redirect(url_for('index'))
 
 
+# wish methods
 @app.route('/Wishlists/Show', methods=['GET'])
 @app.route('/Wishlists/Show/<userId>', methods=['GET'])
 def show_wishes(userId=None):
-    return render_template('show_wishes.html')
+    if not session.get('logged_in'):
+        return redirect(url_for('index'))
+    if userId:
+        otherUsers = getOtherUsers()
+        filteredWishes = []
+        for wish in runQuery(Wish.query.all):
+            if wish.destinationId != session.get('userid'):
+                filteredWishes.append(wish)
+            elif wish.sourceId == session.get('userid'):
+                filteredWishes.append(wish)
+
+        return render_template('show_wishes.html',
+                               wishes=wishes)
+    else:
+        return render_template('choose_user.html',
+                               users=runQuery(WishUser.query.all))
 
 
 @app.route('/Wishlists/Enter', methods=['GET'])
 def enter_wish():
+    if not session.get('logged_in'):
+        return redirect(url_for('index'))
     return render_template('enter_wish.html')
 
 
