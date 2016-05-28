@@ -487,7 +487,7 @@ def admin_bulk_email():
     return render_template('admin_bulk_email.html', retMessage=retMessage)
 
 
-# profile routes
+# profile routes
 @app.route('/Profile/Register', methods=['GET', 'POST'])
 def profile_register():
     if request.method == 'POST':
@@ -665,6 +665,7 @@ def profile_logout():
     session.pop('email', None)
     session.pop('admin', None)
     session.pop('logindate', None)
+    session.pop('userid', None)
     session.clear()
     return redirect(url_for('index'))
 
@@ -747,9 +748,15 @@ def profile_password_reset_verify(userId, verifyKey):
     return redirect(url_for('index'))
 
 
-@app.route('/Wishlists/<userId>', methods=['GET'])
-def wishlist(userId=None):
-    return render_template('index.html')
+@app.route('/Wishlists/Show', methods=['GET'])
+@app.route('/Wishlists/Show/<userId>', methods=['GET'])
+def show_wishes(userId=None):
+    return render_template('show_wishes.html')
+
+
+@app.route('/Wishlists/Enter', methods=['GET'])
+def enter_wish():
+    return render_template('enter_wish.html')
 
 
 # Index
