@@ -15,7 +15,7 @@
 	<tbody>
 		{% for user in infos.registredUsers %}
 		<tr>
-			<td><a href="{{ url_for('partner_show', partnerId=user.id) }}">{{ user.email }}</a></td>
+			<td>{{ user.email }}</td>
 			<td>{{ user.name }}</td>
 			<td>
 			{%- if session.id == user.id %}
