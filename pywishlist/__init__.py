@@ -157,7 +157,7 @@ def getOtherUsers():
 app.jinja_env.globals.update(timestampToString=timestampToString)
 app.jinja_env.globals.update(get_short_duration=get_short_duration)
 app.jinja_env.globals.update(get_short_age=get_short_age)
-app.jinja_env.globals.update(get_other_users=getOtherUsers)
+app.jinja_env.globals.update(users=runQuery(WishUser.query.all))
 
 
 def checkPassword(password1, password2):
@@ -748,30 +748,26 @@ def profile_password_reset_verify(userId, verifyKey):
 
 
 # wish methods
-# @app.route('/Wishlists/Show/<userId>', methods=['GET', 'POST'])
+@app.route('/Wishlists/Show/<userId>', methods=['GET', 'POST'])
 @app.route('/Wishlists/Show', methods=['GET', 'POST'])
-def show_wishes():
+def show_wishes(userId=None):
     if not session.get('logged_in'):
         return redirect(url_for('index'))
-    if request.method == 'POST':
-        otherUsers = getOtherUsers()
-        filteredWishes = []
-        for wish in runQuery(Wish.query.all):
-            if wish.destinationId == request.form['userId']:
-                # filter(destinationId=request.form['userId'])
-                if wish.destinationId != session.get('userid'):
-                    filteredWishes.append(wish)
-                elif wish.sourceId == session.get('userid'):
-                    filteredWishes.append(wish)
-                else:
-                    filteredWishes.append(wish)
+    otherUsers = getOtherUsers()
+    filteredWishes = []
+    for wish in runQuery(Wish.query.all):
+        if wish.destinationId == request.form['userId']:
+            # filter(destinationId=request.form['userId'])
+            if wish.destinationId != session.get('userid'):
+                filteredWishes.append(wish)
+            elif wish.sourceId == session.get('userid'):
+                filteredWishes.append(wish)
+            else:
+                filteredWishes.append(wish)
 
-        return render_template('show_wishes.html',
-                               wishes=filteredWishes,
-                               user=getUserById(request.form['userId']))
-    else:
-        return render_template('choose_user.html',
-                               users=runQuery(WishUser.query.all))
+    return render_template('show_wishes.html',
+                           wishes=filteredWishes,
+                           user=getUserById(request.form['userId']))
 
 
 @app.route('/Wishlists/Enter', methods=['GET'])

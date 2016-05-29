@@ -83,7 +83,14 @@
 
 						{#Wishlists -#}
 						{% if session.logged_in -%}
-							<li class="{% if url_for('show_wishes') == request.path %}active{% endif %}"><a href="{{ url_for('show_wishes') }}"><span class="glyphicon glyphicon-tower"></span> {{ _('Show wishes') }}</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tower"></span> {{ _('Show wishes') }} <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+								{%- for user in users|sort(attribute=name) %}
+									<li class="{% if url_for('show_wishes', userId=user.id) == request.path %}active{% endif %}"><a href="{{ url_for('show_wishes', userId=user.id) }}"><span class="glyphicon glyphicon-user"></span> {{ user.name }}</a></li>
+								{%- endfor -%}
+								</ul>
+							</li>
 						
 							<li class="{% if url_for('enter_wish') == request.path %}active{% endif %}"><a href="{{ url_for('enter_wish') }}"><span class="glyphicon glyphicon-tower"></span> {{ _('Enter wish') }}</a></li>
 						{% endif -%}
