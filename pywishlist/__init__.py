@@ -747,17 +747,15 @@ def profile_password_reset_verify(userId, verifyKey):
     return redirect(url_for('index'))
 
 
-# wish methods
-@app.route('/Wishlists/Show/<userId>', methods=['GET', 'POST'])
-@app.route('/Wishlists/Show', methods=['GET', 'POST'])
+# Wish methods
+@app.route('/Wishlists/Show/<userId>', methods=['GET'])
 def show_wishes(userId=None):
     if not session.get('logged_in'):
         return redirect(url_for('index'))
-    otherUsers = getOtherUsers()
     filteredWishes = []
     for wish in runQuery(Wish.query.all):
-        if wish.destinationId == request.form['userId']:
-            # filter(destinationId=request.form['userId'])
+        # filter(destinationId=request.form['userId'])
+        if wish.destinationId == userId:
             if wish.destinationId != session.get('userid'):
                 filteredWishes.append(wish)
             elif wish.sourceId == session.get('userid'):
@@ -767,14 +765,16 @@ def show_wishes(userId=None):
 
     return render_template('show_wishes.html',
                            wishes=filteredWishes,
-                           user=getUserById(request.form['userId']))
+                           user=getUserById(userId),
+                           users=runQuery(WishUser.query.all))
 
 
 @app.route('/Wishlists/Enter', methods=['GET'])
 def enter_wish():
     if not session.get('logged_in'):
         return redirect(url_for('index'))
-    return render_template('enter_wish.html')
+    return render_template('enter_wish.html',
+                           users=runQuery(WishUser.query.all))
 
 
 # Index
