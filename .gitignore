@@ -1,5 +1,6 @@
 # My Excludes
 dist/*.py
+dist/*.cfg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
