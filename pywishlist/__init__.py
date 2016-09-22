@@ -412,8 +412,8 @@ def admin_user_management():
         try:
             users = runQuery(WishUser.query.all)
         except Exception as e:
-            self.log.warning("[System] SQL Alchemy Error on Admin user "
-                             "management: %s" % (e))
+            log.warning("[System] SQL Alchemy Error on Admin user "
+                        "management: %s" % (e))
 
         for user in users:
             registredUsers.append({'id': user.id,
@@ -441,8 +441,8 @@ def admin_user_management_togglelock(userId):
         try:
             runQuery(db_session.commit)
         except Exception as e:
-            self.log.warning("[System] SQL Alchemy Error on Admin toggle "
-                             "lock: %s" % (e))
+            log.warning("[System] SQL Alchemy Error on Admin toggle "
+                        "lock: %s" % (e))
     return redirect(url_for('admin_user_management'))
 
 
@@ -460,8 +460,8 @@ def admin_user_management_toggleadmin(userId):
         try:
             runQuery(db_session.commit)
         except Exception as e:
-            self.log.warning("[System] SQL Alchemy Error on Admin toggle "
-                             "admin: %s" % (e))
+            log.warning("[System] SQL Alchemy Error on Admin toggle "
+                        "admin: %s" % (e))
     return redirect(url_for('admin_user_management'))
 
 
@@ -489,8 +489,8 @@ def admin_bulk_email():
                     else:
                         nokCount += 1
             except Exception as e:
-                self.log.warning("[System] SQL Alchemy Error on Admin bulk "
-                                 "email: %s" % (e))
+                log.warning("[System] SQL Alchemy Error on Admin bulk "
+                            "email: %s" % (e))
 
             retMessage = gettext("Messages sent: %(okCount)s; Messages not "
                                  "sent: %(nokCount)s",
@@ -587,8 +587,8 @@ def profile_show(do=None):
         try:
             runQuery(db_session.commit)
         except Exception as e:
-            self.log.warning("[System] SQL Alchemy Error on profile show: %s"
-                             % (e))
+            log.warning("[System] SQL Alchemy Error on profile show: %s"
+                        % (e))
         flash(gettext("Profile changed"), 'success')
 
     size = 80
@@ -611,14 +611,14 @@ def profile_verify(userId, verifyKey):
     log.info("[System] Verify userid %s" % userId)
     verifyUser = getUserById(userId)
     if not verifyUser:
-        flash(gettext("User not found to verify."))
+        flash(gettext("User not found to verify.", 'error'))
     elif verifyUser.verify(verifyKey):
         db_session.merge(verifyUser)
         try:
             runQuery(db_session.commit)
         except Exception as e:
-            self.log.warning("[System] SQL Alchemy Error on verify key: %s"
-                             % (e))
+            log.warning("[System] SQL Alchemy Error on verify key: %s"
+                        % (e))
         if verifyUser.veryfied:
             flash(gettext("Verification ok. Please log in."), 'success')
             return redirect(url_for('index'))
@@ -699,8 +699,8 @@ def profile_password_reset_request():
         try:
             runQuery(db_session.commit)
         except Exception as e:
-            self.log.warning("[System] SQL Alchemy Error on password "
-                             "reset: %s" % (e))
+            log.warning("[System] SQL Alchemy Error on password "
+                        "reset: %s" % (e))
         actUrl = url_for('profile_password_reset_verify',
                          userId=myUser.id,
                          verifyKey=myUser.verifyKey,
@@ -723,7 +723,7 @@ def profile_password_reset_request():
     return redirect(url_for('index'))
 
 
-@app.route('/PasswordReset/Verify/<userId>/<verifyKey>', methods=['GET'])
+@app.route('/PasswordReset/Verify/<int:userId>/<strverifyKey>', methods=['GET'])
 def profile_password_reset_verify(userId, verifyKey):
     if session.get('logged_in'):
         return redirect(url_for('index'))
@@ -756,25 +756,25 @@ def profile_password_reset_verify(userId, verifyKey):
         try:
             runQuery(db_session.commit)
         except Exception as e:
-            self.log.warning("[System] SQL Alchemy Error on password reset "
-                             "verify key: %s" % (e))
+            log.warning("[System] SQL Alchemy Error on password reset "
+                        "verify key: %s" % (e))
     return redirect(url_for('index'))
 
 
 # Wish methods
-@app.route('/Wishlists/Show/<userId>', methods=['GET'])
+@app.route('/Wishlists/Show/<int:userId>', methods=['GET'])
 def show_wishes(userId):
     if not session.get('logged_in'):
         return redirect(url_for('index'))
     filteredWishes = []
     for wish in runQuery(Wish.query.all):
         # filter(destinationId=request.form['userId'])
+        if wish.hiddenId:
+            continue
         if wish.destinationId == userId:
             if wish.destinationId != session.get('userid'):
                 filteredWishes.append(wish)
             elif wish.sourceId == session.get('userid'):
-                filteredWishes.append(wish)
-            else:
                 filteredWishes.append(wish)
 
     return render_template('show_wishes.html',
@@ -783,22 +783,32 @@ def show_wishes(userId):
                            users=runQuery(WishUser.query.all))
 
 
-@app.route('/Wish/Hide/<userId>', methods=['GET'])
-def hide_wish(wishId):
+@app.route('/Wish/Hide/<int:wishId>/<int:userId>', methods=['GET'])
+def hide_wish(wishId, userId):
     if not session.get('logged_in'):
         return redirect(url_for('index'))
     wish = getWishById(wishId)
 
     if wish.sourceId == session.get('userid'):
         try:
-            wish.hide()
-            flash(gettext("Wish successfully hidden"))
+            wish.hide(session.get('userid'))
+            db_session.merge(wish)
+            flash(gettext("Wish successfully hidden"), 'info')
+            log.info("Wish successfully hidden")
         except Exception as e:
-            flash(gettext("Unable to hide wish"))
-    else:
-        flash(gettext("You are not the owner of this wish"))
+            flash(gettext("Unable to hide wish"), 'error')
+            log.warning("Unable to hide wish because %s" % (e))
 
-    return redirect(url_for('show_wishes'))
+        try:
+            runQuery(db_session.commit)
+        except Exception as e:
+            log.warning("[Wish] SQL Alchemy Error on hide wish"
+                        ": %s" % (e))
+
+    else:
+        flash(gettext("You are not the owner of this wish"), 'error')
+
+    return redirect(url_for('show_wishes', userId=userId))
 
 
 @app.route('/Wish/Enter', methods=['GET', 'POST'])
@@ -815,8 +825,8 @@ def enter_wish():
             runQuery(db_session.commit)
             flash(gettext("The wish was successfully saved"), 'info')
         except Exception as e:
-            self.log.warning("[Wish] SQL Alchemy Error on enter wish"
-                             ": %s" % (e))
+            log.warning("[Wish] SQL Alchemy Error on enter wish"
+                        ": %s" % (e))
             flash(gettext("The wish could not be saved"), 'error')
     return render_template('enter_wish.html',
                            users=runQuery(WishUser.query.all))

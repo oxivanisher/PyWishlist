@@ -1,36 +1,12 @@
 {%- extends "base.html" -%}
-{%- block title %}{{ _('Show wishes')}}: {{ user.name }}{% endblock -%}
+{%- block title %}{{ _('Show wishes for')}} {{ user.name }}{% endblock -%}
 {%- block content -%}
-<div class="content_block"><h3>{{ _('Show wishes')}}: {{ user.name }}</h3>
-<table class='table table-striped' id='dt_friendstable'>
-	<thead>
-		<tr>
- 			<th style='width:80px;'>{{ _('Network') }}</th>
-			<th style='width:80px;'>{{ _('Game') }}</th>
-			<th style='width:80px;'>{{ _('Name') }}</th>
-			<th style='width:80px;'>{{ _('User') }}</th>
-			<th style='width:80px;'>{{ _('Age') }}</th>
-		</tr>
-	</thead>
-	<thead>
-		<tr>
-			<th><input style='width:100%;'/></th>
-			<th><input style='width:100%;'/></th>
-			<th><input style='width:100%;'/></th>
-			<th><input style='width:100%;'/></th>
-			<th><input style='width:100%;'/></th>
-		</tr>
-	</thead>
-	<tbody>
-	{% for link in links %}
-		<tr>
-			<td><a href="{{ url_for('network_show', netHandle=link.network_handle) }}">{{ networks[link.network_handle] }}</a></td>
-			<td>{{ games[link.network_handle][link.gameId] }}</td>
-			<td><a href="{{ link.link }}" title="{{ link.comment }}" target="_new">{{ link.name }}</a></td>
-			<td><a href="{{ url_for('partner_show', netHandle=link.network_handle, partnerId=link.user_id) }}">{{ link.user.nick }}</a></td>
-			<td>{{ get_short_age(link.date) }}</td>
-		</tr>
-	{% endfor %}
-	</tbody>
-</table>
+<div class="content_block"><h3>{{ _('Show wishes for')}} {{ user.name }}</h3>
+{% for wish in wishes %}
+<div class="wish_box">
+{{ wish.text }}<br />
+{{ _('By') }} {{ wish.source.name }}, {{ _('Age') }}: {{ get_short_age(wish.creationDate) }} <a href="{{ url_for('hide_wish', wishId=wish.id, userId=user.id) }}" class="btn-sm btn-default" ole="button">{{ _('Hide') }}</a>
+</div>
+{% endfor %}
+
 </div>{% endblock %}
