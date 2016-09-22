@@ -1,6 +1,24 @@
 {%- extends "base.html" -%}
 {%- block title %}{{ _('Enter wish')}}{% endblock -%}
 {%- block content -%}
-<div class="content_block"><h3>{{ _('Enter wish')}}</h3>
-Empty page
-</div>{% endblock %}
+<div class="content_block">
+<table class='table table-striped'>
+<form action="{{ url_for('enter_wish') }}" id="profile" method="post">
+	<tr><td colspan="2"><h3>{{ _('Enter wish') }}</h3></td></tr>
+	<tr>
+		<td>{{ _('For user') }}:</td>
+		<td><select name="userid">
+			{%- for user in users|sort(attribute=name) %}
+				<option value="{{ user.id }}">{{ user.name }}</option>
+			{%- endfor -%}
+			</select></td></tr>
+	<tr><td>{{ _('Description') }}:</td><td><textarea rows="4" cols="50" name="text">{{ _('Describe the wish') }}</textarea></tr>
+	<tr>
+		<td colspan="2">
+			<button class="btn btn-default" type="submit">{{ _('Submit') }}</button>
+			<button class="btn btn-default" type="reset">{{ _('Reset') }}</button>
+		</td>
+	</tr>
+</form>
+
+</table></div>{% endblock %}

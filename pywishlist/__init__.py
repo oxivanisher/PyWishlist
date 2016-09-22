@@ -134,6 +134,20 @@ def getUserById(userId=None):
             return False
 
 
+def getWishById(wishId):
+    with app.test_request_context():
+        try:
+            ret = runQuery(Wish.query.filter_by(id=wishId).first)
+        except Exception as e:
+            log.warning("[System] SQL Alchemy Error on getWishById: %s" % (e))
+            ret = False
+
+        if ret:
+            return ret
+        else:
+            return False
+
+
 def getOtherUsers():
     with app.test_request_context():
         users = []
@@ -749,7 +763,7 @@ def profile_password_reset_verify(userId, verifyKey):
 
 # Wish methods
 @app.route('/Wishlists/Show/<userId>', methods=['GET'])
-def show_wishes(userId=None):
+def show_wishes(userId):
     if not session.get('logged_in'):
         return redirect(url_for('index'))
     filteredWishes = []
@@ -769,10 +783,41 @@ def show_wishes(userId=None):
                            users=runQuery(WishUser.query.all))
 
 
-@app.route('/Wishlists/Enter', methods=['GET'])
+@app.route('/Wish/Hide/<userId>', methods=['GET'])
+def hide_wish(wishId):
+    if not session.get('logged_in'):
+        return redirect(url_for('index'))
+    wish = getWishById(wishId)
+
+    if wish.sourceId == session.get('userid'):
+        try:
+            wish.hide()
+            flash(gettext("Wish successfully hidden"))
+        except Exception as e:
+            flash(gettext("Unable to hide wish"))
+    else:
+        flash(gettext("You are not the owner of this wish"))
+
+    return redirect(url_for('show_wishes'))
+
+
+@app.route('/Wish/Enter', methods=['GET', 'POST'])
 def enter_wish():
     if not session.get('logged_in'):
         return redirect(url_for('index'))
+    if request.method == 'POST':
+        newWish = Wish(session.get('userid'),
+                       request.form['userid'],
+                       request.form['text'])
+
+        db_session.add(newWish)
+        try:
+            runQuery(db_session.commit)
+            flash(gettext("The wish was successfully saved"), 'info')
+        except Exception as e:
+            self.log.warning("[Wish] SQL Alchemy Error on enter wish"
+                             ": %s" % (e))
+            flash(gettext("The wish could not be saved"), 'error')
     return render_template('enter_wish.html',
                            users=runQuery(WishUser.query.all))
 
