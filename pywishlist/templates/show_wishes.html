@@ -1,12 +1,35 @@
 {%- extends "base.html" -%}
 {%- block title %}{{ _('Show wishes for')}} {{ user.name }}{% endblock -%}
 {%- block content -%}
-<div class="content_block"><h3>{{ _('Show wishes for')}} {{ user.name }}</h3>
 {% for wish in wishes %}
-<div class="wish_box">
-{{ wish.text }}<br />
-{{ _('By') }} {{ wish.source.name }}, {{ _('Age') }}: {{ get_short_age(wish.creationDate) }} <a href="{{ url_for('hide_wish', wishId=wish.id, userId=user.id) }}" class="btn-sm btn-default" ole="button">{{ _('Hide') }}</a>
-</div>
+<div class="col-md-4 col"><div class="box dboard" id="{{ wish.id }}">
+	<header>
+		<table style="width: 100%;">
+			<tr>
+				<td style="text-align: left; vertical-align: baseline; font-size: 18px; margin: 5px;" class="dboardtitle">{{ _('By') }} {{ wish.source.name }}, {{ _('Age') }}: {{ get_short_age(wish.creationDate) }}</td>
+				<td style="text-align: right; vertical-align: baseline;">
+					<a href="{{ url_for('hide_wish', wishId=wish.id, userId=user.id) }}" class="fa fa-close" alt="{{ _('Hide') }}"></a>
+				</td>
+			</tr>
+		</table>
+	</header>
+	<section id="{{ wish.id }}-section" class="content-normal">{{ wish.text }}</section>
+	<footer></footer>
+</div></div>
 {% endfor %}
 
-</div>{% endblock %}
+{% for wish in hiddenWishes %}
+<div class="col-md-4 col"><div class="greybox dboard" id="{{ wish.id }}">
+	<header>
+		<table style="width: 100%;" >
+			<tr>
+				<td style="text-align: left; vertical-align: baseline; font-size: 18px; margin: 5px;" class="dboardtitle">{{ _('By') }} {{ wish.source.name }}, {{ _('Age') }}: {{ get_short_age(wish.creationDate) }}</td>
+			</tr>
+		</table>
+	</header>
+	<section id="{{ wish.id }}-section" class="content-normal">{{ wish.text }}</section>
+	<footer></footer>
+</div></div>
+{% endfor %}§
+
+{% endblock %}

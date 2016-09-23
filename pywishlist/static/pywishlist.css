@@ -28,15 +28,6 @@ body { padding-bottom: 22px;
   outline: none;
 }
 
-.partner_list_icon {
-  /*display: block;*/
-  max-width:16px;
-  max-height:16px;
-  width: auto;
-  height: auto;
-  margin-right: 2px;
-}
-
 .home_icon {
   /*display: block;*/
   max-width:28px;
@@ -44,32 +35,6 @@ body { padding-bottom: 22px;
   width: auto;
   height: auto;
   margin-top: -5px;
-}
-
-.link_network_list_icon {
-  /*display: block;*/
-  max-width:30px;
-  max-height:30px;
-  width: auto;
-  height: auto;
-  margin-right: 2px;
-  margin-top: 20px;
-}
-
-.linked_network_list_icon {
-  /*display: block;*/
-  max-width:20px;
-  max-height:20px;
-  width: auto;
-  height: auto;
-  margin-right: 2px;
-}
-
-.partner_detail_avatar {
-  max-width:300px;
-  max-height:300px;
-  width: auto;
-  height: auto;
 }
 
 .position_bottom_right {
@@ -84,15 +49,6 @@ body { padding-bottom: 22px;
   bottom: 10px;
   left: 10px;
   max-width: 30%;
-}
-
-.twitter_news {
-  vertical-align: top;
-  width: 300px;
-  position: fixed;
-  right: 50px;
-  top: 60px;
-  float: left;
 }
 
 .profileAvatar {
@@ -132,14 +88,13 @@ body { padding-bottom: 22px;
 }
 
 .content-normal {
-  height: 345px;
+  height: 100px;
 }
 
 .content-big {
-  height: 762px;
+  height: 200px;
 }
 
-/* stoef css */
 .box {
   border: 1px solid black;
   padding: 0;
@@ -165,15 +120,34 @@ body { padding-bottom: 22px;
     padding-bottom: 0px;
   }
 
-/*  .status { border-bottom: 20px solid transparent; visibility: hidden; }
-  .status .box {
-    border: 1px solid black;
-    background: #87CE36;
-    padding: 20px;
-    text-align: center;
+/* stoef css */
+.greybox {
+  border: 1px solid black;
+  padding: 0;
   }
-*/
-/* twitch channel */
-.twitchChannels {
-  margin: 0px;
+  .greybox header {
+    background: grey;
+    padding: 10px;
+    text-align: right;
+  }
+  
+  .greybox section {
+    background: grey;
+    /*padding: 10px 10px 10px 10px;*/
+    padding: 5px;
+    /*min-height: 345px;*/
+    overflow-y: auto;
+  }
+  
+  .greybox footer {
+    background: #87CE36;
+    padding: 5px;
+    vertical-align: bottom;
+    padding-bottom: 0px;
+  }
+
+
+
+.greyed {
+  background: #333333;
 }

@@ -73,19 +73,19 @@ $(function() {
     });
 
     // close dashboard box
-    $(".fa-close").click(function(){
+/*    $(".fa-close").click(function(){
         var boxVisibleStates = JSON.parse($.cookie('boxVisibleStates'));
         boxVisibleStates[$(this).parents('.box.dboard').attr('id')] = false;
         $.cookie('boxVisibleStates', JSON.stringify(boxVisibleStates));
         updateBoxesDropdownMenu();
-    });
+    });*/
     
     // undo close dashboard box
     // $(".undo").click(function(){
     //     hiddenBox.toggle();
     // });
 
-    updateBoxesDropdownMenu();
+    //updateBoxesDropdownMenu();
 
     //Increment the idle time counter every minute.
     var windowIdleInterval = setInterval(windowBlurTimerIncrement, 30000); // 1 minute

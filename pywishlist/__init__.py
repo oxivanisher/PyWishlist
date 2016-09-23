@@ -767,18 +767,25 @@ def show_wishes(userId):
     if not session.get('logged_in'):
         return redirect(url_for('index'))
     filteredWishes = []
+    hiddenWishes = []
     for wish in runQuery(Wish.query.all):
         # filter(destinationId=request.form['userId'])
-        if wish.hiddenId:
-            continue
         if wish.destinationId == userId:
             if wish.destinationId != session.get('userid'):
-                filteredWishes.append(wish)
+                if wish.hiddenId:
+                    hiddenWishes.append(wish)
+                else:
+                    filteredWishes.append(wish)
             elif wish.sourceId == session.get('userid'):
-                filteredWishes.append(wish)
+                if wish.hiddenId:
+                    hiddenWishes.append(wish)
+                else:
+                    filteredWishes.append(wish)
 
+    log.info("Found %s wishes for user %s" % (len(filteredWishes), userId))
     return render_template('show_wishes.html',
                            wishes=filteredWishes,
+                           hiddenWishes=hiddenWishes,
                            user=getUserById(userId),
                            users=runQuery(WishUser.query.all))
 
@@ -793,8 +800,8 @@ def hide_wish(wishId, userId):
         try:
             wish.hide(session.get('userid'))
             db_session.merge(wish)
-            flash(gettext("Wish successfully hidden"), 'info')
-            log.info("Wish successfully hidden")
+            log.info("Wish %s successfully hidden by %s"
+                     % (wish.id, session.get('userid')))
         except Exception as e:
             flash(gettext("Unable to hide wish"), 'error')
             log.warning("Unable to hide wish because %s" % (e))
@@ -823,7 +830,6 @@ def enter_wish():
         db_session.add(newWish)
         try:
             runQuery(db_session.commit)
-            flash(gettext("The wish was successfully saved"), 'info')
         except Exception as e:
             log.warning("[Wish] SQL Alchemy Error on enter wish"
                         ": %s" % (e))
