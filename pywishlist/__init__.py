@@ -167,11 +167,23 @@ def getOtherUsers():
         else:
             return []
 
+
+def getAllUsers():
+    with app.test_request_context():
+        users = []
+        try:
+            users = runQuery(WishUser.query.all)
+        except Exception as e:
+            log.warning("[System] SQL Alchemy Error on getAllUsers "
+                        ": %s" % (e))
+        return users
+
+
 # update jinja2 methods
 app.jinja_env.globals.update(timestampToString=timestampToString)
 app.jinja_env.globals.update(get_short_duration=get_short_duration)
 app.jinja_env.globals.update(get_short_age=get_short_age)
-app.jinja_env.globals.update(users=runQuery(WishUser.query.all))
+app.jinja_env.globals.update(users=getAllUsers())
 
 
 def checkPassword(password1, password2):
@@ -786,8 +798,7 @@ def show_wishes(userId):
     return render_template('show_wishes.html',
                            wishes=filteredWishes,
                            hiddenWishes=hiddenWishes,
-                           user=getUserById(userId),
-                           users=runQuery(WishUser.query.all))
+                           user=getUserById(userId))
 
 
 @app.route('/Wish/Hide/<int:wishId>/<int:userId>', methods=['GET'])
@@ -834,8 +845,7 @@ def enter_wish():
             log.warning("[Wish] SQL Alchemy Error on enter wish"
                         ": %s" % (e))
             flash(gettext("The wish could not be saved"), 'error')
-    return render_template('enter_wish.html',
-                           users=runQuery(WishUser.query.all))
+    return render_template('enter_wish.html')
 
 
 # Index
