@@ -176,7 +176,7 @@ def getAllUsers():
         except Exception as e:
             log.warning("[System] SQL Alchemy Error on getAllUsers "
                         ": %s" % (e))
-        return users
+        return sorted(users, key=lambda x: x.name, reverse=False)
 
 
 # update jinja2 methods

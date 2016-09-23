@@ -8,7 +8,7 @@
 	<tr>
 		<td>{{ _('For user') }}:</td>
 		<td><select name="userid">
-			{%- for user in users|sort(attribute=name) %}
+			{%- for user in users %}
 				<option value="{{ user.id }}">{{ user.name }}</option>
 			{%- endfor -%}
 			</select></td></tr>
