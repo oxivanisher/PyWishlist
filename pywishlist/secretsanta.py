@@ -16,6 +16,7 @@ class SecretSantaSolver:
 
         self.users = users
         self.exclusions = exclusions
+        self.loops = 0
 
         self.solutionFound = False
 
@@ -30,9 +31,6 @@ class SecretSantaSolver:
             return key
 
     def run(self):
-        self.solutionFound = False
-        calcCountTotal = 0
-
         while not self.solutionFound:
             self.log.info("[SecretSanta] Starting to solve")
             result = []
@@ -48,7 +46,7 @@ class SecretSantaSolver:
 
                 if calcCount > maxRuns:
                     self.log.warning("[SecretSanta] Unresolvable!")
-                    calcCountTotal += calcCount
+                    self.loops += calcCount
                     return False
 
                 SecretSantaST = copy.copy(SecretSantaS)
@@ -69,15 +67,15 @@ class SecretSantaSolver:
                     if not badPair:
                         SecretSantaS = SecretSantaST
                         SecretSantaR = SecretSantaRT
-                        self.log.info("[SecretSanta] Result found: %s - %s" %
-                                      (A.name, B.name))
+                        self.log.debug("[SecretSanta] Result found: %s - %s" %
+                                       (A.name, B.name))
                         result.append((A, B))
-                        calcCountTotal += calcCount
+                        self.loops += calcCount
                         calcCount = 0
 
                 if len(SecretSantaR) == 0:
                     pairsFound = True
                     self.solutionFound = True
 
-        self.log.info("[SecretSanta] Needed calculations: %s" % (calcCountTotal))
+        self.log.info("[SecretSanta] Needed calculations: %s" % (self.loops))
         return result

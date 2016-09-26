@@ -568,8 +568,9 @@ def admin_secretsanta_go():
     ret = solver.run()
 
     if ret:
-        message.append("Calculations done:")
+        message.append("Calculations done in %s loops:" % (solver.loops))
         for (donator, reciever) in ret:
+            # FIXME remove the following line before go online!
             message.append("%s > %s" % (donator.name, reciever.name))
 
             if send_email(app,

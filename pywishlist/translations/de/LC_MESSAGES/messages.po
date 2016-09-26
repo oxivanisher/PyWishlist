@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-26 23:45+0200\n"
+"POT-Creation-Date: 2016-09-27 00:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -219,7 +219,7 @@ msgstr "Der Wunsch konnte nicht gespeichert werden"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/about.html:2
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/about.html:5
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:98
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:105
 msgid "About"
 msgstr "&Uuml;ber"
 
@@ -236,6 +236,7 @@ msgid "Users"
 msgstr "Benutzer"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/about.html:11
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:89
 msgid "Wishes"
 msgstr "W&uuml;nsche"
 
@@ -253,7 +254,7 @@ msgstr "Neuester Wunsch"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_bulk_email.html:2
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_bulk_email.html:4
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:107
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:114
 msgid "Bulk Email"
 msgstr "Massen E-mail"
 
@@ -270,7 +271,7 @@ msgid "Send"
 msgstr "Senden"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:2
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:109
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:116
 msgid "Secret Santa Management"
 msgstr "Wichteln Verwaltung"
 
@@ -295,7 +296,7 @@ msgid "Go"
 msgstr "Los"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_user_management.html:2
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:108
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:115
 msgid "User Management"
 msgstr "Benutzer Verwaltung"
 
@@ -343,29 +344,25 @@ msgstr "Dashboard"
 msgid "The python based Secret Santa system"
 msgstr "Das python basierte Wichteln system"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:60
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:62
 msgid "Toggle navigation"
 msgstr "Navigation umschalten"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:87
-msgid "Show wishes"
-msgstr "W&uuml;nsche anzeigen"
-
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:95
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:102
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:2
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:7
 msgid "Enter wish"
 msgstr "Wunsch erfassen"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:105
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:112
 msgid "Administration"
 msgstr "Administration"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:117
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:124
 msgid "Your profile settings"
 msgstr "Deine Profil Einstellungen"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:125
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:132
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:19
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:12
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:16
@@ -374,30 +371,30 @@ msgstr "Deine Profil Einstellungen"
 msgid "Reset"
 msgstr "Zur&uuml;chsetzen"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:127
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:134
 msgid "Logout"
 msgstr "Abmelden"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:131
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:138
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:5
 msgid "Registration"
 msgstr "Registration"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:132
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:139
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:2
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:5
 msgid "Login"
 msgstr "Anmelden"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:143
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:150
 msgid "Success message"
 msgstr "Erfolgs Meldung"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:152
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:159
 msgid "Error message"
 msgstr "Fehler Meldung"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:161
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:168
 msgid "Info message"
 msgstr "Informative Meldung"
 
