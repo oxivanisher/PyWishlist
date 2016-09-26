@@ -3,6 +3,8 @@
 {% block content -%}
 <div class="content_block">
 
+<img src="{{ userAvatar }}" title="{{ values.name }}" class="profileAvatar glow"/>
+
 <table class='table table-striped'>
 <form action="{{ url_for('profile_show') }}" id="profile" method="post">
 	<input type="hidden" name="do" value="editprofile" />
@@ -32,5 +34,23 @@
 	</tr>
 </form>
 
-</table></div>
+</table>
+
+<table class='table table-striped'>
+	<thead>
+		<tr>
+			<th>{{ _('Date') }}</th>
+			<th>{{ _('Reciever') }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for entry in history %}
+		<tr>
+			<td>{{ timestampToString(entry.date) }}</td>
+			<td>{{ entry.reciever.name }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>
 {% endblock %}

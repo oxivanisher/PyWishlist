@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-27 00:04+0200\n"
+"POT-Creation-Date: 2016-09-27 00:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -19,31 +19,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:192
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:193
 msgid "Passwords do not match!"
 msgstr "Die Passw&ouml;rter stimmen nicht &uuml;berein!"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:196
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:197
 msgid "Password is too short"
 msgstr "Passwort zu kurz"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:222
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:223
 msgid "Bad Request"
 msgstr "Ung&uuml;ltige Anfrage"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:229
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:230
 msgid "Unauthorized request"
 msgstr "Unberechtigte Anfrage"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:236
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:237
 msgid "Forbidden request"
 msgstr "Verbotene Anfrage"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:243
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:244
 msgid "Page not found"
 msgstr "Seite nicht gefunden"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:250
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:251
 msgid ""
 "The server encountered an internal error, probably a bug in the program. "
 "The administration was automatically informed of this problem."
@@ -52,37 +52,37 @@ msgstr ""
 "einen Bug im Programm. Der Administrator wurde automatisch &uuml;ber den "
 "Fehler informiert."
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:505
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:638
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:506
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:647
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
 msgid "Hello"
 msgstr "Hallo"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:507
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:583
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:643
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:812
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:842
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:508
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:587
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:652
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:826
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:856
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
 msgid "<br><br>Have fun and see you soon ;)"
 msgstr "<br><br>Viel Spass und bis bald ;)"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:517
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:518
 #, python-format
 msgid "Messages sent: %(okCount)s; Messages not sent: %(nokCount)s"
 msgstr ""
 "Nachrichten versendet: %(okCount)s; Nachrichten nicht versendet: "
 "%(nokCount)s"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:544
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:545
 msgid "The exclusion could not be saved"
 msgstr "Der Ausschluss konnte nicht gespeichert werden"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:546
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:547
 msgid "Unable to add this exclude"
 msgstr "Dieser Ausschluss kann nicht hizugef&uuml;gt werden"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:578
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:582
 #, python-format
 msgid ""
 "<h3>Hello %(donator)s</h3>You are the Secret Santa to: "
@@ -91,23 +91,23 @@ msgstr ""
 "<h3>Hallo %(donator)s</h3>Du bist das Wichteli von: %(reciever)s<br>Bitte"
 " antworte nicht auf diese E-mail!<br>"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:590
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:599
 msgid "Calculation not ok"
 msgstr "Berechnung nicht erfolgreich"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:607
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:616
 msgid "Email address is too short"
 msgstr "Die E-mail Adresse ist zu kurz"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:615
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:624
 msgid "Please fill out all the fields!"
 msgstr "Bitte f&uuml;lle alle Felder aus!"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:636
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:645
 msgid "PyWishlist Activation Email"
 msgstr "PyWishlist Aktiviertungs E-mail"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:639
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:648
 #, python-format
 msgid ""
 "We are happy to welcome you to PyWishlist!<br>Please verify your account "
@@ -116,63 +116,63 @@ msgstr ""
 "Herzlich willkmmen zu PyWishlist!<br>Bitte aktiviere deinen account indem"
 " du auf <a href='%(url)s'>diesen Link</a> dr&uuml;ckst.<br><br>"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:645
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:814
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:844
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:654
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:828
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:858
 #, python-format
 msgid "Please check your mails at %(emailaddr)s"
 msgstr "Bitte &uuml;berpr&uuml;fe deine E-mail auf %(emailaddr)s"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:648
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:657
 msgid "Error sending the email to you."
 msgstr "Fehler beim senden der E-mail an dich."
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:652
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:661
 msgid "SQL Alchemy Error"
 msgstr "SQL Alchemy Fehler"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:675
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:684
 msgid "Old password not correct!"
 msgstr "Das alte Passwort ist nicht korrekt!"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:686
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:695
 msgid "Profile changed"
 msgstr "Profil gewechselt"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:708
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:722
 msgid "User not found to verify."
 msgstr "Benutzer nicht gefunden um verifiziert zu werden."
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:717
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:731
 msgid "Verification ok. Please log in."
 msgstr "Verifizierung ok. Bitte logge dich ein."
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:720
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:734
 msgid "Verification NOT ok. Please try again."
 msgstr "Verifizierung NICHT OK. Bitte versuche es noch einmal."
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:735
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:749
 msgid "Error locating your user"
 msgstr "Fehler beim lokalisieren deines Benutzers"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:742
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:756
 msgid "User not yet verified. Please check your email for the unlock key."
 msgstr "Benutzer noch nicht verifiziert. Bitte &uuml;berpr&uuml;ffe eine E-mails."
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:746
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:760
 msgid "User locked. Please contact an administrator."
 msgstr "Benutzer gesperrt. Bitte kontaktieren den Administrator."
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:762
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:764
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:776
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:778
 msgid "Invalid login"
 msgstr "Ung&uuml;ltige Anmeldungsinformationen"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:804
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:818
 msgid "PyWishlist Password Reset"
 msgstr "PyWishlist Passwort Zur&uuml;cksetzen"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:805
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:819
 #, python-format
 msgid ""
 "<h3>Hello %(name)s</h3>You can reset your password with <a "
@@ -184,15 +184,15 @@ msgstr ""
 "nicht gestellt hast, kannst du diese Nachricht ignorieren. Dein Passwort "
 "ist immer noch g&uuml;ltig.</b>"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:817
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:831
 msgid "No user found with this email address"
 msgstr "Kein Benutzer mit dieser E-mailadresse gefunden"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:836
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:850
 msgid "PyWishlist New Password"
 msgstr "PyWishlist Neues Passwort"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:837
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:851
 #, python-format
 msgid ""
 "<h3>Hello %(name)s</h3>Your new password is now <b>%(password)s</b>. "
@@ -201,19 +201,19 @@ msgstr ""
 "<h3>Hallo %(name)s</h3>Dein neue Passwort ist nun <b>%(password)s</b>. "
 "Bitte wechsle es sobald du dich Angemeldet hast."
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:849
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:863
 msgid "Wrong verification link. Please request a new one."
 msgstr "Falscher Validierungs-Link. Bitte fordere einen neuen an."
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:885
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:899
 msgid "No wishes found."
 msgstr "Keine Wünsche gefunden."
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:906
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:920
 msgid "Unable to hide wish"
 msgstr "Der Wunsch kann nicht versteckt werden"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:933
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:947
 msgid "The wish could not be saved"
 msgstr "Der Wunsch konnte nicht gespeichert werden"
 
@@ -307,13 +307,13 @@ msgstr "Registrierte Benutzer"
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_user_management.html:8
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:7
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:7
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:11
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:13
 msgid "Email"
 msgstr "E-mail"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_user_management.html:9
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:9
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:12
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:14
 msgid "Real Name"
 msgstr "Richtiger Name"
 
@@ -366,8 +366,8 @@ msgstr "Deine Profil Einstellungen"
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:19
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:12
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:16
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:16
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:30
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:18
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:32
 msgid "Reset"
 msgstr "Zur&uuml;chsetzen"
 
@@ -413,8 +413,8 @@ msgstr "Beschreibe den Wunsch"
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:18
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:12
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:16
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:15
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:29
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:17
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:31
 msgid "Submit"
 msgstr "&Uuml;bermitteln"
 
@@ -437,29 +437,37 @@ msgid "Again the password"
 msgstr "Noch einmal das Passwort"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:2
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:9
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:11
 msgid "Profile"
 msgstr "Profil"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:10
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:12
 msgid "Name"
 msgstr "Name"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:23
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:25
 msgid "Password change"
 msgstr "Passwort wechsel"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:24
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:26
 msgid "Old password"
 msgstr "Altes Passwort"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:25
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:27
 msgid "New password"
 msgstr "Neues Passwort"
 
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:26
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:28
 msgid "New password again"
 msgstr "Noch einmal das neue Passwort"
+
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:42
+msgid "Date"
+msgstr "Datum"
+
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:43
+msgid "Reciever"
+msgstr "Empf&auml;nger"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/show_wishes.html:2
 msgid "Show wishes for"

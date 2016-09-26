@@ -4,3 +4,4 @@
 from user import *
 from wish import *
 from exclusion import *
+from history import *

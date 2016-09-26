@@ -9,6 +9,7 @@ import urllib
 
 from utils import *
 from models import *
+
 from secretsanta import *
 
 # load database
@@ -570,6 +571,8 @@ def admin_secretsanta_go():
     if ret:
         message.append("Calculations done in %s loops:" % (solver.loops))
         for (donator, reciever) in ret:
+            db_session.add(History(donator.id, reciever.id))
+
             # FIXME remove the following line before go online!
             message.append("%s > %s" % (donator.name, reciever.name))
 
@@ -586,6 +589,11 @@ def admin_secretsanta_go():
                 message.append("Email to %s sent" % donator.email)
             else:
                 message.append("Unable to send email to %s" % donator.email)
+
+        try:
+            runQuery(db_session.commit)
+        except Exception as e:
+            log.warning("[History] SQL Alchemy Error on history: %s" % (e))
 
     else:
         flash(gettext("Calculation not ok"), 'error')
@@ -696,9 +704,14 @@ def profile_show(do=None):
                          _external=True),
                          's': str(size)}))
 
+    history = runQuery(History.query.filter_by(donatorId=myUser.id).all)
+
     return render_template('profile_show.html',
                            values=myUser,
-                           userAvatar=gravatar_url)
+                           userAvatar=gravatar_url,
+                           history=sorted(history,
+                                          key=lambda x: x.date,
+                                          reverse=True))
 
 
 @app.route('/Profile/Verify/<userId>/<verifyKey>', methods=['GET'])
