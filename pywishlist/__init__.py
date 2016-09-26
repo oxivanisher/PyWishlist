@@ -310,7 +310,28 @@ def add_header(response):
 # main routes
 @app.route('/About')
 def about():
-    return render_template('about.html')
+    wishes = 0
+    hidden = 0
+    oldest = int(time.time())
+    newest = 0
+    for wish in runQuery(Wish.query.all):
+        wishes += 1
+        if wish.hiddenId:
+            hidden += 1
+        if wish.creationDate > newest:
+            newest = wish.creationDate
+        if wish.creationDate < oldest:
+            oldest = wish.creationDate
+
+    stats = {
+        'wishes': wishes,
+        'hidden': hidden,
+        'oldest': oldest,
+        'newest': newest,
+        'users': len(runQuery(WishUser.query.all))
+    }
+
+    return render_template('about.html', stats=stats)
 
 
 @app.route('/Development')
@@ -394,7 +415,7 @@ def get_robots_txt():
 
 @app.route('/sitemap.xml')
 def get_sitemap_xml():
-    methodsToList = ['index', 'about', 'profile_register', 'profile_login']
+    methodsToList = ['about', 'profile_register', 'profile_login']
     ret = []
     ret.append('<?xml version="1.0" encoding="UTF-8"?>')
     ret.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
@@ -563,8 +584,7 @@ def profile_register():
                                   emailaddr=newUser.email), 'info')
                 else:
                     flash(gettext("Error sending the email to you."), 'error')
-                # return redirect(url_for('profile_login'))
-                return redirect(url_for('index'))
+                return redirect(url_for('profile_login'))
 
             except Exception as e:
                 flash("%s: %s" % (gettext("SQL Alchemy Error"), e), 'error')
@@ -674,13 +694,14 @@ def profile_login():
                 session['logindate'] = time.time()
                 session['last_lock_check'] = time.time()
                 session['requests'] = 0
+                return redirect(url_for('index'))
             else:
                 log.info("[System] Invalid password for %s" % myUser.email)
                 flash(gettext('Invalid login'), 'error')
         else:
             flash(gettext('Invalid login'), 'error')
 
-    return redirect(url_for('index'))
+    return render_template('login.html')
 
 
 @app.route('/Profile/Logout')
@@ -850,27 +871,4 @@ def enter_wish():
 # Index
 @app.route('/')
 def index():
-    if session.get('logged_in'):
-        wishes = 0
-        hidden = 0
-        oldest = int(time.time())
-        newest = 0
-        for wish in runQuery(Wish.query.all):
-            wishes += 1
-            if wish.hiddenId:
-                hidden += 1
-            if wish.creationDate > newest:
-                newest = wish.creationDate
-            if wish.creationDate < oldest:
-                oldest = wish.creationDate
-
-        stats = {
-            'wishes': wishes,
-            'hidden': hidden,
-            'oldest': oldest,
-            'newest': newest,
-            'users': len(runQuery(WishUser.query.all))
-        }
-
-        return render_template('index.html', stats=stats)
-    return render_template('login.html')
+    return redirect(url_for('about'))

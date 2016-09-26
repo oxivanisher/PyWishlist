@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 {% block title %}{{ _('About') }}{% endblock %}
 {% block content -%}
-<div class="content_block"><h2>Welcome to PyWishlist!</h2>
+<div class="content_block">
+<h3>{{ _('About') }}</h3>
+Project homepage and source code: <a href="https://github.com/oxivanisher/PyWishlist" target="_blank">github.com/oxivanisher/PyWishlist</a>
 
-Bla Bla
-
-{%- endblock -%}
+<h3>{{ _('Statistics') }}</h3>
+<dl>
+	<dd>{{ _('Users') }}: {{ stats.users }}</dd>
+	<dd>{{ _('Wishes') }}: {{ stats.wishes }}</dd>
+	<dd>{{ _('Hidden wishes') }}: {{ stats.hidden }}</dd>
+	<dd>{{ _('Oldest wishes') }}: {{ timestampToString(stats.oldest) }}</dd>
+	<dd>{{ _('Newest wishes') }}: {{ timestampToString(stats.newest) }}</dd>
+</dl>
+</div>{%- endblock -%}
