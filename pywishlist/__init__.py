@@ -522,11 +522,75 @@ def admin_bulk_email():
     return render_template('admin_bulk_email.html', retMessage=retMessage)
 
 
-@app.route('/Administration/Wichtele', methods=['GET', 'POST'])
+@app.route('/Administration/Wichtele/Manage', methods=['GET'])
 def admin_wichtele_management():
     check_admin_permissions()
+    return render_template('admin_wichtele_management.html',
+                           exclusions=runQuery(Exclusion.query.all),
+                           users=runQuery(WishUser.query.all))
 
-    return redirect(url_for('index'))
+
+@app.route('/Administration/Exclusion/Add/', methods=['POST'])
+def admin_exclusion_add():
+    check_admin_permissions()
+    if request.form['userIdA'] != request.form['userIdB']:
+        newExclusion = Exclusion(request.form['userIdA'], request.form['userIdB'])
+        db_session.add(newExclusion)
+        try:
+            runQuery(db_session.commit)
+        except Exception as e:
+            log.warning("[Exclusion] SQL Alchemy Error on enter wish: %s" % (e))
+            flash(gettext("The exclusion could not be saved"), 'error')
+    else:
+        flash(gettext("Unable to add this exclude"), 'error')
+    return redirect(url_for('admin_wichtele_management'))
+
+
+@app.route('/Administration/Exclusion/Remove/<int:id>', methods=['GET'])
+def admin_exclusion_remove(id):
+    check_admin_permissions()
+    exclusion = runQuery(Exclusion.query.filter_by(id=id).first)
+    try:
+        db_session.delete(exclusion)
+        runQuery(db_session.commit)
+    except Exception as e:
+        log.warning("[Exclusion] SQL Alchemy Error: %s" % e)
+
+    return redirect(url_for('admin_wichtele_management'))
+
+
+@app.route('/Administration/Wichtele/Go', methods=['GET'])
+def admin_wichtele_go():
+    message = []
+    solver = WichteliSolver(runQuery(WishUser.query.all),
+                            runQuery(Exclusion.query.all))
+    ret = solver.run()
+
+    if ret:
+        message.append("Calculations done:")
+        for (donator, reciever) in ret:
+            message.append("%s > %s" % (donator.name, reciever.name))
+
+            if send_email(app,
+                          donator.email,
+                          "BETA! Wichtele %s" % time.strftime('%Y'),
+                          "<h3>%s %s</h3>" % (gettext("Hello"), donator.name) +
+                          "Dein Wichteli fuer dieses Jahr ist: %s<br>"
+                          "Bitte antworte NICHT auf dieses email!<br>"
+                          "Gruss,<br>ein Programm von Marc" % (reciever.name) +
+                          gettext("<br><br>Have fun and see you soon ;)"),
+                          app.config['EMAILBANNER']):
+                message.append("Email to %s sent" % donator.email)
+            else:
+                message.append("Unable to send email to %s" % donator.email)
+
+    else:
+        flash(gettext("Calculation not ok"), 'error')
+
+    return render_template('admin_wichtele_management.html',
+                           message='\n'.join(message),
+                           exclusions=runQuery(Exclusion.query.all),
+                           users=runQuery(WishUser.query.all))
 
 
 # profile routes
@@ -813,6 +877,9 @@ def show_wishes(userId):
                     hiddenWishes.append(wish)
                 else:
                     activeWishes.append(wish)
+
+    if len(activeWishes) + len(hiddenWishes) == 0:
+        flash(gettext("No wishes found."), 'info')
 
     log.info("Found %s wishes for user %s" % (len(activeWishes), userId))
     return render_template('show_wishes.html',

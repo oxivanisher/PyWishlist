@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Wichtele Management') }}{% endblock %}
+{% block content -%}
+<div class="content_block">
+<h3>{{_('Exclusion Management')}}</h3>
+<table class='table-striped' style='width: 50%;'>
+	<thead>
+		<tr>
+			<th>User A</th>
+			<th>User B</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for exclusion in exclusions %}
+		<tr>
+			<td>{{ exclusion.userA.name }}</td>
+			<td>{{ exclusion.userB.name }}</td>
+			<td><a href="{{ url_for('admin_exclusion_remove', id=exclusion.id) }}" class="btn-sm btn-info" role="button">{{_('Remove')}}</a>
+		</tr>
+		{% endfor %}
+		<form action="{{ url_for('admin_exclusion_add') }}" id="addExclusion" method="post" autocomplete="on">
+		<tr>
+			<td><select name="userIdA">
+				{%- for user in users %}
+					<option value="{{ user.id }}">{{ user.name }}</option>
+				{%- endfor -%}
+				</select></td>
+			<td><select name="userIdB">
+				{%- for user in users %}
+					<option value="{{ user.id }}">{{ user.name }}</option>
+				{%- endfor -%}
+				</select></td>
+			<td><button class="btn btn-default" type="submit">{{ _('Add') }}</button></td>
+		</tr>
+		</form>
+	</tbody>
+</table>
+<h3>{{_('Wichtele calculation') }}</h3>
+<a href="{{ url_for('admin_wichtele_go') }}" class="btn btn-danger" role="button">{{_('Go')}}</a>
+<pre>{{ message }}</pre>
+</div>
+{% endblock %}

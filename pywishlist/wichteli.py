@@ -10,12 +10,12 @@ from utils import *
 
 class WichteliSolver:
 
-    def __init__(self, users, notwants):
+    def __init__(self, users, exclusions):
         self.log = logging.getLogger(__name__)
         self.log.debug("[Wichteli] Initializing WichteliSolver")
 
         self.users = users
-        self.notwants = notwants
+        self.exclusions = exclusions
 
         self.solutionFound = False
 
@@ -29,56 +29,49 @@ class WichteliSolver:
         for key in myDict.keys():
             return key
 
-    def run(self, config):
+    def run(self):
         self.solutionFound = False
         calcCountTotal = 0
 
         while not self.solutionFound:
-            self.log.debug("[Wichteli] Starting to solve")
+            self.log.info("[Wichteli] Starting to solve")
             result = []
             pairsFound = False
-            wichteliS = copy.copy(config['wichteli'])
-            wichteliR = copy.copy(config['wichteli'])
+            wichteliS = copy.copy(self.users)
+            wichteliR = copy.copy(self.users)
 
-            maxRuns = 10 * len(config['wichteli']) ^ 2
+            maxRuns = 10 * len(self.users) ^ 2
 
             calcCount = 0
             while not pairsFound:
                 calcCount += 1
 
                 if calcCount > maxRuns:
-                    self.log.debug("[Wichteli] Unresolvable!")
+                    self.log.warning("[Wichteli] Unresolvable!")
                     calcCountTotal += calcCount
-                    break
+                    return False
 
                 wichteliST = copy.copy(wichteliS)
                 wichteliRT = copy.copy(wichteliR)
                 (wichteliST, A) = self.getWichteli(wichteliST)
                 (wichteliRT, B) = self.getWichteli(wichteliRT)
 
+                self.log.debug("[Wichteli] A: %s; B: %s" % (A.name, B.name))
+
                 if A != B:
-                    nameA = self.getKey(A)
-                    nameB = self.getKey(B)
                     badPair = False
 
-                    try:
-                        for entry in config['notwant'][nameA]:
-                            if entry == nameB:
-                                badPair = True
-                    except Exception:
-                        pass
-                    try:
-                        for entry in config['notwant'][nameB]:
-                            if entry == nameA:
-                                badPair = True
-                    except Exception:
-                        pass
+                    for exclusion in self.exclusions:
+                        if exclusion.check(A.id, B.id):
+                            badPair = True
+                            break
 
                     if not badPair:
                         wichteliS = wichteliST
                         wichteliR = wichteliRT
-                        self.log.debug("[Wichteli] Result found: %s - %s" % (nameA, nameB))
-                        result.append((nameA, nameB))
+                        self.log.info("[Wichteli] Result found: %s - %s" %
+                                      (A.name, B.name))
+                        result.append((A, B))
                         calcCountTotal += calcCount
                         calcCount = 0
 
