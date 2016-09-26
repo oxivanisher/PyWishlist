@@ -778,25 +778,28 @@ def profile_password_reset_verify(userId, verifyKey):
 def show_wishes(userId):
     if not session.get('logged_in'):
         return redirect(url_for('index'))
-    filteredWishes = []
+    activeWishes = []
     hiddenWishes = []
     for wish in runQuery(Wish.query.all):
-        # filter(destinationId=request.form['userId'])
         if wish.destinationId == userId:
             if wish.destinationId != session.get('userid'):
+                # show wishes for anothe user
                 if wish.hiddenId:
                     hiddenWishes.append(wish)
                 else:
-                    filteredWishes.append(wish)
+                    activeWishes.append(wish)
             elif wish.sourceId == session.get('userid'):
-                if wish.hiddenId:
+                # shwo wishes for the user himself
+                if wish.hiddenId == session.get('userid'):
+                    # check if the wish was hidden by the user himself,
+                    # if it is hidden by someone else, don't show it
                     hiddenWishes.append(wish)
                 else:
-                    filteredWishes.append(wish)
+                    activeWishes.append(wish)
 
-    log.info("Found %s wishes for user %s" % (len(filteredWishes), userId))
+    log.info("Found %s wishes for user %s" % (len(activeWishes), userId))
     return render_template('show_wishes.html',
-                           wishes=filteredWishes,
+                           wishes=activeWishes,
                            hiddenWishes=hiddenWishes,
                            user=getUserById(userId))
 
@@ -807,24 +810,20 @@ def hide_wish(wishId, userId):
         return redirect(url_for('index'))
     wish = getWishById(wishId)
 
-    if wish.sourceId == session.get('userid'):
-        try:
-            wish.hide(session.get('userid'))
-            db_session.merge(wish)
-            log.info("Wish %s successfully hidden by %s"
-                     % (wish.id, session.get('userid')))
-        except Exception as e:
-            flash(gettext("Unable to hide wish"), 'error')
-            log.warning("Unable to hide wish because %s" % (e))
+    try:
+        wish.hide(session.get('userid'))
+        db_session.merge(wish)
+        log.info("Wish %s successfully hidden by %s"
+                 % (wish.id, session.get('userid')))
+    except Exception as e:
+        flash(gettext("Unable to hide wish"), 'error')
+        log.warning("Unable to hide wish because %s" % (e))
 
-        try:
-            runQuery(db_session.commit)
-        except Exception as e:
-            log.warning("[Wish] SQL Alchemy Error on hide wish"
-                        ": %s" % (e))
-
-    else:
-        flash(gettext("You are not the owner of this wish"), 'error')
+    try:
+        runQuery(db_session.commit)
+    except Exception as e:
+        log.warning("[Wish] SQL Alchemy Error on hide wish"
+                    ": %s" % (e))
 
     return redirect(url_for('show_wishes', userId=userId))
 
