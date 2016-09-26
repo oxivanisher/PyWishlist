@@ -1,5 +1,5 @@
 # PyWishlist
-A web based web wishlist
+A web based web wishlist and secret santa implementation.
 
-## Needed stuff
+## Needed stuff to let it run
 pip install SQLAlchemy Flask Flask-Compress Flask-Babel
