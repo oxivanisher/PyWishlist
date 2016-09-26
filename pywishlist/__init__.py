@@ -851,5 +851,26 @@ def enter_wish():
 @app.route('/')
 def index():
     if session.get('logged_in'):
-        return render_template('index.html')
+        wishes = 0
+        hidden = 0
+        oldest = int(time.time())
+        newest = 0
+        for wish in runQuery(Wish.query.all):
+            wishes += 1
+            if wish.hiddenId:
+                hidden += 1
+            if wish.creationDate > newest:
+                newest = wish.creationDate
+            if wish.creationDate < oldest:
+                oldest = wish.creationDate
+
+        stats = {
+            'wishes': wishes,
+            'hidden': hidden,
+            'oldest': oldest,
+            'newest': newest,
+            'users': len(runQuery(WishUser.query.all))
+        }
+
+        return render_template('index.html', stats=stats)
     return render_template('login.html')
