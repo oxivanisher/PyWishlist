@@ -9,7 +9,7 @@ import urllib
 
 from utils import *
 from models import *
-# from base import *
+from wichteli import *
 
 # load database
 from pywishlist.database import db_session, init_db, engine
@@ -332,17 +332,6 @@ def about():
     }
 
     return render_template('about.html', stats=stats)
-
-
-@app.route('/Development')
-def dev():
-    if not session.get('logged_in'):
-        return redirect(url_for('index'))
-    if not session.get('admin'):
-        log.warning("[System] <%s> tried to access admin without permission!")
-        abort(403)
-    ret = []
-    return render_template('dev.html', result=ret)
 
 
 # language route
