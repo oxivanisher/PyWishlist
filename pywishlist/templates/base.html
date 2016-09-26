@@ -13,7 +13,7 @@
 		<meta property="og:image" content="{{ url_for('get_image', imgType='network', imgId='OpenGraph', _external = True) }}" />
 
 		<meta name="fragment" content="!">
-		<meta name="keywords" content="wishlist,wunschliste,gift,gifts,geschenk,geschenke,wichtele" />
+		<meta name="keywords" content="wishlist,wunschliste,gift,gifts,geschenk,geschenke,wichtele,secret santa,secretsanta" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		{# Languages -#}
 
@@ -106,7 +106,7 @@
 		         				<ul class="dropdown-menu" role="menu">
 									<li class="{% if url_for('admin_bulk_email') == request.path %}active{% endif %}"><a href="{{ url_for('admin_bulk_email') }}"><span class="glyphicon glyphicon-envelope"></span> {{ _('Bulk Email') }}</a></li>
 									<li class="{% if url_for('admin_user_management') == request.path %}active{% endif %}"><a href="{{ url_for('admin_user_management') }}"><span class="glyphicon glyphicon-user"></span> {{ _('User Management') }}</a></li>
-									<li class="{% if url_for('admin_wichtele_management') == request.path %}active{% endif %}"><a href="{{ url_for('admin_wichtele_management') }}"><span class="glyphicon glyphicon-gift"></span> {{ _('Wichtele Management') }}</a></li>
+									<li class="{% if url_for('admin_secretsanta_management') == request.path %}active{% endif %}"><a href="{{ url_for('admin_secretsanta_management') }}"><span class="glyphicon glyphicon-gift"></span> {{ _('Secret Santa Management') }}</a></li>
 								</ul>
 							</li>
 						{% endif -%}

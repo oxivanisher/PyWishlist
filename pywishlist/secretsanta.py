@@ -8,22 +8,22 @@ import copy
 from utils import *
 
 
-class WichteliSolver:
+class SecretSantaSolver:
 
     def __init__(self, users, exclusions):
         self.log = logging.getLogger(__name__)
-        self.log.debug("[Wichteli] Initializing WichteliSolver")
+        self.log.debug("[SecretSanta] Initializing SecretSantaSolver")
 
         self.users = users
         self.exclusions = exclusions
 
         self.solutionFound = False
 
-    def getWichteli(self, wichteli):
-        aValues = random.choice(wichteli)
-        aIndex = wichteli.index(aValues)
-        wichteli.pop(aIndex)
-        return (wichteli, aValues)
+    def getSecretSanta(self, SecretSanta):
+        aValues = random.choice(SecretSanta)
+        aIndex = SecretSanta.index(aValues)
+        SecretSanta.pop(aIndex)
+        return (SecretSanta, aValues)
 
     def getKey(self, myDict):
         for key in myDict.keys():
@@ -34,11 +34,11 @@ class WichteliSolver:
         calcCountTotal = 0
 
         while not self.solutionFound:
-            self.log.info("[Wichteli] Starting to solve")
+            self.log.info("[SecretSanta] Starting to solve")
             result = []
             pairsFound = False
-            wichteliS = copy.copy(self.users)
-            wichteliR = copy.copy(self.users)
+            SecretSantaS = copy.copy(self.users)
+            SecretSantaR = copy.copy(self.users)
 
             maxRuns = 10 * len(self.users) ^ 2
 
@@ -47,16 +47,16 @@ class WichteliSolver:
                 calcCount += 1
 
                 if calcCount > maxRuns:
-                    self.log.warning("[Wichteli] Unresolvable!")
+                    self.log.warning("[SecretSanta] Unresolvable!")
                     calcCountTotal += calcCount
                     return False
 
-                wichteliST = copy.copy(wichteliS)
-                wichteliRT = copy.copy(wichteliR)
-                (wichteliST, A) = self.getWichteli(wichteliST)
-                (wichteliRT, B) = self.getWichteli(wichteliRT)
+                SecretSantaST = copy.copy(SecretSantaS)
+                SecretSantaRT = copy.copy(SecretSantaR)
+                (SecretSantaST, A) = self.getSecretSanta(SecretSantaST)
+                (SecretSantaRT, B) = self.getSecretSanta(SecretSantaRT)
 
-                self.log.debug("[Wichteli] A: %s; B: %s" % (A.name, B.name))
+                self.log.debug("[SecretSanta] A: %s; B: %s" % (A.name, B.name))
 
                 if A != B:
                     badPair = False
@@ -67,17 +67,17 @@ class WichteliSolver:
                             break
 
                     if not badPair:
-                        wichteliS = wichteliST
-                        wichteliR = wichteliRT
-                        self.log.info("[Wichteli] Result found: %s - %s" %
+                        SecretSantaS = SecretSantaST
+                        SecretSantaR = SecretSantaRT
+                        self.log.info("[SecretSanta] Result found: %s - %s" %
                                       (A.name, B.name))
                         result.append((A, B))
                         calcCountTotal += calcCount
                         calcCount = 0
 
-                if len(wichteliR) == 0:
+                if len(SecretSantaR) == 0:
                     pairsFound = True
                     self.solutionFound = True
 
-        self.log.info("[Wichteli] Needed calculations: %s" % (calcCountTotal))
+        self.log.info("[SecretSanta] Needed calculations: %s" % (calcCountTotal))
         return result

@@ -9,7 +9,7 @@ import urllib
 
 from utils import *
 from models import *
-from wichteli import *
+from secretsanta import *
 
 # load database
 from pywishlist.database import db_session, init_db, engine
@@ -522,10 +522,10 @@ def admin_bulk_email():
     return render_template('admin_bulk_email.html', retMessage=retMessage)
 
 
-@app.route('/Administration/Wichtele/Manage', methods=['GET'])
-def admin_wichtele_management():
+@app.route('/Administration/SecretSanta/Manage', methods=['GET'])
+def admin_secretsanta_management():
     check_admin_permissions()
-    return render_template('admin_wichtele_management.html',
+    return render_template('admin_secretsanta_management.html',
                            exclusions=runQuery(Exclusion.query.all),
                            users=runQuery(WishUser.query.all))
 
@@ -534,7 +534,8 @@ def admin_wichtele_management():
 def admin_exclusion_add():
     check_admin_permissions()
     if request.form['userIdA'] != request.form['userIdB']:
-        newExclusion = Exclusion(request.form['userIdA'], request.form['userIdB'])
+        newExclusion = Exclusion(request.form['userIdA'],
+                                 request.form['userIdB'])
         db_session.add(newExclusion)
         try:
             runQuery(db_session.commit)
@@ -543,7 +544,7 @@ def admin_exclusion_add():
             flash(gettext("The exclusion could not be saved"), 'error')
     else:
         flash(gettext("Unable to add this exclude"), 'error')
-    return redirect(url_for('admin_wichtele_management'))
+    return redirect(url_for('admin_secretsanta_management'))
 
 
 @app.route('/Administration/Exclusion/Remove/<int:id>', methods=['GET'])
@@ -556,14 +557,14 @@ def admin_exclusion_remove(id):
     except Exception as e:
         log.warning("[Exclusion] SQL Alchemy Error: %s" % e)
 
-    return redirect(url_for('admin_wichtele_management'))
+    return redirect(url_for('admin_secretsanta_management'))
 
 
-@app.route('/Administration/Wichtele/Go', methods=['GET'])
-def admin_wichtele_go():
+@app.route('/Administration/SecretSanta/Go', methods=['GET'])
+def admin_secretsanta_go():
     message = []
-    solver = WichteliSolver(runQuery(WishUser.query.all),
-                            runQuery(Exclusion.query.all))
+    solver = SecretSantaSolver(runQuery(WishUser.query.all),
+                               runQuery(Exclusion.query.all))
     ret = solver.run()
 
     if ret:
@@ -573,11 +574,12 @@ def admin_wichtele_go():
 
             if send_email(app,
                           donator.email,
-                          "BETA! Wichtele %s" % time.strftime('%Y'),
-                          "<h3>%s %s</h3>" % (gettext("Hello"), donator.name) +
-                          "Dein Wichteli fuer dieses Jahr ist: %s<br>"
-                          "Bitte antworte NICHT auf dieses email!<br>"
-                          "Gruss,<br>ein Programm von Marc" % (reciever.name) +
+                          "Secret Santa %s" % time.strftime('%Y'),
+                          gettext("<h3>Hello %(donator)s</h3>"
+                                  "You are the Secret Santa to: %(reciever)s"
+                                  "<br>Please do not reply to this email!<br>",
+                                  donator=donator.name,
+                                  reciever=reciever.name) +
                           gettext("<br><br>Have fun and see you soon ;)"),
                           app.config['EMAILBANNER']):
                 message.append("Email to %s sent" % donator.email)
@@ -587,7 +589,7 @@ def admin_wichtele_go():
     else:
         flash(gettext("Calculation not ok"), 'error')
 
-    return render_template('admin_wichtele_management.html',
+    return render_template('admin_secretsanta_management.html',
                            message='\n'.join(message),
                            exclusions=runQuery(Exclusion.query.all),
                            users=runQuery(WishUser.query.all))
@@ -816,7 +818,8 @@ def profile_password_reset_request():
     return redirect(url_for('index'))
 
 
-@app.route('/PasswordReset/Verify/<int:userId>/<strverifyKey>', methods=['GET'])
+@app.route('/PasswordReset/Verify/<int:userId>/<verifyKey>',
+           methods=['GET'])
 def profile_password_reset_verify(userId, verifyKey):
     if session.get('logged_in'):
         return redirect(url_for('index'))
