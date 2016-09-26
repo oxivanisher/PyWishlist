@@ -533,6 +533,13 @@ def admin_bulk_email():
     return render_template('admin_bulk_email.html', retMessage=retMessage)
 
 
+@app.route('/Administration/Wichtele', methods=['GET', 'POST'])
+def admin_wichtele_management():
+    check_admin_permissions()
+
+    return redirect(url_for('index'))
+
+
 # profile routes
 @app.route('/Profile/Register', methods=['GET', 'POST'])
 def profile_register():

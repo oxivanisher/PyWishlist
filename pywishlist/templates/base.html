@@ -62,7 +62,7 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 				    </button>
-				    <a class="navbar-brand" href="{{ url_for('index') }}" rel="home" title="PyWishlist"><img src="{{ url_for('favicon') }}" class="home_icon" alt="Logo"></a>
+				    <a class="navbar-brand" href="{{ url_for('index') }}" rel="home" title="PyWishlist"><span class="glyphicon glyphicon-gift" class="home_icon" alt="Logo"></span></a>
 				    {#- <span class="glyphicon glyphicon-home"> #}
 				</div>
 
@@ -106,6 +106,7 @@
 		         				<ul class="dropdown-menu" role="menu">
 									<li class="{% if url_for('admin_bulk_email') == request.path %}active{% endif %}"><a href="{{ url_for('admin_bulk_email') }}"><span class="glyphicon glyphicon-envelope"></span> {{ _('Bulk Email') }}</a></li>
 									<li class="{% if url_for('admin_user_management') == request.path %}active{% endif %}"><a href="{{ url_for('admin_user_management') }}"><span class="glyphicon glyphicon-user"></span> {{ _('User Management') }}</a></li>
+									<li class="{% if url_for('admin_wichtele_management') == request.path %}active{% endif %}"><a href="{{ url_for('admin_wichtele_management') }}"><span class="glyphicon glyphicon-gift"></span> {{ _('Wichtele Management') }}</a></li>
 								</ul>
 							</li>
 						{% endif -%}
