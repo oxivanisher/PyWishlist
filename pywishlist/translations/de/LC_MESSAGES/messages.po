@@ -121,7 +121,7 @@ msgstr ""
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:858
 #, python-format
 msgid "Please check your mails at %(emailaddr)s"
-msgstr "Bitte &uuml;berpr&uuml;fe deine E-mail auf %(emailaddr)s"
+msgstr "Bitte Überprüfe deine E-mail auf %(emailaddr)s"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:657
 msgid "Error sending the email to you."
@@ -157,7 +157,7 @@ msgstr "Fehler beim lokalisieren deines Benutzers"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:756
 msgid "User not yet verified. Please check your email for the unlock key."
-msgstr "Benutzer noch nicht verifiziert. Bitte &uuml;berpr&uuml;ffe eine E-mails."
+msgstr "Benutzer noch nicht verifiziert. Bitte Überprüfe deine E-mails."
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:760
 msgid "User locked. Please contact an administrator."
