@@ -753,10 +753,12 @@ def profile_login():
         if myUser:
             myUser.load()
             if not myUser.veryfied:
+                log.info("[System] Login: <%s> is not verified." % myUser.getDisplayName())
                 flash(gettext("User not yet verified. Please check your "
                               "email for the unlock key."), 'info')
                 return redirect(url_for('index'))
             elif myUser.locked:
+                log.info("[System] Login: <%s> is locked." % myUser.getDisplayName())
                 flash(gettext("User locked. Please contact an "
                               "administrator."), 'info')
                 return redirect(url_for('index'))
@@ -772,7 +774,7 @@ def profile_login():
                 session['requests'] = 0
                 return redirect(url_for('index'))
             else:
-                log.info("[System] Invalid password for %s" % myUser.email.lower())
+                log.info("[System] Invalid password for %s" % myUser.email)
                 flash(gettext('Invalid login'), 'error')
         else:
             flash(gettext('Invalid login'), 'error')
@@ -846,6 +848,7 @@ def profile_password_reset_verify(userId, verifyKey):
             newPassword = ''.join(random.choice(string.ascii_letters +
                                   string.digits) for _ in range(12))
             myUser.setPassword(newPassword)
+            myUser.verify(verifyKey)
             if send_email(app, myUser.email,
                           gettext("PyWishlist New Password"),
                           gettext("<h3>Hello %(name)s</h3>Your new password "
