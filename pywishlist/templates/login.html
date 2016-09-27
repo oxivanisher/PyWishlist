@@ -10,5 +10,16 @@
 			<dd><input type="password" name="password" class="backend" >
 		</dl>
 	<button class="btn btn-default" type="submit">{{ _('Submit') }}</button> <button class="btn btn-default" type="reset">{{ _('Reset') }}</button>
-</form></dev>
+</form>
+
+<form action="{{ url_for('profile_password_reset_request') }}" id="password reset" method="post" autocomplete="on">
+	<h2>{{ _('Password reset') }}</h2>
+		<dl>
+			<dt>{{ _('Email') }}:
+			<dd><input type="text" name="email" class="backend">
+		</dl>
+	<button class="btn btn-default" type="submit">{{ _('Submit') }}</button> <button class="btn btn-default" type="reset">{{ _('Reset') }}</button>
+</form>
+
+</dev>
 {% endblock %}

@@ -107,7 +107,7 @@ def getUserByEmail(email=None):
     with app.test_request_context():
         try:
             ret = runQuery(WishUser.query.filter(
-                WishUser.email.ilike(email)).first)
+                WishUser.email.ilike(email.lower())).first)
         except Exception as e:
             log.warning(
                 "[System] SQL Alchemy Error on getUserByEmail: %s" % (e))
@@ -739,13 +739,13 @@ def profile_verify(userId, verifyKey):
 @app.route('/Login', methods=['GET', 'POST'])
 def profile_login():
     if request.method == 'POST':
-        log.info("[System] Trying to login user: %s" % request.form['email'])
+        log.info("[System] Trying to login user: %s" % request.form['email'].lower())
         myUser = False
         try:
-            myUser = getUserByEmail(request.form['email'])
+            myUser = getUserByEmail(request.form['email'].lower())
         except Exception as e:
             log.warning('[System] Error finding user: "%s" -> %s' %
-                        (request.form['email'], e))
+                        (request.form['email'].lower(), e))
             flash(gettext('Error locating your user'), 'error')
 
             return redirect(url_for('profile_logout'))
@@ -772,7 +772,7 @@ def profile_login():
                 session['requests'] = 0
                 return redirect(url_for('index'))
             else:
-                log.info("[System] Invalid password for %s" % myUser.email)
+                log.info("[System] Invalid password for %s" % myUser.email.lower())
                 flash(gettext('Invalid login'), 'error')
         else:
             flash(gettext('Invalid login'), 'error')
@@ -798,8 +798,8 @@ def profile_password_reset_request():
     if session.get('logged_in'):
         return redirect(url_for('index'))
     log.info('[System] Password reset request (step 1/2) for email: %s' %
-             (request.form['email']))
-    myUser = getUserByEmail(request.form['email'])
+             (request.form['email'].lower()))
+    myUser = getUserByEmail(request.form['email'].lower())
     if myUser:
         myUser.load()
         myUser.verifyKey = ''.join(random.choice(string.ascii_letters +

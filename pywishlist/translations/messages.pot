@@ -1,4 +1,4 @@
-# German translations for PROJECT.
+# Translations template for PROJECT.
 # Copyright (C) 2016 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
@@ -11,9 +11,7 @@ msgstr ""
 "POT-Creation-Date: 2016-09-27 13:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: de\n"
-"Language-Team: de <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,42 +19,39 @@ msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:193
 msgid "Passwords do not match!"
-msgstr "Die Passw&ouml;rter stimmen nicht &uuml;berein!"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:197
 msgid "Password is too short"
-msgstr "Passwort zu kurz"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:223
 msgid "Bad Request"
-msgstr "Ung&uuml;ltige Anfrage"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:230
 msgid "Unauthorized request"
-msgstr "Unberechtigte Anfrage"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:237
 msgid "Forbidden request"
-msgstr "Verbotene Anfrage"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:244
 msgid "Page not found"
-msgstr "Seite nicht gefunden"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:251
 msgid ""
 "The server encountered an internal error, probably a bug in the program. "
 "The administration was automatically informed of this problem."
 msgstr ""
-"Der Server ist in einen internen Fehler gelaufen, wahrscheinlich durch "
-"einen Bug im Programm. Der Administrator wurde automatisch &uuml;ber den "
-"Fehler informiert."
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:506
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:647
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
 msgid "Hello"
-msgstr "Hallo"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:508
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:587
@@ -65,22 +60,20 @@ msgstr "Hallo"
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:856
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
 msgid "<br><br>Have fun and see you soon ;)"
-msgstr "<br><br>Viel Spass und bis bald ;)"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:518
 #, python-format
 msgid "Messages sent: %(okCount)s; Messages not sent: %(nokCount)s"
 msgstr ""
-"Nachrichten versendet: %(okCount)s; Nachrichten nicht versendet: "
-"%(nokCount)s"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:545
 msgid "The exclusion could not be saved"
-msgstr "Der Ausschluss konnte nicht gespeichert werden"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:547
 msgid "Unable to add this exclude"
-msgstr "Dieser Ausschluss kann nicht hizugef&uuml;gt werden"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:582
 #, python-format
@@ -88,24 +81,22 @@ msgid ""
 "<h3>Hello %(donator)s</h3>You are the Secret Santa to: "
 "%(reciever)s<br>Please do not reply to this email!<br>"
 msgstr ""
-"<h3>Hallo %(donator)s</h3>Du bist das Wichteli von: %(reciever)s<br>Bitte"
-" antworte nicht auf diese E-mail!<br>"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:599
 msgid "Calculation not ok"
-msgstr "Berechnung nicht erfolgreich"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:616
 msgid "Email address is too short"
-msgstr "Die E-mail Adresse ist zu kurz"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:624
 msgid "Please fill out all the fields!"
-msgstr "Bitte f&uuml;lle alle Felder aus!"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:645
 msgid "PyWishlist Activation Email"
-msgstr "PyWishlist Aktiviertungs E-mail"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:648
 #, python-format
@@ -113,64 +104,62 @@ msgid ""
 "We are happy to welcome you to PyWishlist!<br>Please verify your account "
 "with <a href='%(url)s'>this link</a>.<br><br>"
 msgstr ""
-"Herzlich willkmmen zu PyWishlist!<br>Bitte aktiviere deinen account indem"
-" du auf <a href='%(url)s'>diesen Link</a> dr&uuml;ckst.<br><br>"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:654
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:828
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:858
 #, python-format
 msgid "Please check your mails at %(emailaddr)s"
-msgstr "Bitte &uuml;berpr&uuml;fe deine E-mail auf %(emailaddr)s"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:657
 msgid "Error sending the email to you."
-msgstr "Fehler beim senden der E-mail an dich."
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:661
 msgid "SQL Alchemy Error"
-msgstr "SQL Alchemy Fehler"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:684
 msgid "Old password not correct!"
-msgstr "Das alte Passwort ist nicht korrekt!"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:695
 msgid "Profile changed"
-msgstr "Profil gewechselt"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:722
 msgid "User not found to verify."
-msgstr "Benutzer nicht gefunden um verifiziert zu werden."
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:731
 msgid "Verification ok. Please log in."
-msgstr "Verifizierung ok. Bitte logge dich ein."
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:734
 msgid "Verification NOT ok. Please try again."
-msgstr "Verifizierung NICHT OK. Bitte versuche es noch einmal."
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:749
 msgid "Error locating your user"
-msgstr "Fehler beim lokalisieren deines Benutzers"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:756
 msgid "User not yet verified. Please check your email for the unlock key."
-msgstr "Benutzer noch nicht verifiziert. Bitte &uuml;berpr&uuml;ffe eine E-mails."
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:760
 msgid "User locked. Please contact an administrator."
-msgstr "Benutzer gesperrt. Bitte kontaktieren den Administrator."
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:776
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:778
 msgid "Invalid login"
-msgstr "Ung&uuml;ltige Anmeldungsinformationen"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:818
 msgid "PyWishlist Password Reset"
-msgstr "PyWishlist Passwort Zur&uuml;cksetzen"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:819
 #, python-format
@@ -179,18 +168,14 @@ msgid ""
 "href='%(url)s'>this link</a>. If you did not request this password reset,"
 " you can just ignore it. Your current password is still valid.</b>"
 msgstr ""
-"<h3>Hallo %(name)s</h3>Du kannst dein Passwort mit <a "
-"href='%(url)s'>diesem Link</a> zur&uuml;cksetzen. Wenn du diese Anfrage "
-"nicht gestellt hast, kannst du diese Nachricht ignorieren. Dein Passwort "
-"ist immer noch g&uuml;ltig.</b>"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:831
 msgid "No user found with this email address"
-msgstr "Kein Benutzer mit dieser E-mailadresse gefunden"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:850
 msgid "PyWishlist New Password"
-msgstr "PyWishlist Neues Passwort"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:851
 #, python-format
@@ -198,111 +183,109 @@ msgid ""
 "<h3>Hello %(name)s</h3>Your new password is now <b>%(password)s</b>. "
 "Please change it right after you logged in."
 msgstr ""
-"<h3>Hallo %(name)s</h3>Dein neue Passwort ist nun <b>%(password)s</b>. "
-"Bitte wechsle es sobald du dich Angemeldet hast."
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:863
 msgid "Wrong verification link. Please request a new one."
-msgstr "Falscher Validierungs-Link. Bitte fordere einen neuen an."
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:899
 msgid "No wishes found."
-msgstr "Keine Wünsche gefunden."
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:920
 msgid "Unable to hide wish"
-msgstr "Der Wunsch kann nicht versteckt werden"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:947
 msgid "The wish could not be saved"
-msgstr "Der Wunsch konnte nicht gespeichert werden"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:2
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:5
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:105
 msgid "About"
-msgstr "&Uuml;ber"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:6
 msgid "Project homepage and source code"
-msgstr "Projekt Homepage und Quelltext"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:8
 msgid "Statistics"
-msgstr "Statistik"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:10
 msgid "Users"
-msgstr "Benutzer"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:11
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:89
 msgid "Wishes"
-msgstr "W&uuml;nsche"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:12
 msgid "Hidden wishes"
-msgstr "Versteckte W&uuml;nsche"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:13
 msgid "Oldest wishes"
-msgstr "&Auml;ltester Wunsch"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:14
 msgid "Newest wishes"
-msgstr "Neuester Wunsch"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:2
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:4
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:114
 msgid "Bulk Email"
-msgstr "Massen E-mail"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:7
 msgid "Subject"
-msgstr "Betreff"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
 msgid "Here goes the text"
-msgstr "Hier kommt der Text hin"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:9
 msgid "Send"
-msgstr "Senden"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:2
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:116
 msgid "Secret Santa Management"
-msgstr "Wichteln Verwaltung"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:5
 msgid "Exclusion Management"
-msgstr "Ausschluss Verwaltung"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:19
 msgid "Remove"
-msgstr "Entfernen"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:34
 msgid "Add"
-msgstr "Hinzuf&uuml;gen"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:39
 msgid "Secret Santa calculation"
-msgstr "Wichteln Berechnung"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:40
 msgid "Go"
-msgstr "Los"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:2
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:115
 msgid "User Management"
-msgstr "Benutzer Verwaltung"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:4
 msgid "Registred Users"
-msgstr "Registrierte Benutzer"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:8
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:7
@@ -310,58 +293,58 @@ msgstr "Registrierte Benutzer"
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:7
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:13
 msgid "Email"
-msgstr "E-mail"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:9
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:9
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:14
 msgid "Real Name"
-msgstr "Richtiger Name"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:10
 msgid "Admin"
-msgstr "Admin"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:11
 msgid "Locked"
-msgstr "Gesperrt"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:12
 msgid "Verified"
-msgstr "Verifiziert"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:5
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:6
 msgid "PyWishlist"
-msgstr "PyWishlist"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:7
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/error.html:7
 msgid "Dashboard"
-msgstr "Dashboard"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:8
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:9
 msgid "The python based Secret Santa system"
-msgstr "Das python basierte Wichteln system"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:62
 msgid "Toggle navigation"
-msgstr "Navigation umschalten"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:102
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:2
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:7
 msgid "Enter wish"
-msgstr "Wunsch erfassen"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:112
 msgid "Administration"
-msgstr "Administration"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:124
 msgid "Your profile settings"
-msgstr "Deine Profil Einstellungen"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:132
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:19
@@ -371,46 +354,46 @@ msgstr "Deine Profil Einstellungen"
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:18
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:32
 msgid "Reset"
-msgstr "Zur&uuml;chsetzen"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:134
 msgid "Logout"
-msgstr "Abmelden"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:138
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:5
 msgid "Registration"
-msgstr "Registration"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:139
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:2
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:5
 msgid "Login"
-msgstr "Anmelden"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:150
 msgid "Success message"
-msgstr "Erfolgs Meldung"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:159
 msgid "Error message"
-msgstr "Fehler Meldung"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:168
 msgid "Info message"
-msgstr "Informative Meldung"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:9
 msgid "For user"
-msgstr "F&uuml;r Benutzer"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:15
 msgid "Description"
-msgstr "Beschreibung"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:15
 msgid "Describe the wish"
-msgstr "Beschreibe den Wunsch"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:18
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:12
@@ -419,78 +402,78 @@ msgstr "Beschreibe den Wunsch"
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:17
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:31
 msgid "Submit"
-msgstr "&Uuml;bermitteln"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/error.html:2
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/error.html:5
 msgid "Error"
-msgstr "Fehler"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:9
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:11
 msgid "Password"
-msgstr "Passwort"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:16
 msgid "Password reset"
-msgstr "Passwort zur&uuml;cksetzen"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:2
 msgid "Register"
-msgstr "Registrieren"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:13
 msgid "Again the password"
-msgstr "Noch einmal das Passwort"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:2
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:11
 msgid "Profile"
-msgstr "Profil"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:12
 msgid "Name"
-msgstr "Name"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:25
 msgid "Password change"
-msgstr "Passwort wechsel"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:26
 msgid "Old password"
-msgstr "Altes Passwort"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:27
 msgid "New password"
-msgstr "Neues Passwort"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:28
 msgid "New password again"
-msgstr "Noch einmal das neue Passwort"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:42
 msgid "Date"
-msgstr "Datum"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:43
 msgid "Reciever"
-msgstr "Empf&auml;nger"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:2
 msgid "Show wishes for"
-msgstr "Zeige W&uuml;nsche f&uuml;r"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:9
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:26
 msgid "By"
-msgstr "Von"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:9
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:26
 msgid "Age"
-msgstr "Alter"
+msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:11
 msgid "Hide"
-msgstr "Verstecken"
+msgstr ""
 

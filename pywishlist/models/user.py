@@ -34,7 +34,7 @@ class WishUser(Base):
     def __init__(self, email, name=None):
         self.log = logging.getLogger(__name__)
         self.name = name
-        self.email = email
+        self.email = email.lower()
         self.log.debug(
             "[User] Initializing WishUser %s" % self.getDisplayName())
         self.password = None
