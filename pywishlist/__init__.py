@@ -573,9 +573,6 @@ def admin_secretsanta_go():
         for (donator, reciever) in ret:
             db_session.add(History(donator.id, reciever.id))
 
-            # FIXME remove the following line before go online!
-            message.append("%s > %s" % (donator.name, reciever.name))
-
             if send_email(app,
                           donator.email,
                           "Secret Santa %s" % time.strftime('%Y'),
