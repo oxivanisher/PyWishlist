@@ -578,9 +578,15 @@ def admin_secretsanta_go():
                           "Secret Santa %s" % time.strftime('%Y'),
                           gettext("<h3>Hello %(donator)s</h3>"
                                   "You are the Secret Santa to: %(reciever)s"
+                                  "<br>You can login here: "
+                                  "<a href='%(loginurl)s'>%(exturl)s</a>"
                                   "<br>Please do not reply to this email!<br>",
                                   donator=donator.name,
-                                  reciever=reciever.name) +
+                                  reciever=reciever.name,
+                                  loginurl=url_for('profile_login',
+                                                   _external=True),
+                                  exturl=url_for('index',
+                                                 _external=True)) +
                           gettext("<br><br>Have fun and see you soon ;)"),
                           app.config['EMAILBANNER']):
                 message.append("Email to %s sent" % donator.email)
@@ -849,7 +855,7 @@ def profile_password_reset_verify(userId, verifyKey):
             if send_email(app, myUser.email,
                           gettext("PyWishlist New Password"),
                           gettext("<h3>Hello %(name)s</h3>Your new password "
-                                  "is: <b>%(password)s</b><br />Please "
+                                  "is: <b>%(password)s</b><br>Please "
                                   "change it right after you "
                                   "<a href='%(url)s'>logged in</a>.",
                                   name=myUser.name,
