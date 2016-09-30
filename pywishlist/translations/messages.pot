@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-27 13:03+0200\n"
+"POT-Creation-Date: 2016-09-30 11:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,8 +56,8 @@ msgstr ""
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:508
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:587
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:652
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:826
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:856
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:828
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:862
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
 msgid "<br><br>Have fun and see you soon ;)"
 msgstr ""
@@ -106,8 +106,8 @@ msgid ""
 msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:654
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:828
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:858
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:830
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:864
 #, python-format
 msgid "Please check your mails at %(emailaddr)s"
 msgstr ""
@@ -144,24 +144,24 @@ msgstr ""
 msgid "Error locating your user"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:756
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:757
 msgid "User not yet verified. Please check your email for the unlock key."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:760
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:762
 msgid "User locked. Please contact an administrator."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:776
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:778
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:780
 msgid "Invalid login"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:818
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:820
 msgid "PyWishlist Password Reset"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:819
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:821
 #, python-format
 msgid ""
 "<h3>Hello %(name)s</h3>You can reset your password with <a "
@@ -169,34 +169,34 @@ msgid ""
 " you can just ignore it. Your current password is still valid.</b>"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:831
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:833
 msgid "No user found with this email address"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:850
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:853
 msgid "PyWishlist New Password"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:851
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:860
 #, python-format
 msgid ""
-"<h3>Hello %(name)s</h3>Your new password is now <b>%(password)s</b>. "
-"Please change it right after you logged in."
+"<h3>Hello %(name)s</h3>Your new password is now: <b>%(password)s</b><br "
+"/>Please change it right after you <a href='%(url)s'>logged in</a>."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:863
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:869
 msgid "Wrong verification link. Please request a new one."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:899
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:905
 msgid "No wishes found."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:920
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:926
 msgid "Unable to hide wish"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:947
+#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:953
 msgid "The wish could not be saved"
 msgstr ""
 

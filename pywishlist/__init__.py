@@ -852,10 +852,13 @@ def profile_password_reset_verify(userId, verifyKey):
             if send_email(app, myUser.email,
                           gettext("PyWishlist New Password"),
                           gettext("<h3>Hello %(name)s</h3>Your new password "
-                                  "is now <b>%(password)s</b>. Please change "
-                                  "it right after you logged in.",
+                                  "is: <b>%(password)s</b><br />Please "
+                                  "change it right after you "
+                                  "<a href='%(url)s'>logged in</a>.",
                                   name=myUser.name,
-                                  password=newPassword) +
+                                  password=newPassword,
+                                  url=url_for('profile_login',
+                                              _external=True)) +
                           gettext("<br><br>Have fun and see you soon ;)"),
                           app.config['EMAILBANNER']):
                 flash(gettext("Please check your mails at %(emailaddr)s",
