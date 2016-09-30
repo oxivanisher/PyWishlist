@@ -703,7 +703,7 @@ def profile_show(do=None):
                     "?" +
                     urllib.urlencode(
                         {'d': url_for('static',
-                         filename=app.config['PLACEHOLDER'],
+                         filename='img/%s' % app.config['PLACEHOLDER'],
                          _external=True),
                          's': str(size)}))
 
