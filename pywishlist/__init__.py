@@ -623,13 +623,16 @@ def profile_register():
                                  _external=True)
                 if send_email(app,
                               newUser.email,
-                              gettext("PyWishlist Activation Email"),
+                              gettext("%(sitetitle)s Activation Email" %
+                                      sitetitle=app.config['SITETITLE']),
                               "<h3>%s %s</h3>" %
                               (gettext("Hello"), request.form['name']) +
                               gettext("We are happy to welcome you to "
-                                      "PyWishlist!<br>Please verify your "
+                                      "%(sitetitle)s!<br>Please verify your "
                                       "account with <a href='%(url)s'>this "
-                                      "link</a>.<br><br>", url=actUrl) +
+                                      "link</a>.<br><br>",
+                                      sitetitle=app.config['SITETITLE'],
+                                      url=actUrl) +
                               gettext("<br><br>Have fun and see you soon ;)"),
                               app.config['EMAILBANNERWELCOME']):
                     flash(gettext("Please check your mails at %(emailaddr)s",
@@ -798,7 +801,8 @@ def profile_password_reset_request():
                          verifyKey=myUser.verifyKey,
                          _external=True)
         if send_email(app, myUser.email,
-                      gettext("PyWishlist Password Reset"),
+                      gettext("%(sitetitle)s Password Reset" %
+                              sitetitle=app.config['SITETITLE']),
                       gettext("<h3>Hello %(name)s</h3>You can reset your "
                               "password with <a href='%(url)s'>this link</a>."
                               " If you did not request this password reset, "
@@ -831,7 +835,8 @@ def profile_password_reset_verify(userId, verifyKey):
             myUser.setPassword(newPassword)
             myUser.verify(verifyKey)
             if send_email(app, myUser.email,
-                          gettext("PyWishlist New Password"),
+                          gettext("%(sitetitle)s New Password" %
+                                  sitetitle=app.config['SITETITLE']),
                           gettext("<h3>Hello %(name)s</h3>Your new password "
                                   "is: <b>%(password)s</b><br>Please "
                                   "change it right after you "

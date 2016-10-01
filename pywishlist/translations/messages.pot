@@ -8,74 +8,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-30 13:02+0200\n"
+"POT-Creation-Date: 2016-10-01 22:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"Generated-By: Babel 2.2.0\n"
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:193
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:193
 msgid "Passwords do not match!"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:197
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:197
 msgid "Password is too short"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:223
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:223
 msgid "Bad Request"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:230
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:230
 msgid "Unauthorized request"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:237
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:237
 msgid "Forbidden request"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:244
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:244
 msgid "Page not found"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:251
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:251
 msgid ""
 "The server encountered an internal error, probably a bug in the program. "
 "The administration was automatically informed of this problem."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:506
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:650
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:484
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:629
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
 msgid "Hello"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:508
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:590
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:655
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:831
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:865
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:486
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:568
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:636
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:813
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:848
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
 msgid "<br><br>Have fun and see you soon ;)"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:518
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:496
 #, python-format
 msgid "Messages sent: %(okCount)s; Messages not sent: %(nokCount)s"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:545
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:523
 msgid "The exclusion could not be saved"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:547
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:525
 msgid "Unable to add this exclude"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:588
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:566
 #, python-format
 msgid ""
 "<h3>Hello %(donator)s</h3>You are the Secret Santa to: "
@@ -84,86 +84,88 @@ msgid ""
 "email!<br>"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:602
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:580
 msgid "Calculation not ok"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:619
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:597
 msgid "Email address is too short"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:627
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:605
 msgid "Please fill out all the fields!"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:648
-msgid "PyWishlist Activation Email"
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:626
+#, python-format
+msgid "%(sitetitle)s Activation EmailSITETITLE"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:651
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:630
 #, python-format
 msgid ""
-"We are happy to welcome you to PyWishlist!<br>Please verify your account "
-"with <a href='%(url)s'>this link</a>.<br><br>"
+"We are happy to welcome you to %(sitetitle)s!<br>Please verify your "
+"account with <a href='%(url)s'>this link</a>.<br><br>"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:657
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:833
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:867
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:638
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:815
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:850
 #, python-format
 msgid "Please check your mails at %(emailaddr)s"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:660
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:641
 msgid "Error sending the email to you."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:664
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:645
 msgid "SQL Alchemy Error"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:687
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:668
 msgid "Old password not correct!"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:698
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:679
 msgid "Profile changed"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:725
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:706
 msgid "User not found to verify."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:734
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:715
 msgid "Verification ok. Please log in."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:737
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:718
 msgid "Verification NOT ok. Please try again."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:752
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:733
 msgid "Error locating your user"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:760
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:741
 msgid "User not yet verified. Please check your email for the unlock key."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:765
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:746
 msgid "User locked. Please contact an administrator."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:781
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:783
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:762
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:764
 msgid "Invalid login"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:823
-msgid "PyWishlist Password Reset"
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:804
+#, python-format
+msgid "%(sitetitle)s Password ResetSITETITLE"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:824
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:806
 #, python-format
 msgid ""
 "<h3>Hello %(name)s</h3>You can reset your password with <a "
@@ -171,15 +173,16 @@ msgid ""
 " you can just ignore it. Your current password is still valid.</b>"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:836
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:818
 msgid "No user found with this email address"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:856
-msgid "PyWishlist New Password"
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:838
+#, python-format
+msgid "%(sitetitle)s New PasswordSITETITLE"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:863
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:846
 #, python-format
 msgid ""
 "<h3>Hello %(name)s</h3>Your new password is: "
@@ -187,296 +190,290 @@ msgid ""
 "href='%(url)s'>logged in</a>."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:872
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:855
 msgid "Wrong verification link. Please request a new one."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:908
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:891
 msgid "No wishes found."
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:929
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:912
 msgid "Unable to hide wish"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:956
+#: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:939
 msgid "The wish could not be saved"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:2
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:5
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:105
-msgid "About"
-msgstr ""
-
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:6
-msgid "Project homepage and source code"
-msgstr ""
-
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:8
-msgid "Statistics"
-msgstr ""
-
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:10
-msgid "Users"
-msgstr ""
-
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:11
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:89
-msgid "Wishes"
-msgstr ""
-
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:12
-msgid "Hidden wishes"
-msgstr ""
-
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:13
-msgid "Oldest wishes"
-msgstr ""
-
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/about.html:14
-msgid "Newest wishes"
-msgstr ""
-
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:2
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:4
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:114
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_bulk_email.html:2
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_bulk_email.html:4
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:116
 msgid "Bulk Email"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:7
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_bulk_email.html:7
 msgid "Subject"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_bulk_email.html:8
 msgid "Here goes the text"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_bulk_email.html:9
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_bulk_email.html:9
 msgid "Send"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:2
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:116
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:2
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:118
 msgid "Secret Santa Management"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:5
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:5
 msgid "Exclusion Management"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:19
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:19
 msgid "Remove"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:34
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:34
 msgid "Add"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:39
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:39
 msgid "Secret Santa calculation"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:40
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_secretsanta_management.html:40
 msgid "Go"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:2
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:115
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_user_management.html:2
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:117
 msgid "User Management"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:4
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_user_management.html:4
 msgid "Registred Users"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:8
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:7
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:18
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:7
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:13
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_user_management.html:8
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:7
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:18
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:7
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:13
 msgid "Email"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:9
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:9
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:14
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_user_management.html:9
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:9
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:14
 msgid "Real Name"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:10
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_user_management.html:10
 msgid "Admin"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:11
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_user_management.html:11
 msgid "Locked"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:12
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/admin_user_management.html:12
 msgid "Verified"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:5
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:6
-msgid "PyWishlist"
-msgstr ""
-
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:7
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/error.html:7
-msgid "Dashboard"
-msgstr ""
-
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:8
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:9
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:7
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:8
 msgid "The python based Secret Santa system"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:62
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:64
 msgid "Toggle navigation"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:102
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:2
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:7
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:91
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:11
+msgid "Wishes"
+msgstr ""
+
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:104
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:2
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:7
 msgid "Enter wish"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:112
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:107
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:2
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:5
+msgid "About"
+msgstr ""
+
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:114
 msgid "Administration"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:124
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:126
 msgid "Your profile settings"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:132
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:19
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:12
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:21
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:16
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:18
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:32
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:134
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:19
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:12
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:21
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:16
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:18
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:32
 msgid "Reset"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:134
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:136
 msgid "Logout"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:138
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:5
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:140
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:5
 msgid "Registration"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:139
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:2
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:5
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:141
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:2
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:5
 msgid "Login"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:150
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:152
 msgid "Success message"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:159
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:161
 msgid "Error message"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/base.html:168
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:170
 msgid "Info message"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:9
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:9
 msgid "For user"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:15
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:15
 msgid "Description"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:15
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:15
 msgid "Describe the wish"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/enter_wish.html:18
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:12
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:21
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:16
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:17
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:31
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/enter_wish.html:18
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:12
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:21
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:16
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:17
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:31
 msgid "Submit"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/error.html:2
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/error.html:5
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/error.html:2
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/error.html:5
 msgid "Error"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:9
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:11
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/error.html:7
+msgid "Dashboard"
+msgstr ""
+
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:6
+msgid "Project homepage and source code"
+msgstr ""
+
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:8
+msgid "Statistics"
+msgstr ""
+
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:10
+msgid "Users"
+msgstr ""
+
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:12
+msgid "Hidden wishes"
+msgstr ""
+
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:13
+msgid "Oldest wishes"
+msgstr ""
+
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:14
+msgid "Newest wishes"
+msgstr ""
+
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:9
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:11
 msgid "Password"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:16
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/login.html:16
 msgid "Password reset"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:2
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:2
 msgid "Register"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_register.html:13
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_register.html:13
 msgid "Again the password"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:2
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:11
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:2
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:11
 msgid "Profile"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:12
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:12
 msgid "Name"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:25
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:25
 msgid "Password change"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:26
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:26
 msgid "Old password"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:27
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:27
 msgid "New password"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:28
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:28
 msgid "New password again"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:42
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:42
 msgid "Date"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/profile_show.html:43
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/profile_show.html:43
 msgid "Reciever"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:2
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/show_wishes.html:2
 msgid "Show wishes for"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:9
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:26
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/show_wishes.html:9
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/show_wishes.html:26
 msgid "By"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:9
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:26
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/show_wishes.html:9
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/show_wishes.html:26
 msgid "Age"
 msgstr ""
 
-#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:11
+#: /home/oxi/dev/PyWishlist/pywishlist/templates/show_wishes.html:11
 msgid "Hide"
 msgstr ""
 

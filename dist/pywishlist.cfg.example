@@ -4,6 +4,7 @@ ROOTUSER = "admin"
 APPSECRET = 'some key'
 COMPRESS_DEBUG = True
 COMPRESS_MIMETYPES = ['text/html', 'text/css', 'text/xml', 'application/json', 'application/javascript', 'text/javascript']
+SITETITLE = "PyWishlist"
 FAVICON = "placeholder.png"
 AVATARPLACEHOLDER = "placeholder.png"
 SYSTEMLOGO = "placeholder.png"
