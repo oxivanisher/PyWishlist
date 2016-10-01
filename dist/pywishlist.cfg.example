@@ -14,6 +14,7 @@ EMAILBANNER = "placeholder.png"
 EMAILBANNERWELCOME = "placeholder.png"
 
 # email
+ADMINS = ['']
 EMAILSERVER = "127.0.0.1"
 EMAILFROM = "yourname@example.com"
 EMAILREPLYTO = ""
