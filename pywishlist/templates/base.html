@@ -3,7 +3,7 @@
 	<head>
 		{%- block head %}
 		<title>{{ config.SITETITLE }} {% block title %}{% endblock %}</title>
-		<meta property="og:title" content="config.SITETITLE" />
+		<meta property="og:title" content="{{ config.SITETITLE }}" />
 		<meta name="description" content="{{ _('The python based Secret Santa system') }}">
 		<meta property="og:description" content="{{ _('The python based Secret Santa system') }}" />
 
