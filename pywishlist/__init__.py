@@ -623,7 +623,7 @@ def profile_register():
                                  _external=True)
                 if send_email(app,
                               newUser.email,
-                              gettext("%(sitetitle)s Activation Email" %
+                              gettext("%(sitetitle)s Activation Email",
                                       sitetitle=app.config['SITETITLE']),
                               "<h3>%s %s</h3>" %
                               (gettext("Hello"), request.form['name']) +
@@ -801,7 +801,7 @@ def profile_password_reset_request():
                          verifyKey=myUser.verifyKey,
                          _external=True)
         if send_email(app, myUser.email,
-                      gettext("%(sitetitle)s Password Reset" %
+                      gettext("%(sitetitle)s Password Reset",
                               sitetitle=app.config['SITETITLE']),
                       gettext("<h3>Hello %(name)s</h3>You can reset your "
                               "password with <a href='%(url)s'>this link</a>."
@@ -835,7 +835,7 @@ def profile_password_reset_verify(userId, verifyKey):
             myUser.setPassword(newPassword)
             myUser.verify(verifyKey)
             if send_email(app, myUser.email,
-                          gettext("%(sitetitle)s New Password" %
+                          gettext("%(sitetitle)s New Password",
                                   sitetitle=app.config['SITETITLE']),
                           gettext("<h3>Hello %(name)s</h3>Your new password "
                                   "is: <b>%(password)s</b><br>Please "
