@@ -311,29 +311,7 @@ def add_header(response):
 # main routes
 @app.route('/About')
 def about():
-    wishes = 0
-    hidden = 0
-    oldest = int(time.time())
-    newest = 0
-    for wish in runQuery(Wish.query.all):
-        wishes += 1
-        if wish.hiddenId:
-            hidden += 1
-        if wish.creationDate > newest:
-            newest = wish.creationDate
-        if wish.creationDate < oldest:
-            oldest = wish.creationDate
-
-    stats = {
-        'wishes': wishes,
-        'hidden': hidden,
-        'oldest': oldest,
-        'newest': newest,
-        'users': len(runQuery(WishUser.query.all))
-    }
-
-    return render_template('about.html', stats=stats)
-
+    return redirect(url_for('index'))
 
 # language route
 @app.route('/Lang/')
@@ -405,7 +383,7 @@ def get_robots_txt():
 
 @app.route('/sitemap.xml')
 def get_sitemap_xml():
-    methodsToList = ['about', 'profile_register', 'profile_login']
+    methodsToList = ['index', 'profile_register', 'profile_login']
     ret = []
     ret.append('<?xml version="1.0" encoding="UTF-8"?>')
     ret.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
@@ -960,4 +938,25 @@ def enter_wish():
 # Index
 @app.route('/')
 def index():
-    return redirect(url_for('about'))
+    wishes = 0
+    hidden = 0
+    oldest = int(time.time())
+    newest = 0
+    for wish in runQuery(Wish.query.all):
+        wishes += 1
+        if wish.hiddenId:
+            hidden += 1
+        if wish.creationDate > newest:
+            newest = wish.creationDate
+        if wish.creationDate < oldest:
+            oldest = wish.creationDate
+
+    stats = {
+        'wishes': wishes,
+        'hidden': hidden,
+        'oldest': oldest,
+        'newest': newest,
+        'users': len(runQuery(WishUser.query.all))
+    }
+
+    return render_template('index.html', stats=stats)
