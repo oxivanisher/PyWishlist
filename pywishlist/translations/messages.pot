@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-01 22:16+0200\n"
+"POT-Creation-Date: 2016-10-01 22:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,7 +98,7 @@ msgstr ""
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:626
 #, python-format
-msgid "%(sitetitle)s Activation EmailSITETITLE"
+msgid "%(sitetitle)s Activation Email"
 msgstr ""
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:630
@@ -162,7 +162,7 @@ msgstr ""
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:804
 #, python-format
-msgid "%(sitetitle)s Password ResetSITETITLE"
+msgid "%(sitetitle)s Password Reset"
 msgstr ""
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:806
@@ -179,7 +179,7 @@ msgstr ""
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:838
 #, python-format
-msgid "%(sitetitle)s New PasswordSITETITLE"
+msgid "%(sitetitle)s New Password"
 msgstr ""
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:846
@@ -305,7 +305,6 @@ msgid "Enter wish"
 msgstr ""
 
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:107
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:2
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:5
 msgid "About"
 msgstr ""

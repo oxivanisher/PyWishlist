@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-01 22:16+0200\n"
+"POT-Creation-Date: 2016-10-01 22:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -108,7 +108,7 @@ msgstr "Bitte f&uuml;lle alle Felder aus!"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:626
 #, python-format
-msgid "%(sitetitle)s Activation EmailSITETITLE"
+msgid "%(sitetitle)s Activation Email"
 msgstr "%(sitetitle)s Aktiviertungs E-mail"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:630
@@ -174,7 +174,7 @@ msgstr "Ung&uuml;ltige Anmeldungsinformationen"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:804
 #, python-format
-msgid "%(sitetitle)s Password ResetSITETITLE"
+msgid "%(sitetitle)s Password Reset"
 msgstr "%(sitetitle)s Passwort zur&uuml;cksetzen"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:806
@@ -195,7 +195,7 @@ msgstr "Kein Benutzer mit dieser E-mail-Adresse gefunden"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:838
 #, python-format
-msgid "%(sitetitle)s New PasswordSITETITLE"
+msgid "%(sitetitle)s New Password"
 msgstr "%(sitetitle)s Neues Passwort"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/__init__.py:846
@@ -323,7 +323,6 @@ msgid "Enter wish"
 msgstr "Wunsch erfassen"
 
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/base.html:107
-#: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:2
 #: /home/oxi/dev/PyWishlist/pywishlist/templates/index.html:5
 msgid "About"
 msgstr "&Uuml;ber"
