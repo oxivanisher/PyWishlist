@@ -610,11 +610,11 @@ def admin_update():
             ret = g.pull()
         except Exception as e:
             print e
-            ret = [str(e)]
+            ret = str(e)
     else:
         ret = [gettext("Unable to update sources because "
                        "gitpython module not available")]
-    return render_template('admin_update.html', ret='\n'.join(ret))
+    return render_template('admin_update.html', ret=ret)
 
 
 @app.route('/Administration/Restart')
