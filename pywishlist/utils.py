@@ -248,6 +248,10 @@ def waitForDbConnection(maxTries=0):
             retryCount += 1
             db_session.remove()
             time.sleep(0.1)
+        except ProgrammingError as e:
+            retryCount += 1
+            db_session.remove()
+            time.sleep(0.1)
 
         if maxTries:
             if retryCount >= maxTries:
