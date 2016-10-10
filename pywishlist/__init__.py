@@ -593,7 +593,7 @@ def admin_secretsanta_go():
 def admin_restart():
     check_admin_permissions()
     flash(gettext("Restarting application"), 'info')
-    return redirect(url_for('index'))
+    uwsgi.reload()
 
 
 # profile routes
