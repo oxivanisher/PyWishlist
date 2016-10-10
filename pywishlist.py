@@ -3,4 +3,5 @@
 
 from pywishlist import app
 # app.run(use_reloader=False, ssl_context='adhoc')
-app.run(use_reloader=False)
+if __name__ == "__main__":
+    app.run(use_reloader=False)
