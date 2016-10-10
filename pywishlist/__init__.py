@@ -6,6 +6,7 @@ import sys
 import os
 import logging
 import urllib
+import uwsgi
 
 from utils import *
 from models import *
@@ -541,6 +542,7 @@ def admin_exclusion_remove(id):
 
 @app.route('/Administration/SecretSanta/Go', methods=['GET'])
 def admin_secretsanta_go():
+    check_admin_permissions()
     message = []
     solver = SecretSantaSolver(runQuery(WishUser.query.all),
                                runQuery(Exclusion.query.all))
@@ -585,6 +587,13 @@ def admin_secretsanta_go():
                            message='\n'.join(message),
                            exclusions=runQuery(Exclusion.query.all),
                            users=runQuery(WishUser.query.all))
+
+
+@app.route('/Administration/Restart')
+def admin_restart():
+    check_admin_permissions()
+    flash(gettext("Restarting application"), 'info')
+    return redirect(url_for('index'))
 
 
 # profile routes
