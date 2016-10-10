@@ -594,6 +594,7 @@ def admin_restart():
     check_admin_permissions()
     flash(gettext("Restarting application"), 'info')
     uwsgi.reload()
+    return redirect(url_for('index'))
 
 
 # profile routes
