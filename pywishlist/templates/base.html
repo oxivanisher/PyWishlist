@@ -116,6 +116,7 @@
 									<li class="{% if url_for('admin_bulk_email') == request.path %}active{% endif %}"><a href="{{ url_for('admin_bulk_email') }}"><span class="glyphicon glyphicon-envelope"></span> {{ _('Bulk Email') }}</a></li>
 									<li class="{% if url_for('admin_user_management') == request.path %}active{% endif %}"><a href="{{ url_for('admin_user_management') }}"><span class="glyphicon glyphicon-user"></span> {{ _('User Management') }}</a></li>
 									<li class="{% if url_for('admin_secretsanta_management') == request.path %}active{% endif %}"><a href="{{ url_for('admin_secretsanta_management') }}"><span class="glyphicon glyphicon-gift"></span> {{ _('Secret Santa Management') }}</a></li>
+									<li class="{% if url_for('admin_update') == request.path %}active{% endif %}"><a href="{{ url_for('admin_update') }}"><span class="glyphicon glyphicon-cog"></span> {{ _('Application update') }}</a></li>
 									<li class="{% if url_for('admin_restart') == request.path %}active{% endif %}"><a href="{{ url_for('admin_restart') }}"><span class="glyphicon glyphicon-cog"></span> {{ _('Application restart') }}</a></li>
 								</ul>
 							</li>

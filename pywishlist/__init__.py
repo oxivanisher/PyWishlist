@@ -6,7 +6,6 @@ import sys
 import os
 import logging
 import urllib
-import uwsgi
 
 from utils import *
 from models import *
@@ -48,6 +47,17 @@ try:
 except ImportError:
     log.error("[System] Please install the babel extension for flask")
     sys.exit(2)
+
+# optional imports
+try:
+    import uwsgi
+except ImportError:
+    logging.warning("[System] Unable to import the uwsgi library.")
+
+try:
+    import git
+except ImportError:
+    logging.warning("[System] Unable to import the git library.")
 
 # setup flask app
 app = Flask(__name__)
@@ -589,11 +599,32 @@ def admin_secretsanta_go():
                            users=runQuery(WishUser.query.all))
 
 
+@app.route('/Administration/Update')
+def admin_update():
+    check_admin_permissions()
+
+    if 'git' in sys.modules:
+        appRoot = os.path.dirname(os.path.abspath(__file__))
+        g = git.cmd.Git(appRoot)
+        try:
+            ret = g.pull()
+        except Exception as e:
+            print e
+            ret = [str(e)]
+    else:
+        ret = [gettext("Unable to update sources because "
+                       "gitpython module not available")]
+    return render_template('admin_update.html', ret='\n'.join(ret))
+
+
 @app.route('/Administration/Restart')
 def admin_restart():
     check_admin_permissions()
-    flash(gettext("Restarting application"), 'info')
-    uwsgi.reload()
+    if 'uwsgi' in sys.modules:
+        flash(gettext("Restarting application"), 'info')
+        uwsgi.reload()
+    else:
+        flash(gettext("Unable to restart: uwsgi module not available"))
     return redirect(url_for('index'))
 
 
