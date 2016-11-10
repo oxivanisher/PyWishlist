@@ -11,6 +11,7 @@ from flask import url_for
 
 from pywishlist.blueprints.wishes.wishes_service import get_wish_by_id
 from pywishlist.database import db_session
+from pywishlist.login_required import login_required
 from pywishlist.user_service import get_user_by_id
 from pywishlist.utils import runQuery
 from pywishlist.models.wish import Wish
@@ -21,9 +22,8 @@ wishes_blueprint = Blueprint('wishes_blueprint', __name__, template_folder='temp
 
 
 @wishes_blueprint.route('/Wish/Enter', methods=['GET', 'POST'])
+@login_required
 def enter_wish():
-    if not session.get('logged_in'):
-        return redirect(url_for('index'))
     if request.method == 'POST':
         new_wish = Wish(session.get('userid'),
                         request.form['userid'],
@@ -40,9 +40,8 @@ def enter_wish():
 
 
 @wishes_blueprint.route('/Wishlists/Show/<int:user_id>', methods=['GET'])
+@login_required
 def show_wishes(user_id):
-    if not session.get('logged_in'):
-        return redirect(url_for('index'))
     active_wishes = []
     hidden_wishes = []
     for wish in runQuery(Wish.query.all):
@@ -73,9 +72,8 @@ def show_wishes(user_id):
 
 
 @wishes_blueprint.route('/Wish/Hide/<int:wish_id>/<int:user_id>', methods=['GET'])
+@login_required
 def hide_wish(wish_id, user_id):
-    if not session.get('logged_in'):
-        return redirect(url_for('index'))
     wish = get_wish_by_id(wish_id)
 
     try:
