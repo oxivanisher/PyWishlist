@@ -9,6 +9,7 @@ from flask import session
 
 from flask import url_for
 
+from pywishlist.blueprints.wishes.wishes_service import get_wish_by_id
 from pywishlist.database import db_session
 from pywishlist.user_service import get_user_by_id
 from pywishlist.utils import runQuery
@@ -69,3 +70,27 @@ def show_wishes(user_id):
                            wishes=active_wishes,
                            hiddenWishes=hidden_wishes,
                            user=get_user_by_id(user_id))
+
+
+@wishes_blueprint.route('/Wish/Hide/<int:wish_id>/<int:user_id>', methods=['GET'])
+def hide_wish(wish_id, user_id):
+    if not session.get('logged_in'):
+        return redirect(url_for('index'))
+    wish = get_wish_by_id(wish_id)
+
+    try:
+        wish.hide(session.get('userid'))
+        db_session.merge(wish)
+        log.info("Wish %s successfully hidden by %s"
+                 % (wish.id, session.get('userid')))
+    except Exception as e:
+        flash(gettext("Unable to hide wish"), 'error')
+        log.warning("Unable to hide wish because %s" % e)
+
+    try:
+        runQuery(db_session.commit)
+    except Exception as e:
+        log.warning("[Wish] SQL Alchemy Error on hide wish"
+                    ": %s" % e)
+
+    return redirect(url_for('wishes_blueprint.show_wishes', user_id=user_id))

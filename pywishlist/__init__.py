@@ -149,18 +149,7 @@ def getUserById(userId=None):
             return False
 
 
-def getWishById(wishId):
-    with app.test_request_context():
-        try:
-            ret = runQuery(Wish.query.filter_by(id=wishId).first)
-        except Exception as e:
-            log.warning("[System] SQL Alchemy Error on getWishById: %s" % (e))
-            ret = False
 
-        if ret:
-            return ret
-        else:
-            return False
 
 
 def getOtherUsers():
@@ -907,35 +896,6 @@ def profile_password_reset_verify(userId, verifyKey):
             log.warning("[System] SQL Alchemy Error on password reset "
                         "verify key: %s" % (e))
     return redirect(url_for('index'))
-
-
-# Wish methods
-
-
-
-@app.route('/Wish/Hide/<int:wishId>/<int:userId>', methods=['GET'])
-def hide_wish(wishId, userId):
-    if not session.get('logged_in'):
-        return redirect(url_for('index'))
-    wish = getWishById(wishId)
-
-    try:
-        wish.hide(session.get('userid'))
-        db_session.merge(wish)
-        log.info("Wish %s successfully hidden by %s"
-                 % (wish.id, session.get('userid')))
-    except Exception as e:
-        flash(gettext("Unable to hide wish"), 'error')
-        log.warning("Unable to hide wish because %s" % (e))
-
-    try:
-        runQuery(db_session.commit)
-    except Exception as e:
-        log.warning("[Wish] SQL Alchemy Error on hide wish"
-                    ": %s" % (e))
-
-    return redirect(url_for('wishes_blueprint.show_wishes', user_id=userId))
-
 
 # Index
 @app.route('/')

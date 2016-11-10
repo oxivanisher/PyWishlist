@@ -8,7 +8,7 @@
 			<tr>
 				<td style="text-align: left; vertical-align: baseline; font-size: 18px; margin: 5px;" class="dboardtitle">{{ _('By') }} {{ wish.source.name }}, {{ _('Age') }}: {{ get_short_age(wish.creationDate) }}</td>
 				<td style="text-align: right; vertical-align: baseline;">
-					<a href="{{ url_for('hide_wish', wishId=wish.id, userId=user.id) }}" class="fa fa-close" alt="{{ _('Hide') }}"></a>
+					<a href="{{ url_for('wishes_blueprint.hide_wish', wish_id=wish.id, user_id=user.id) }}" class="fa fa-close" alt="{{ _('Hide') }}"></a>
 				</td>
 			</tr>
 		</table>
