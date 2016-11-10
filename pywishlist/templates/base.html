@@ -90,13 +90,13 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tower"></span> {{ _('Wishes') }}
 									{%- for user in users -%}
-										{%- if url_for('show_wishes', userId=user.id) == request.path -%}
+										{%- if url_for('wishes_blueprint.show_wishes', user_id=user.id) == request.path -%}
 											: {{ user.name }}
 										{%- endif -%}
 									{%- endfor %} <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 								{%- for user in users %}
-									<li class="{% if url_for('show_wishes', userId=user.id) == request.path %}active{% endif %}"><a href="{{ url_for('show_wishes', userId=user.id) }}"><span class="glyphicon glyphicon-user"></span> {{ user.name }}</a></li>
+									<li class="{% if url_for('wishes_blueprint.show_wishes', user_id=user.id) == request.path %}active{% endif %}"><a href="{{ url_for('wishes_blueprint.show_wishes', user_id=user.id) }}"><span class="glyphicon glyphicon-user"></span> {{ user.name }}</a></li>
 								{%- endfor -%}
 								</ul>
 							</li>
