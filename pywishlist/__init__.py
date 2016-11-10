@@ -7,6 +7,7 @@ import os
 import logging
 import urllib
 
+from pywishlist.blueprints.wishes import wishes
 from utils import *
 from models import *
 
@@ -61,6 +62,8 @@ except ImportError:
 
 # setup flask app
 app = Flask(__name__)
+
+app.register_blueprint(wishes.wishes_blueprint)
 
 # setup logging
 log = app.logger
@@ -962,25 +965,6 @@ def hide_wish(wishId, userId):
                     ": %s" % (e))
 
     return redirect(url_for('show_wishes', userId=userId))
-
-
-@app.route('/Wish/Enter', methods=['GET', 'POST'])
-def enter_wish():
-    if not session.get('logged_in'):
-        return redirect(url_for('index'))
-    if request.method == 'POST':
-        newWish = Wish(session.get('userid'),
-                       request.form['userid'],
-                       request.form['text'])
-
-        db_session.add(newWish)
-        try:
-            runQuery(db_session.commit)
-        except Exception as e:
-            log.warning("[Wish] SQL Alchemy Error on enter wish"
-                        ": %s" % (e))
-            flash(gettext("The wish could not be saved"), 'error')
-    return render_template('enter_wish.html')
 
 
 # Index

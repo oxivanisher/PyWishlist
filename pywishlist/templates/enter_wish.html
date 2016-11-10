@@ -3,7 +3,7 @@
 {%- block content -%}
 <div class="content_block">
 <table class='table table-striped'>
-<form action="{{ url_for('enter_wish') }}" id="profile" method="post">
+<form action="{{ url_for('wishes_blueprint.enter_wish') }}" id="profile" method="post">
 	<tr><td colspan="2"><h3>{{ _('Enter wish') }}</h3></td></tr>
 	<tr>
 		<td>{{ _('For user') }}:</td>

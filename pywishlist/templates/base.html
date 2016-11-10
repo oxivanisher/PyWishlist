@@ -101,7 +101,7 @@
 								</ul>
 							</li>
 						
-							<li class="{% if url_for('enter_wish') == request.path %}active{% endif %}"><a href="{{ url_for('enter_wish') }}"><span class="glyphicon glyphicon-tower"></span> {{ _('Enter wish') }}</a></li>
+							<li class="{% if url_for('wishes_blueprint.enter_wish') == request.path %}active{% endif %}"><a href="{{ url_for('wishes_blueprint.enter_wish') }}"><span class="glyphicon glyphicon-tower"></span> {{ _('Enter wish') }}</a></li>
 						{% endif -%}
 
 						<li class="{% if url_for('index') == request.path %}active{% endif %}"><a href="{{ url_for('index') }}"><span class="glyphicon glyphicon-question-sign"></span> {{ _('About') }}</a></li>
