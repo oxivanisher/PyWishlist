@@ -5,9 +5,10 @@ install:
   - pip install -r requirements.txt
   - pip install coveralls
 script:
-  -  coverage run --source=pywishlist.py python -m py_compile pywishlist.py
+  -  coverage run --source=pywishlist.py -m py_compile pywishlist.py
 
 notifications:
+  email: false
   webhooks:
     urls:
       - https://webhooks.gitter.im/e/353f6c7d987d6bca099e
