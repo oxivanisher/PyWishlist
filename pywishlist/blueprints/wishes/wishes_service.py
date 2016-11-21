@@ -34,3 +34,9 @@ class WishesService:
     def add_wish(new_wish):
         db_session.add(new_wish)
         runQuery(db_session.commit)
+
+    @staticmethod
+    def update_wish_text(wish_id, wish_text):
+        wish = WishesService.get_wish_by_id(wish_id)
+        wish.text = wish_text
+        runQuery(db_session.commit)

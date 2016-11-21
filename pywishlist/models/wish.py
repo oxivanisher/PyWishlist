@@ -48,3 +48,6 @@ class Wish(Base):
     def hide(self, hidden_id):
         self.hiddenId = hidden_id
         self.hiddenDate = int(time.time())
+
+    def is_authorized_to_edit(self, user_id):
+        return user_id == self.sourceId

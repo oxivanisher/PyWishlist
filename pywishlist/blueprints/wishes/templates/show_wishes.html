@@ -8,6 +8,9 @@
 			<tr>
 				<td style="text-align: left; vertical-align: baseline; font-size: 18px; margin: 5px;" class="dboardtitle">{{ _('By') }} {{ wish.source.name }}, {{ _('Age') }}: {{ get_short_age(wish.creationDate) }}</td>
 				<td style="text-align: right; vertical-align: baseline;">
+                    {% if wish.sourceId == session.get('userid') %}
+					<a href="{{ url_for('wishes_blueprint.update_wish', wish_id=wish.id) }}" class="fa fa-pencil" alt="{{ _('Update') }}"></a>
+                    {% endif %}
 					<a href="{{ url_for('wishes_blueprint.hide_wish', wish_id=wish.id, user_id=user.id) }}" class="fa fa-close" alt="{{ _('Hide') }}"></a>
 				</td>
 			</tr>
