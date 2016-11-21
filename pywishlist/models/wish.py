@@ -1,15 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import logging
-import time
-
-from sqlalchemy import Boolean, Column, Integer, String, UnicodeText
-from sqlalchemy import ForeignKey, UniqueConstraint
+from sqlalchemy import Column, Integer, String
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref
 
+from pywishlist.database import Base
 from pywishlist.utils import *
-from pywishlist.database import db_session, Base
 
 
 class Wish(Base):
@@ -35,11 +32,11 @@ class Wish(Base):
     hiddenDate = Column(Integer, unique=False)
     text = Column(String(512), unique=False)
 
-    def __init__(self, sourceId, destinationId, text):
+    def __init__(self, source_id, destination_id, text):
         self.log = logging.getLogger(__name__)
-        self.log.debug("[Wish] Initializing Wish %s" % (self.id))
-        self.sourceId = sourceId
-        self.destinationId = destinationId
+        self.log.debug("[Wish] Initializing Wish %s" % self.id)
+        self.sourceId = source_id
+        self.destinationId = destination_id
         self.hiddenId = None
         self.creationDate = int(time.time())
         self.hiddenDate = None
@@ -48,6 +45,9 @@ class Wish(Base):
     def __repr__(self):
         return '<Wish %r>' % self.id
 
-    def hide(self, hiddenId):
-        self.hiddenId = hiddenId
+    def hide(self, hidden_id):
+        self.hiddenId = hidden_id
         self.hiddenDate = int(time.time())
+
+    def is_authorized_to_edit(self, user_id):
+        return user_id == self.sourceId
