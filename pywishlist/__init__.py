@@ -7,6 +7,7 @@ import os
 import logging
 import urllib
 
+from pywishlist.blueprints.wishes import wishes
 from utils import *
 from models import *
 
@@ -61,6 +62,8 @@ except ImportError:
 
 # setup flask app
 app = Flask(__name__)
+
+app.register_blueprint(wishes.wishes_blueprint)
 
 # setup logging
 log = app.logger
@@ -146,18 +149,7 @@ def getUserById(userId=None):
             return False
 
 
-def getWishById(wishId):
-    with app.test_request_context():
-        try:
-            ret = runQuery(Wish.query.filter_by(id=wishId).first)
-        except Exception as e:
-            log.warning("[System] SQL Alchemy Error on getWishById: %s" % (e))
-            ret = False
 
-        if ret:
-            return ret
-        else:
-            return False
 
 
 def getOtherUsers():
@@ -904,84 +896,6 @@ def profile_password_reset_verify(userId, verifyKey):
             log.warning("[System] SQL Alchemy Error on password reset "
                         "verify key: %s" % (e))
     return redirect(url_for('index'))
-
-
-# Wish methods
-@app.route('/Wishlists/Show/<int:userId>', methods=['GET'])
-def show_wishes(userId):
-    if not session.get('logged_in'):
-        return redirect(url_for('index'))
-    activeWishes = []
-    hiddenWishes = []
-    for wish in runQuery(Wish.query.all):
-        if wish.destinationId == userId:
-            if wish.destinationId != session.get('userid'):
-                # show wishes for anothe user
-                if wish.hiddenId:
-                    hiddenWishes.append(wish)
-                else:
-                    activeWishes.append(wish)
-            elif wish.sourceId == session.get('userid'):
-                # shwo wishes for the user himself
-                if wish.hiddenId == session.get('userid'):
-                    # check if the wish was hidden by the user himself,
-                    # if it is hidden by someone else, don't show it
-                    hiddenWishes.append(wish)
-                else:
-                    activeWishes.append(wish)
-
-    if len(activeWishes) + len(hiddenWishes) == 0:
-        flash(gettext("No wishes found."), 'info')
-
-    log.info("Found %s wishes for user %s" % (len(activeWishes), userId))
-    return render_template('show_wishes.html',
-                           wishes=activeWishes,
-                           hiddenWishes=hiddenWishes,
-                           user=getUserById(userId))
-
-
-@app.route('/Wish/Hide/<int:wishId>/<int:userId>', methods=['GET'])
-def hide_wish(wishId, userId):
-    if not session.get('logged_in'):
-        return redirect(url_for('index'))
-    wish = getWishById(wishId)
-
-    try:
-        wish.hide(session.get('userid'))
-        db_session.merge(wish)
-        log.info("Wish %s successfully hidden by %s"
-                 % (wish.id, session.get('userid')))
-    except Exception as e:
-        flash(gettext("Unable to hide wish"), 'error')
-        log.warning("Unable to hide wish because %s" % (e))
-
-    try:
-        runQuery(db_session.commit)
-    except Exception as e:
-        log.warning("[Wish] SQL Alchemy Error on hide wish"
-                    ": %s" % (e))
-
-    return redirect(url_for('show_wishes', userId=userId))
-
-
-@app.route('/Wish/Enter', methods=['GET', 'POST'])
-def enter_wish():
-    if not session.get('logged_in'):
-        return redirect(url_for('index'))
-    if request.method == 'POST':
-        newWish = Wish(session.get('userid'),
-                       request.form['userid'],
-                       request.form['text'])
-
-        db_session.add(newWish)
-        try:
-            runQuery(db_session.commit)
-        except Exception as e:
-            log.warning("[Wish] SQL Alchemy Error on enter wish"
-                        ": %s" % (e))
-            flash(gettext("The wish could not be saved"), 'error')
-    return render_template('enter_wish.html')
-
 
 # Index
 @app.route('/')

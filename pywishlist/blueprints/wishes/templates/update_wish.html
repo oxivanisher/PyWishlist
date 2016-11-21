@@ -1,0 +1,25 @@
+{%- extends "base.html" -%}
+{%- block title %}{{ _('Update wish')}}{% endblock -%}
+{%- block content -%}
+<div class="content_block">
+<form action="{{ url_for('wishes_blueprint.update_wish_post', wish_id=wish.id) }}" method="post">
+    <table class='table table-striped'>
+	<tr><td colspan="2"><h3>{{ _('Update wish') }}</h3></td></tr>
+	<tr>
+		<td><label for="userid">{{ _('For user') }}:</label></td>
+		<td>
+            {{ wish.destination.name }}
+        </td>
+    </tr>
+	<tr>
+        <td><label for="description">{{ _('Description') }}:</label></td>
+        <td><textarea rows="4" cols="50" name="text" id="description">{{ wish.text }}</textarea></tr>
+	<tr>
+		<td colspan="2">
+			<button class="btn btn-default" type="submit">{{ _('Update') }}</button>
+		</td>
+	</tr>
+    </table>
+</form>
+</div>
+{% endblock %}
