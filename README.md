@@ -1,4 +1,4 @@
-# PyWishlist
+# PyWishlist [![Build Status](https://travis-ci.org/oxivanisher/PyWishlist.svg?branch=master)](https://travis-ci.org/oxivanisher/PyWishlist)
 A web based web wishlist and secret santa implementation.
 
 ## Needed stuff to let it run
