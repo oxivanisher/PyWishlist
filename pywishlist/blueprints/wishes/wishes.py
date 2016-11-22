@@ -83,6 +83,19 @@ def hide_wish(wish_id, user_id):
     return redirect(url_for('wishes_blueprint.show_wishes', user_id=user_id))
 
 
+@wishes_blueprint.route('/Wish/Hide/<int:wish_id>', methods=['GET'])
+@login_required
+def unhide_wish(wish_id):
+    wish_to_edit = WishesService.get_wish_by_id(wish_id)
+
+    if not wish_to_edit.is_authorized_to_unhide(session.get('userid')):
+        return not_authorized_to_edit()
+
+    WishesService.unhide_wish_by_id(wish_id)
+
+    return redirect(url_for('wishes_blueprint.show_wishes', user_id=wish_to_edit.destinationId))
+
+
 def not_authorized_to_edit():
     flash(gettext("Not authorized to edit wish!"), 'error')
     return redirect(url_for('index'))
