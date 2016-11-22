@@ -27,6 +27,11 @@
 		<table style="width: 100%;" >
 			<tr>
 				<td style="text-align: left; vertical-align: baseline; font-size: 18px; margin: 5px;" class="dboardtitle">{{ _('By') }} {{ wish.source.name }}, {{ _('Age') }}: {{ get_short_age(wish.creationDate) }}</td>
+                <td style="text-align: right; vertical-align: baseline;">
+                    {% if wish.hiddenId == session.get('userid') %}
+					<a href="{{ url_for('wishes_blueprint.unhide_wish', wish_id=wish.id) }}" class="fa fa-exclamation-circle" alt="{{ _('Unhide') }}"></a>
+                    {% endif %}
+				</td>
 			</tr>
 		</table>
 	</header>

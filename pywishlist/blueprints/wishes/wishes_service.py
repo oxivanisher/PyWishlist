@@ -18,6 +18,12 @@ class WishesService:
         runQuery(db_session.commit)
 
     @staticmethod
+    def unhide_wish_by_id(wish_id):
+        wish = WishesService.get_wish_by_id(wish_id)
+        wish.unhide()
+        runQuery(db_session.commit)
+
+    @staticmethod
     def get_all_active_wishes_for_user_id(destination_user_id):
         return runQuery(Wish.query.filter_by(destinationId=destination_user_id).filter_by(hiddenId=None).all)
 
