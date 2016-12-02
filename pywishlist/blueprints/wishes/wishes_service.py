@@ -24,17 +24,19 @@ class WishesService:
         runQuery(db_session.commit)
 
     @staticmethod
-    def get_all_active_wishes_for_user_id(destination_user_id):
-        return runQuery(Wish.query.filter_by(destinationId=destination_user_id).filter_by(hiddenId=None).all)
+    def get_all_active_wishes_for_user_id(destination_user_id, current_user_id):
+        wishes = Wish.query.filter_by(destinationId=destination_user_id).filter_by(hiddenId=None)
+        if destination_user_id == current_user_id:
+            wishes = wishes.filter_by(sourceId=current_user_id)
+
+        return wishes.all()
 
     @staticmethod
     def get_all_hidden_wishes_for_user_id(destination_user_id, current_user_id):
+        wishes = Wish.query.filter_by(destinationId=destination_user_id).filter(Wish.hiddenId.isnot(None))
         if destination_user_id == current_user_id:
-            return runQuery(
-                Wish.query.filter_by(destinationId=destination_user_id).filter_by(hiddenId=current_user_id).all)
-        else:
-            return runQuery(
-                Wish.query.filter_by(destinationId=destination_user_id).filter(Wish.hiddenId.isnot(None)).all)
+            wishes = wishes.filter_by(sourceId=current_user_id)
+        return wishes.all()
 
     @staticmethod
     def add_wish(new_wish):

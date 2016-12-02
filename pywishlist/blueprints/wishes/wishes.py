@@ -61,7 +61,7 @@ def update_wish_post(wish_id):
 @wishes_blueprint.route('/Wishlists/Show/<int:user_id>', methods=['GET'])
 @login_required
 def show_wishes(user_id):
-    active_wishes = WishesService.get_all_active_wishes_for_user_id(user_id)
+    active_wishes = WishesService.get_all_active_wishes_for_user_id(user_id, session.get('userid'))
     hidden_wishes = WishesService.get_all_hidden_wishes_for_user_id(user_id, session.get('userid'))
 
     total_wish_count = len(active_wishes) + len(hidden_wishes)
