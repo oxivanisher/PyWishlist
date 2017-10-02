@@ -186,6 +186,8 @@ def send_email(app, msgto, msgsubject, msgtext, image):
         msgAlternative.attach(part2)
 
         s = smtplib.SMTP(app.config['EMAILSERVER'])
+        if app.config['EMAILTLS']:
+            s.starttls()
         if len(app.config['EMAILLOGIN']) and len(app.config['EMAILPASSWORD']):
             s.login(app.config['EMAILLOGIN'], app.config['EMAILPASSWORD'])
         s.sendmail(app.config['EMAILFROM'], msgto, msgRoot.as_string())

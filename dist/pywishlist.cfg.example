@@ -20,6 +20,7 @@ EMAILFROM = "yourname@example.com"
 EMAILREPLYTO = ""
 EMAILLOGIN = ""
 EMAILPASSWORD = ""
+EMAILTLS = True
 
 # database
 SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/pywishlist.db'
