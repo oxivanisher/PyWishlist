@@ -3,6 +3,7 @@ dist/*.py
 dist/*.cfg
 .idea/
 venv/
+pywishlist/static/img/christmas.jpg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
