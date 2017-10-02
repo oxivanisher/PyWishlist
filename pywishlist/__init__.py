@@ -650,6 +650,7 @@ def profile_register():
                 newUser.veryfied = True
 
             db_session.add(newUser)
+            db_session.flush()
             try:
                 runQuery(db_session.commit)
                 actUrl = url_for('profile_verify',
@@ -677,8 +678,8 @@ def profile_register():
                 return redirect(url_for('profile_login'))
 
             except Exception as e:
-                flash("%s: %s" % (gettext("SQL Alchemy Error"), e), 'error')
-                log.warning("[System] SQL Alchemy Error: %s" % e)
+                flash("%s: %s" % (gettext("Unable to register new user"), e), 'error')
+                log.warning("Unable to register new user: %s" % e)
             # db_session.expire(newUser)
 
     return render_template('profile_register.html', values=request.form)
