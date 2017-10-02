@@ -11,7 +11,7 @@ from flask import url_for
 from pywishlist.blueprints.wishes.wishes_service import WishesService
 from pywishlist.login_required import login_required
 from pywishlist.models.wish import Wish
-from pywishlist.user_service import get_user_by_id
+from pywishlist.user_service import get_user_by_id, get_users
 
 log = logging.getLogger(__name__)
 
@@ -21,7 +21,7 @@ wishes_blueprint = Blueprint('wishes_blueprint', __name__, template_folder='temp
 @wishes_blueprint.route('/Wish/Enter', methods=['GET'])
 @login_required
 def enter_wish():
-    return render_template('enter_wish.html')
+    return render_template('enter_wish.html', users=get_users())
 
 
 @wishes_blueprint.route('/Wish/Enter', methods=['POST'])
@@ -64,12 +64,19 @@ def show_wishes(user_id):
     active_wishes = WishesService.get_all_active_wishes_for_user_id(user_id, session.get('userid'))
     hidden_wishes = WishesService.get_all_hidden_wishes_for_user_id(user_id, session.get('userid'))
 
+    log.info("aw: %s" % len(active_wishes))
+    log.info("hw: %s" % len(hidden_wishes))
+
     # do not show if some other user has hidden my wish
     if user_id == session.get('userid'):
         for wish in hidden_wishes:
             if wish.hiddenBy != session.get('userid'):
+                log.info("Need to hide the hiding of the user: %s" % (user_id))
                 active_wishes.append(wish)
                 hidden_wishes.remove(wish)
+
+    log.info("aw: %s" % len(active_wishes))
+    log.info("hw: %s" % len(hidden_wishes))
 
     total_wish_count = len(active_wishes) + len(hidden_wishes)
     if total_wish_count == 0:
