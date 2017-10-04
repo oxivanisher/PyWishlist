@@ -13,7 +13,7 @@ pip install virtualenv
 ```bash
 virtualenv venv
 source venv/bin/activate
-pip install -r dist/requirements.txt
+pip install -r requirements.txt
 deactivate
 ```
 
