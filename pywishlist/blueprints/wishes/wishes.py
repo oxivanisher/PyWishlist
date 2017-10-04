@@ -11,7 +11,7 @@ from flask import url_for
 from pywishlist.blueprints.wishes.wishes_service import WishesService
 from pywishlist.login_required import login_required
 from pywishlist.models.wish import Wish
-from pywishlist.user_service import get_user_by_id, get_users
+from pywishlist.user_service import get_user_by_id
 
 log = logging.getLogger(__name__)
 
@@ -21,7 +21,7 @@ wishes_blueprint = Blueprint('wishes_blueprint', __name__, template_folder='temp
 @wishes_blueprint.route('/Wish/Enter', methods=['GET'])
 @login_required
 def enter_wish():
-    return render_template('enter_wish.html', users=get_users())
+    return render_template('enter_wish.html')
 
 
 @wishes_blueprint.route('/Wish/Enter', methods=['POST'])

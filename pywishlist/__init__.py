@@ -8,6 +8,7 @@ import logging
 import urllib
 
 from pywishlist.blueprints.wishes import wishes
+from pywishlist.user_service import get_active_users
 from utils import *
 from models import *
 
@@ -923,3 +924,8 @@ def index():
     }
 
     return render_template('index.html', stats=stats)
+
+
+@app.context_processor
+def inject_users():
+    return dict(users=get_active_users())
