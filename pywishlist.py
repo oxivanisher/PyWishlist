@@ -4,4 +4,4 @@
 from pywishlist import app
 # app.run(use_reloader=False, ssl_context='adhoc')
 if __name__ == "__main__":
-    app.run(use_reloader=False)
+    app.run(use_reloader=False, threaded=True)
