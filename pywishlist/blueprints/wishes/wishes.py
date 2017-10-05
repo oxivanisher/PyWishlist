@@ -64,20 +64,6 @@ def show_wishes(user_id):
     active_wishes = WishesService.get_all_active_wishes_for_user_id(user_id, session.get('userid'))
     hidden_wishes = WishesService.get_all_hidden_wishes_for_user_id(user_id, session.get('userid'))
 
-    log.info("aw: %s" % len(active_wishes))
-    log.info("hw: %s" % len(hidden_wishes))
-
-    # do not show if some other user has hidden my wish
-    if user_id == session.get('userid'):
-        for wish in hidden_wishes:
-            if wish.hiddenBy != session.get('userid'):
-                log.info("Need to hide the hiding of the user: %s" % (user_id))
-                active_wishes.append(wish)
-                hidden_wishes.remove(wish)
-
-    log.info("aw: %s" % len(active_wishes))
-    log.info("hw: %s" % len(hidden_wishes))
-
     total_wish_count = len(active_wishes) + len(hidden_wishes)
     if total_wish_count == 0:
         flash(gettext("No wishes found."), 'info')
