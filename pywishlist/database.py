@@ -39,5 +39,13 @@ def init_db():
     import pywishlist.models
     Base.metadata.create_all(bind=engine)
 
+
+def clear_db():
+    # import all modules here that might define models so that
+    # they will be registered properly on the metadata.  Otherwise
+    # you will have to import them first before calling init_db()
+    import pywishlist.models
+    Base.metadata.drop_all(bind=engine)
+
 # def get_db_tables():
 #     return Base.metadata.reflect(bind=engine)
