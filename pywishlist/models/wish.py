@@ -32,12 +32,12 @@ class Wish(Base):
     hiddenDate = Column(Integer, unique=False)
     text = Column(String(512), unique=False)
 
-    def __init__(self, source_id, destination_id, text):
+    def __init__(self, source_id, destination_id, text, hidden_id=None):
         self.log = logging.getLogger(__name__)
         self.log.debug("[Wish] Initializing Wish %s" % self.id)
         self.sourceId = source_id
         self.destinationId = destination_id
-        self.hiddenId = None
+        self.hiddenId = hidden_id
         self.creationDate = int(time.time())
         self.hiddenDate = None
         self.text = text
