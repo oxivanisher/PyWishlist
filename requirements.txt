@@ -1,8 +1,9 @@
+wheel
 PyYAML
 Flask-Babel
 Flask
 Flask-Compress
-MySQL-python
+mysqlclient
 SQLAlchemy
 pyOpenSSL
 GitPython
