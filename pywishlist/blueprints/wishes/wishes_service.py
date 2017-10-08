@@ -1,3 +1,5 @@
+from operator import or_
+
 from sqlalchemy import and_
 
 from pywishlist.database import db_session
@@ -28,7 +30,7 @@ class WishesService:
     @staticmethod
     def get_all_active_wishes_for_user_id(destination_user_id, current_user_id):
         if destination_user_id == current_user_id:
-            filter_criteria = and_(Wish.sourceId == current_user_id, Wish.hiddenId.isnot(current_user_id))
+            filter_criteria = and_(Wish.sourceId == current_user_id, or_(Wish.hiddenId.is_(None), Wish.hiddenId!=current_user_id))
         else:
             filter_criteria = Wish.hiddenId.is_(None)
         wishes = Wish.query.filter_by(destinationId=destination_user_id).filter(filter_criteria)
