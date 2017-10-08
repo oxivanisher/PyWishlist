@@ -10,7 +10,6 @@ from pywishlist.models.wish import Wish
 
 class TestWishService(unittest.TestCase):
     def setUp(self):
-        os.environ['PYWISHLIST_CFG'] = "pywishlist_test.cfg"
         clear_db()
         init_db()
 
