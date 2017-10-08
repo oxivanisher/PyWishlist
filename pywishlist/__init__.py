@@ -714,7 +714,7 @@ def profile_show(do=None):
 
     size = 80
     gravatar_url = ("//www.gravatar.com/avatar/" +
-                    hashlib.md5(myUser.email.lower()).hexdigest() +
+                    hashlib.md5(myUser.email.lower()).encode('utf-8').hexdigest() +
                     "?" +
                     urllib.urlencode(
                         {'d': url_for('static',

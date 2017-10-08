@@ -1,19 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import logging
-import time
 import hashlib
-import time
 import string
 import random
 
-from sqlalchemy import Boolean, Column, Integer, String, UnicodeText
-from sqlalchemy import ForeignKey, UniqueConstraint
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy import Boolean, Column, Integer, String
 
 from pywishlist.utils import *
-from pywishlist.database import db_session, Base
+from pywishlist.database import Base
 
 
 class WishUser(Base):
@@ -82,14 +77,14 @@ class WishUser(Base):
         self.log.info(
             "[User] Setting new Password for WishUser %s" % (
                 self.getDisplayName()))
-        hash_object = hashlib.sha512(password)
+        hash_object = hashlib.sha512(password).encode('utf-8')
         self.password = hash_object.hexdigest()
 
     def checkPassword(self, password):
         self.log.info(
             "[User] Checking password for WishUser %s" % (
                 self.getDisplayName()))
-        hash_object = hashlib.sha512(password)
+        hash_object = hashlib.sha512(password).encode('utf-8')
         if self.password == hash_object.hexdigest():
             return True
         else:
