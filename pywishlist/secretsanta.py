@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import logging
 import random
 import copy
 
-from utils import *
+from pywishlist.utils import *
 
 
 class SecretSantaSolver:

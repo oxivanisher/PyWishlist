@@ -2,17 +2,14 @@
 # -*- coding: utf-8 -*-
 
 # imports
-import sys
-import os
-import logging
 import urllib
 
 from pywishlist.blueprints.wishes import wishes
 from pywishlist.user_service import get_active_users
-from utils import *
-from models import *
+from pywishlist.utils import *
+from pywishlist.models import *
 
-from secretsanta import *
+from pywishlist.secretsanta import *
 
 # load database
 from pywishlist.database import db_session, init_db, engine
@@ -39,13 +36,13 @@ except ImportError:
     sys.exit(2)
 
 try:
-    from flask.ext.compress import Compress
+    from flask_compress import Compress
 except ImportError:
     log.error("[System] Please install the flask extension: Flask-Compress")
     sys.exit(2)
 
 try:
-    from flask.ext.babel import Babel, gettext
+    from flask_babel import Babel, gettext
 except ImportError:
     log.error("[System] Please install the babel extension for flask")
     sys.exit(2)
@@ -602,7 +599,7 @@ def admin_update():
         try:
             ret = g.pull()
         except Exception as e:
-            print e
+            print(e)
             ret = str(e)
     else:
         ret = [gettext("Unable to update sources because "
