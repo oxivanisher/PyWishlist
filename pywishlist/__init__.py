@@ -716,7 +716,7 @@ def profile_show(do=None):
     gravatar_url = ("//www.gravatar.com/avatar/" +
                     hashlib.md5(myUser.email.lower().encode('utf-8')).hexdigest() +
                     "?" +
-                    urllib.urlencode(
+                    urllib.parse.urlencode(
                         {'d': url_for('static',
                          filename='img/%s' % app.config['AVATARPLACEHOLDER'],
                          _external=True),
