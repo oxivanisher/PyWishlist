@@ -28,7 +28,7 @@ class WishesService:
     @staticmethod
     def get_all_active_wishes_for_user_id(destination_user_id, current_user_id):
         if destination_user_id == current_user_id:
-            filter_criteria = and_(Wish.sourceId.is_(current_user_id), Wish.hiddenId.isnot(current_user_id))
+            filter_criteria = and_(Wish.sourceId == current_user_id, Wish.hiddenId.isnot(current_user_id))
         else:
             filter_criteria = Wish.hiddenId.is_(None)
         wishes = Wish.query.filter_by(destinationId=destination_user_id).filter(filter_criteria)
@@ -38,7 +38,7 @@ class WishesService:
     @staticmethod
     def get_all_hidden_wishes_for_user_id(destination_user_id, current_user_id):
         if destination_user_id == current_user_id:
-            filter_criteria = and_(Wish.sourceId.is_(current_user_id), Wish.hiddenId.is_(current_user_id))
+            filter_criteria = and_(Wish.sourceId == current_user_id, Wish.hiddenId == current_user_id)
         else:
             filter_criteria = Wish.hiddenId.isnot(None)
         wishes = Wish.query.filter_by(destinationId=destination_user_id).filter(filter_criteria)
