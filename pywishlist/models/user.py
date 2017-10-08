@@ -77,14 +77,14 @@ class WishUser(Base):
         self.log.info(
             "[User] Setting new Password for WishUser %s" % (
                 self.getDisplayName()))
-        hash_object = hashlib.sha512(password).encode('utf-8')
+        hash_object = hashlib.sha512(password.encode('utf-8'))
         self.password = hash_object.hexdigest()
 
     def checkPassword(self, password):
         self.log.info(
             "[User] Checking password for WishUser %s" % (
                 self.getDisplayName()))
-        hash_object = hashlib.sha512(password).encode('utf-8')
+        hash_object = hashlib.sha512(password.encode('utf-8'))
         if self.password == hash_object.hexdigest():
             return True
         else:
