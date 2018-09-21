@@ -622,11 +622,12 @@ def admin_restart():
 @app.route('/Profile/Register', methods=['GET', 'POST'])
 def profile_register():
     if request.method == 'POST':
-        if request.form['email'] and \
+        email = request.form['email'].lower()
+        if email and \
            request.form['password'] and \
            request.form['password2']:
 
-            if len(request.form['email']) < 3:
+            if len(email) < 3:
                 flash(gettext("Email address is too short"), 'error')
                 valid = False
             else:
@@ -637,12 +638,16 @@ def profile_register():
             valid = False
             flash(gettext("Please fill out all the fields!"), 'error')
 
+        if WishUser.query.filter_by(email=email).count() > 0:
+            valid = False
+            flash(gettext("Email already used!"), 'error')
+
         if valid:
-            newUser = WishUser(request.form['email'], request.form['name'])
+            newUser = WishUser(email, request.form['name'])
             newUser.setPassword(request.form['password'])
-            if request.form['email'] == app.config['ROOTUSER']:
+            if email == app.config['ROOTUSER']:
                 log.info("[System] Registred root user: %s" %
-                         request.form['email'])
+                         email)
                 newUser.admin = True
                 newUser.locked = False
                 newUser.veryfied = True
