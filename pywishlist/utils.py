@@ -194,8 +194,7 @@ def send_email(app, msgto, msgsubject, msgtext, image):
         s.quit()
         return True
     except Exception as e:
-        print('Email ERROR: %s on line %s' % (str(e),
-                                              str(sys.exc_traceback.tb_lineno)))
+        print('Email ERROR: %s' % (str(e)))
         return False
 
 
