@@ -5,7 +5,7 @@ A web based web wishlist and secret santa implementation.
 ## Installation on a debian based linux
 ### Install required libraries
 ```bash
-apt-get install python-pip python-dev libmysqlclient-dev
+apt-get install python3-pip python3-dev libmysqlclient-dev
 pip install virtualenv
 ```
 
