@@ -1,8 +1,8 @@
 from gettext import gettext
+import logging
 
 from flask import Blueprint, render_template
 from flask import flash
-from flask import logging
 from flask import redirect
 from flask import request
 from flask import session
