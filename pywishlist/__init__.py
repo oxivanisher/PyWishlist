@@ -545,7 +545,8 @@ def admin_secretsanta_go():
     check_admin_permissions()
     message = []
     solver = SecretSantaSolver(runQuery(WishUser.query.all),
-                               runQuery(Exclusion.query.all))
+                               runQuery(Exclusion.query.all),
+                               runQuery(History.query.all))
     ret = solver.run()
 
     if ret:
