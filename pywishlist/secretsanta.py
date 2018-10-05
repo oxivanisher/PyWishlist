@@ -32,12 +32,14 @@ class SecretSantaSolver:
             return key
 
     def run(self):
+        self.loops = 1
         user_ids = [user.id for user in self.users]
         timestamps = sorted(list(set([hist.date for hist in self.history])), reverse=True)
         max_score = len(timestamps) * 10
 
         solution = []
         while len(solution) != len(user_ids):
+            self.loops += 1
             pairs = dict([((x, y), random.randint(0, 9)) for x in user_ids for y in user_ids if x != y])
 
             for exclusion_entry in self.exclusions:
