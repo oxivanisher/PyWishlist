@@ -111,7 +111,6 @@ class SecretSantaSolver:
                 pairs[key2] = max_score
 
             for history_entry in self.history:
-                # todo limit by half of total users
                 current_score = min(timestamps.index(history_entry.date), len(user_ids) / 2) * 10 + random.randint(0, 9)
                 key = (history_entry.donatorId, history_entry.recieverId)
                 if current_score > pairs[key]:
