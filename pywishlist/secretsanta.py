@@ -31,71 +31,7 @@ class SecretSantaSolver:
         for key in myDict.keys():
             return key
 
-    def run2(self):
-        while not self.solutionFound:
-            self.log.info("[SecretSanta] Starting to solve")
-            result = []
-            pairsFound = False
-            SecretSantaS = copy.copy(self.users)
-            SecretSantaR = copy.copy(self.users)
-
-            maxRuns = 10 * len(self.users) ^ 2
-
-            calcCount = 0
-            while not pairsFound:
-                calcCount += 1
-
-                if calcCount > maxRuns:
-                    self.log.warning("[SecretSanta] Unresolvable!")
-                    self.loops += calcCount
-                    return False
-
-                SecretSantaST = copy.copy(SecretSantaS)
-                SecretSantaRT = copy.copy(SecretSantaR)
-                (SecretSantaST, A) = self.getSecretSanta(SecretSantaST)
-                (SecretSantaRT, B) = self.getSecretSanta(SecretSantaRT)
-
-                self.log.debug("[SecretSanta] A: %s; B: %s" % (A.name, B.name))
-
-                if A != B:
-                    badPair = False
-
-                    for exclusion in self.exclusions:
-                        if exclusion.check(A.id, B.id):
-                            badPair = True
-                            break
-
-                    if not badPair:
-                        SecretSantaS = SecretSantaST
-                        SecretSantaR = SecretSantaRT
-                        self.log.debug("[SecretSanta] Result found: %s - %s" %
-                                       (A.name, B.name))
-                        result.append((A, B))
-                        self.loops += calcCount
-                        calcCount = 0
-
-                if len(SecretSantaR) == 0:
-                    pairsFound = True
-                    self.solutionFound = True
-
-        self.log.info("[SecretSanta] Needed calculations: %s" % (self.loops))
-        return result
-
     def run(self):
-        result = []
-        for x in range(1,500):
-            result = self.run3()
-            if len(result) != 10:
-                self.log.warning("Wrong solution found, number of entries")
-            for y in range(1,10):
-                if y not in [y[0] for y in result]:
-                    self.log.warning("Wrong solution found, donator entry missing")
-                if y not in [y[1] for y in result]:
-                    self.log.warning("Wrong solution found, receiver entry missing")
-
-        return result
-
-    def run3(self):
         user_ids = [user.id for user in self.users]
         timestamps = sorted(list(set([hist.date for hist in self.history])), reverse=True)
         max_score = len(timestamps) * 10

@@ -147,9 +147,6 @@ def getUserById(userId=None):
             return False
 
 
-
-
-
 def getOtherUsers():
     with app.test_request_context():
         users = []
@@ -551,7 +548,10 @@ def admin_secretsanta_go():
 
     if ret:
         message.append("Calculations done in %s loops:" % (solver.loops))
-        for (donator, reciever) in ret:
+        for (donator_id, reciever_id) in ret:
+            donator = getUserById(donator_id)
+            reciever = getUserById(reciever_id)
+
             db_session.add(History(donator.id, reciever.id))
 
             if send_email(app,
