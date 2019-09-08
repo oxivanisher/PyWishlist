@@ -1,0 +1,1 @@
+from pywishlist import app

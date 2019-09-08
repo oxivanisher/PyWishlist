@@ -6,7 +6,7 @@ install:
 #  - pip install coveralls
 script:
   - python -m py_compile pywishlist.py
-#  - coverage run --source=PyWishlist -m py_compile pywishlist.py
+#  - coverage run --source=pywishlist -m py_compile pywishlist.py
 
 notifications:
   email: false

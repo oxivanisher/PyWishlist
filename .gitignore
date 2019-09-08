@@ -1,6 +1,7 @@
 # My Excludes
 dist/*.py
 dist/*.cfg
+config/pywishlist.cfg
 .idea/
 venv/
 pywishlist/static/img/christmas.jpg
