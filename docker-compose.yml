@@ -6,6 +6,6 @@ services:
       - "3036:80"
     volumes:
       - "${PWD}/pywishlist/static:/app/pywishlist/static"
-      - "${PWD}/config/pywishlist.cfg:/app/config/pywishlist.cfg"
+#      - "${PWD}/config/pywishlist.cfg:/app/config/pywishlist.cfg"
     environment:
       - DEBUG
