@@ -9,6 +9,5 @@ services:
     volumes:
       - ./pywishlist/static/img:/app/pywishlist/static/img
       - ./config/:/app/config/
-
     environment:
       - DEBUG
