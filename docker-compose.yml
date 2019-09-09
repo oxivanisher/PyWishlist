@@ -8,6 +8,6 @@ services:
       - "3036:80"
     volumes:
       - ./pywishlist/static/img:/app/pywishlist/static/img
-      - ./config/:/app/config/
+      - ./config:/app/config:rw
     environment:
       - DEBUG
