@@ -1,6 +1,6 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.6-alpine3.7
 RUN apk --update add bash nano
-VOLUME ["/app/pywishlist/static", "/app/config"]
+VOLUME ["/app/pywishlist/static/img", "/app/config"]
 ENV STATIC_URL /static
 ENV STATIC_PATH /app/pywishlist/static
 ENV PYWISHLIST_CFG /app/config/pywishlist.cfg
