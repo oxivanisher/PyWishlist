@@ -314,6 +314,8 @@ def about():
 def set_lang(language=None, path=None):
     if not path:
         path = request.script_root
+    if not path:
+        path = "/"
     session['displayLanguage'] = language
     log.info("[System] Set lang to %s and redirect to %s"
              % (session['displayLanguage'], path))
