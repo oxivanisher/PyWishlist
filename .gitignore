@@ -1,9 +1,12 @@
 # My Excludes
 dist/*.py
 dist/*.cfg
+config/pywishlist.cfg
 .idea/
 venv/
-pywishlist/static/img/christmas.jpg
+pywishlist/static/img/*.jpg
+pywishlist/static/img/*.png
+pywishlist/static/img/*.ico
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

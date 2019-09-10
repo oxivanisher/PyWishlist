@@ -15,10 +15,7 @@ from pywishlist.secretsanta import *
 from pywishlist.database import db_session, init_db, engine
 
 # logging to file
-myPath = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../')
-logPath = os.path.join(myPath, 'log/pywishlist.log')
 logging.basicConfig(
-    filename=logPath,
     format='%(asctime)s %(levelname)-7s %(message)s',
     datefmt='%Y-%d-%m %H:%M:%S',
     level=logging.INFO)
@@ -98,8 +95,6 @@ with app.test_request_context():
         app.logger.addHandler(mail_handler)
 
 # initialize stuff
-app.config['wishlistConfig'] = YamlConfig(os.path.join(
-    app.config['scriptPath'], "../config/pywishlist.yml")).get_values()
 if not len(app.config['APPSECRET']):
     log.warning("[System] Generating random secret_key. All older cookies "
                 "will be invalid, but i will NOT work with multiple "
@@ -319,6 +314,8 @@ def about():
 def set_lang(language=None, path=None):
     if not path:
         path = request.script_root
+    if not path:
+        path = "/"
     session['displayLanguage'] = language
     log.info("[System] Set lang to %s and redirect to %s"
              % (session['displayLanguage'], path))

@@ -1,0 +1,13 @@
+version: "3"
+services:
+  pywishlist:
+    container_name: pywishlist
+    restart: unless-stopped
+    build: .
+    ports:
+      - "3036:80"
+    volumes:
+      - ./pywishlist/static/img:/app/pywishlist/static/img
+      - ./config:/app/config:rw
+    environment:
+      - DEBUG

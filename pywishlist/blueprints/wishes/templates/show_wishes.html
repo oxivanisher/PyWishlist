@@ -16,7 +16,7 @@
 			</tr>
 		</table>
 	</header>
-	<section id="{{ wish.id }}-section" class="content-normal">{{ wish.text }}</section>
+	<section id="{{ wish.id }}-section" class="content-normal">{{ wish.text|urlize(20, target='_blank') }}</section>
 	<footer></footer>
 </div></div>
 {% endfor %}
@@ -35,7 +35,7 @@
 			</tr>
 		</table>
 	</header>
-	<section id="{{ wish.id }}-section" class="content-normal">{{ wish.text }}</section>
+	<section id="{{ wish.id }}-section" class="content-normal">{{ wish.text|urlize(20, target='_blank') }}</section>
 	<footer></footer>
 </div></div>
 {% endfor %}
