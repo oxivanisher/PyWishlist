@@ -12,6 +12,7 @@ OPENGRAPHLOGO = "placeholder.png"
 PLACEHOLDER = "placeholder.png"
 EMAILBANNER = "placeholder.png"
 EMAILBANNERWELCOME = "placeholder.png"
+ENABLE_UPDATE = False # Needs to be disabled in a docker environment
 
 # email
 ADMINS = ['']
