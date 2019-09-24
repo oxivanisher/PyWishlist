@@ -1,4 +1,5 @@
 # My Excludes
+config/pywishlist.sql
 dist/*.py
 dist/*.cfg
 config/pywishlist.cfg
