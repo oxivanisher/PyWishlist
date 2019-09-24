@@ -424,6 +424,44 @@ def admin_user_management():
     return render_template('admin_user_management.html', infos=infos)
 
 
+@app.route('/Administration/User_Management/UpdateEmail/<userId>', methods=['POST'])
+def admin_user_management_updateemail(userId):
+    check_admin_permissions()
+    if int(userId) != session.get('userid'):
+        myUser = getUserById(userId)
+        if myUser:
+            myUser.load()
+            myUser.email = request.form['email']
+            log.info("[System] Email address of '%s' was changed to: %s"
+                     % (myUser.name, myUser.email))
+            db_session.merge(myUser)
+        try:
+            runQuery(db_session.commit)
+        except Exception as e:
+            log.warning("[System] SQL Alchemy Error on update email address "
+                        "admin: %s" % (e))
+    return redirect(url_for('admin_user_management'))
+
+
+@app.route('/Administration/User_Management/UpdateName/<userId>', methods=['POST'])
+def admin_user_management_updatename(userId):
+    check_admin_permissions()
+    if int(userId) != session.get('userid'):
+        myUser = getUserById(userId)
+        if myUser:
+            myUser.load()
+            myUser.name = request.form['name']
+            log.info("[System] Name of '%s' was changed to: %s"
+                     % (myUser.email, myUser.name))
+            db_session.merge(myUser)
+        try:
+            runQuery(db_session.commit)
+        except Exception as e:
+            log.warning("[System] SQL Alchemy Error on update name "
+                        "admin: %s" % (e))
+    return redirect(url_for('admin_user_management'))
+
+
 @app.route('/Administration/User_Management/ToggleLock/<userId>')
 def admin_user_management_togglelock(userId):
     check_admin_permissions()
