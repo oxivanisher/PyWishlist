@@ -15,8 +15,8 @@
 	<tbody>
 		{% for user in infos.registredUsers %}
 		<tr>
-            <form action="{{ url_for('admin_user_management_updateemail', userId=user.id) }}"><td><input type="text" name="email" value="{{ user.email }}" class="backend"><button class="btn btn-sm" type="submit">{{ _('Submit') }}</button></td></form>
-			<form action="{{ url_for('admin_user_management_updatename', userId=user.id) }}"><td><input type="text" name="name" value="{{ user.name }}" class="backend"><button class="btn btn-sm" type="submit">{{ _('Submit') }}</button></td></form>
+            <form action="{{ url_for('admin_user_management_updateemail', userId=user.id) }}" method="post"><td><input type="text" name="email" value="{{ user.email }}" class="backend"><button class="btn btn-sm" type="submit">{{ _('Submit') }}</button></td></form>
+			<form action="{{ url_for('admin_user_management_updatename', userId=user.id) }}" method="post"><td><input type="text" name="name" value="{{ user.name }}" class="backend"><button class="btn btn-sm" type="submit">{{ _('Submit') }}</button></td></form>
 			<td>
 			{%- if session.id == user.id %}
 				{{ user.admin }}
