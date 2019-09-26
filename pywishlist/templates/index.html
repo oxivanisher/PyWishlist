@@ -2,16 +2,30 @@
 {% block title %}{% endblock %}
 {% block content -%}
 <div class="content_block">
-<h3>{{ _('About') }}</h3>
-{{ _('Documentation') }}: <a href="https://github.com/oxivanisher/PyWishlist/wiki/Dokumentation-(DE)" target="_blank">github.com/oxivanisher/PyWishlist/wiki/Dokumentation-(DE)</a><br />
-{{ _('Project homepage and source code') }}: <a href="https://github.com/oxivanisher/PyWishlist" target="_blank">github.com/oxivanisher/PyWishlist</a>
+{% if session.logged_in -%}
+    <h3>{{ _('Hello') }} {{ session.name }}</h3>
+    <ul>
+        <li><a href="{{ url_for('profile_show') }}">{{ _('Your profile settings') }}</a></li>
+        <li><a href="{{ url_for('wishes_blueprint.enter_wish') }}">{{ _('Enter wish') }}</a></li>
+    </ul>
 
+    <h4>{{ _('Wishes') }}</h4>
+    <ul>
+    {%- for user in users %}
+        <li><a href="{{ url_for('wishes_blueprint.show_wishes', user_id=user.id) }}">{{ user.name }}</a></li>
+    {%- endfor -%}
+    </ul>
+{% else %}
+    <h3>{{ _('About') }}</h3>
+    {{ _('Documentation') }}: <a href="https://github.com/oxivanisher/PyWishlist/wiki/Dokumentation-(DE)" target="_blank">github.com/oxivanisher/PyWishlist/wiki/Dokumentation-(DE)</a><br />
+    {{ _('Project homepage and source code') }}: <a href="https://github.com/oxivanisher/PyWishlist" target="_blank">github.com/oxivanisher/PyWishlist</a>
+{% endif -%}
 <h3>{{ _('Statistics') }}</h3>
 <dl>
-	<dd>{{ _('Users') }}: {{ stats.users }}</dd>
-	<dd>{{ _('Wishes') }}: {{ stats.wishes }}</dd>
-	<dd>{{ _('Hidden wishes') }}: {{ stats.hidden }}</dd>
-	<dd>{{ _('Oldest wishes') }}: {{ timestampToString(stats.oldest) }}</dd>
-	<dd>{{ _('Newest wishes') }}: {{ timestampToString(stats.newest) }}</dd>
+    <dd>{{ _('Users') }}: {{ stats.users }}</dd>
+    <dd>{{ _('Wishes') }}: {{ stats.wishes }}</dd>
+    <dd>{{ _('Hidden wishes') }}: {{ stats.hidden }}</dd>
+    <dd>{{ _('Oldest wishes') }}: {{ timestampToString(stats.oldest) }}</dd>
+    <dd>{{ _('Newest wishes') }}: {{ timestampToString(stats.newest) }}</dd>
 </dl>
 </div>{%- endblock -%}
