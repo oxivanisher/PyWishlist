@@ -9,12 +9,26 @@
         <li><a href="{{ url_for('wishes_blueprint.enter_wish') }}">{{ _('Enter wish') }}</a></li>
     </ul>
 
-    <h4>{{ _('Wishes') }}</h4>
+    <h3>{{ _('Show wishes for') }}</h3>
     <ul>
     {%- for user in users %}
         <li><a href="{{ url_for('wishes_blueprint.show_wishes', user_id=user.id) }}">{{ user.name }}</a></li>
     {%- endfor -%}
     </ul>
+
+	{% if session.admin  -%}
+        <h3>{{ _('Administration') }}</h3>
+        <ul>
+            <li><a href="{{ url_for('admin_bulk_email') }}">{{ _('Bulk Email') }}</a></li>
+            <li><a href="{{ url_for('admin_user_management') }}">{{ _('User Management') }}</a></li>
+            <li><a href="{{ url_for('admin_secretsanta_management') }}">{{ _('Secret Santa Management') }}</a></li>
+            {%  if config.ENABLE_UPDATE -%}
+            <li><a href="{{ url_for('admin_update') }}">{{ _('Application update') }}</a></li>
+            {% endif -%}
+            <li><a href="{{ url_for('admin_restart') }}">{{ _('Application restart') }}</a></li>
+        </ul>
+    {% endif -%}
+
 {% else %}
     <h3>{{ _('About') }}</h3>
     {{ _('Documentation') }}: <a href="https://github.com/oxivanisher/PyWishlist/wiki/Dokumentation-(DE)" target="_blank">github.com/oxivanisher/PyWishlist/wiki/Dokumentation-(DE)</a><br />
