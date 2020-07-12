@@ -322,6 +322,10 @@ msgid "Locked"
 msgstr "Gesperrt"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:12
+msgid "Hidden"
+msgstr "Versteckt"
+
+#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:13
 msgid "Verified"
 msgstr "Verifiziert"
 

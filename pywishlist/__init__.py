@@ -166,7 +166,7 @@ def getAllUsers():
     with app.test_request_context():
         users = []
         try:
-            users = runQuery(WishUser.query.all)
+            users = runQuery(WishUser.query.filter(WishUser.hidden == False).all)
         except Exception as e:
             log.warning("[System] SQL Alchemy Error on getAllUsers "
                         ": %s" % (e))
@@ -474,6 +474,24 @@ def admin_user_management_togglelock(userId):
     return redirect(url_for('admin_user_management'))
 
 
+@app.route('/Administration/User_Management/ToggleHidden/<userId>')
+def admin_user_management_togglehidden(userId):
+    check_admin_permissions()
+    myUser = getUserById(userId)
+    if myUser:
+        myUser.load()
+        myUser.hidden = not myUser.hidden
+        log.info("[System] Hidden state of '%s' was changed to: %s"
+                 % (myUser.email, myUser.hidden))
+        db_session.merge(myUser)
+        try:
+            runQuery(db_session.commit)
+        except Exception as e:
+            log.warning("[System] SQL Alchemy Error on Admin toggle "
+                        "hidden: %s" % (e))
+    return redirect(url_for('admin_user_management'))
+
+
 @app.route('/Administration/User_Management/ToggleAdmin/<userId>')
 def admin_user_management_toggleadmin(userId):
     check_admin_permissions()
@@ -502,7 +520,7 @@ def admin_bulk_email():
             okCount = 0
             nokCount = 0
             try:
-                for user in runQuery(WishUser.query.all):
+                for user in runQuery(WishUser.query.filter(WishUser.hidden == False).all):
                     user.load()
                     if send_email(app,
                                   user.email,
@@ -570,7 +588,7 @@ def admin_exclusion_remove(id):
 def admin_secretsanta_go():
     check_admin_permissions()
     message = []
-    solver = SecretSantaSolver(runQuery(WishUser.query.all),
+    solver = SecretSantaSolver(runQuery(WishUser.query.filter(WishUser.hidden == False).all),
                                runQuery(Exclusion.query.all),
                                runQuery(History.query.all))
     ret = solver.run()
@@ -952,7 +970,7 @@ def index():
         'hidden': hidden,
         'oldest': oldest,
         'newest': newest,
-        'users': len(runQuery(WishUser.query.all))
+        'users': len(runQuery(WishUser.query.filter(WishUser.hidden == False).all))
     }
 
     return render_template('index.html', stats=stats)

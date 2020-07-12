@@ -9,6 +9,7 @@
 			<th>{{ _('Real Name') }}</th>
 			<th>{{ _('Admin') }}</th>
 			<th>{{ _('Locked') }}</th>
+			<th>{{ _('Hidden') }}</th>
 			<th>{{ _('Verified') }}</th>
 		</tr>
 	</thead>
@@ -24,6 +25,7 @@
 				<a href="{{ url_for('admin_user_management_toggleadmin', userId=user.id) }}">{{ user.admin }}</a></td>
 			{%- endif -%}
 			<td><a href="{{ url_for('admin_user_management_togglelock', userId=user.id) }}">{{ user.locked }}</a></td>
+			<td><a href="{{ url_for('admin_user_management_togglehidden', userId=user.id) }}">{{ user.hidden }}</a></td>
 			<td>{{ user.veryfied }}</td>
 		</tr>
 		{% endfor %}

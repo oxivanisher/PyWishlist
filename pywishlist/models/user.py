@@ -24,6 +24,7 @@ class WishUser(Base):
     verifyKey = Column(String(32), unique=False)
     admin = Column(Boolean)
     locked = Column(Boolean)
+    hidden = Column(Boolean)
     veryfied = Column(Boolean)
 
     def __init__(self, email, name=None):
@@ -39,6 +40,7 @@ class WishUser(Base):
         self.lastRefreshDate = 0
         self.admin = False
         self.locked = True
+        self.hidden = False
         self.veryfied = False
         self.verifyKey = ''.join(random.choice(
             string.ascii_letters + string.digits) for _ in range(32))
@@ -58,6 +60,14 @@ class WishUser(Base):
     def unlock(self):
         self.log.debug("[User] Unlock WishUser %s" % (self.getDisplayName()))
         self.locked = False
+
+    def hide(self):
+        self.log.debug("[User] Hide WishUser %s" % (self.getDisplayName()))
+        self.hidden = True
+
+    def unhide(self):
+        self.log.debug("[User] Hide WishUser %s" % (self.getDisplayName()))
+        self.hidden = False
 
     def verify(self, key):
         if key == self.verifyKey:
