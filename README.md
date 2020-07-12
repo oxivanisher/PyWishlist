@@ -52,8 +52,4 @@ configure at least the following options:
 
 ## ToDo
 * Multi tennant?
-* Be able to block/lockout user of everything
-* Delete user capability
-* Make URLs nicer in the wishlist display. They pretty much destroy the design at the moment.
-* Dockerfile or even dockerhub images should be provided for a much easier installation process.
 * Document how to configure the app behind Apache2 or Ngingx (the "originally intended" way to use this).
