@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     build: .
     ports:
-      - "3036:80"
+      - "80:80"
     volumes:
       - ./pywishlist/static/img:/app/pywishlist/static/img
       - ./config:/app/config:rw
