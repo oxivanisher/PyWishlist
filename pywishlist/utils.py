@@ -10,6 +10,7 @@ import textwrap
 import smtplib
 import time
 import datetime
+from bs4 import BeautifulSoup
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -115,7 +116,7 @@ def send_email(app, msgto, msgsubject, msgtext, image):
         msgAlternative = MIMEMultipart('alternative')
         msgRoot.attach(msgAlternative)
 
-        htmltext = u"""<html>
+        htmltext = """<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>%s</title>
@@ -169,20 +170,17 @@ def send_email(app, msgto, msgsubject, msgtext, image):
     </body>
     </html>""" % (msgsubject,
                   load_image_file_to_email(app, msgRoot, image),
-                  msgtext.replace('\n', '<br />').encode('ascii',
-                                                         'xmlcharrefreplace'))
+                  msgtext.replace('\n', '<br>').replace('\r', '').encode('ascii', 'xmlcharrefreplace').decode("utf-8"))
 
-        newplaintext = ""
-        for line in msgtext.split("\n"):
-            newplaintext += "\n".join(textwrap.wrap(line)) + "\n"
-
-        part1 = MIMEText(newplaintext.replace('\n', '\r\n').encode("UTF-8"),
+        soup = BeautifulSoup(msgtext, features="html.parser")
+        part1 = MIMEText(soup.get_text().replace('\n', '\r\n').encode('UTF-8'),
                          'plain',
                          'UTF-8')
-        part2 = MIMEText(htmltext.replace('\n', '\r\n').encode('UTF-8'),
+        msgAlternative.attach(part1)
+
+        part2 = MIMEText(htmltext.encode('UTF-8'),
                          'html',
                          'UTF-8')
-        msgAlternative.attach(part1)
         msgAlternative.attach(part2)
 
         s = smtplib.SMTP(app.config['EMAILSERVER'])

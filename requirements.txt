@@ -8,3 +8,4 @@ SQLAlchemy
 pyOpenSSL
 GitPython
 pytest
+bs4

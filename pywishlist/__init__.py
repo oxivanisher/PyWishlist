@@ -525,9 +525,9 @@ def admin_bulk_email():
                     if send_email(app,
                                   user.email,
                                   request.form['subject'],
-                                  "<h3>%s %s</h3>" %
-                                  (gettext("Hello"), user.name) +
-                                  request.form['message'] +
+                                  "<h3>%s %s</h3><br>" %
+                                  (gettext("Hello"), user.name) + "\n" +
+                                  request.form['message'] + "\n" +
                                   gettext("<br><br>Have fun and see you "
                                           "soon ;)"),
                                   app.config['EMAILBANNER']):
@@ -713,13 +713,13 @@ def profile_register():
                               gettext("%(sitetitle)s: Activation Email",
                                       sitetitle=app.config['SITETITLE']),
                               "<h3>%s %s</h3>" %
-                              (gettext("Hello"), request.form['name']) +
+                              (gettext("Hello"), request.form['name']) + "\n" +
                               gettext("We are happy to welcome you to "
                                       "%(sitetitle)s!<br>Please verify your "
                                       "account with <a href='%(url)s'>this "
                                       "link</a>.<br><br>",
                                       sitetitle=app.config['SITETITLE'],
-                                      url=actUrl) +
+                                      url=actUrl) + "\n" +
                               gettext("<br><br>Have fun and see you soon ;)"),
                               app.config['EMAILBANNERWELCOME']):
                     flash(gettext("Please check your mails at %(emailaddr)s",
