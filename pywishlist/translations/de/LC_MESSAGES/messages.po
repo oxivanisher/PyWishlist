@@ -454,11 +454,11 @@ msgid "Hidden wishes"
 msgstr "Versteckte W&uuml;nsche"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/index.html:14
-msgid "Oldest wishes"
+msgid "Oldest wish"
 msgstr "&Auml;ltester Wunsch"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/index.html:15
-msgid "Newest wishes"
+msgid "Newest wish"
 msgstr "Neuster Wunsch"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:9
