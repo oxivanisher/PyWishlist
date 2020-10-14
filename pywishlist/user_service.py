@@ -7,5 +7,5 @@ def get_user_by_id(user_id):
 
 
 def get_active_users():
-    users = WishUser.query.filter_by(veryfied=True, locked=False).all()
+    users = WishUser.query.filter_by(veryfied=True, locked=False, hidden=False).all()
     return sorted(users, key=lambda x: x.name, reverse=False)

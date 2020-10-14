@@ -166,7 +166,7 @@ def getAllUsers():
     with app.test_request_context():
         users = []
         try:
-            users = runQuery(WishUser.query.filter(WishUser.hidden == False).all)
+            users = runQuery(WishUser.query.filter(WishUser.hidden == 0).all)
         except Exception as e:
             log.warning("[System] SQL Alchemy Error on getAllUsers "
                         ": %s" % (e))
@@ -282,6 +282,9 @@ def before_request():
                 if myUser.locked:
                     session['logmeout'] = True
                     session['logmeoutreason'] = "User is locked"
+                if myUser.hidden:
+                    session['logmeout'] = True
+                    session['logmeoutreason'] = "User is hidden"
                 if myUser.admin != session.get('admin'):
                     session['logmeout'] = True
                     session['logmeoutreason'] = "Admin rights changed"
@@ -417,6 +420,7 @@ def admin_user_management():
                                    'email': user.email,
                                    'admin': user.admin,
                                    'locked': user.locked,
+                                   'hidden': user.hidden,
                                    'veryfied': user.veryfied})
 
     infos = {}
@@ -520,7 +524,7 @@ def admin_bulk_email():
             okCount = 0
             nokCount = 0
             try:
-                for user in runQuery(WishUser.query.filter(WishUser.hidden == False).all):
+                for user in runQuery(WishUser.query.filter(WishUser.hidden == 0).all):
                     user.load()
                     if send_email(app,
                                   user.email,
@@ -588,7 +592,7 @@ def admin_exclusion_remove(id):
 def admin_secretsanta_go():
     check_admin_permissions()
     message = []
-    solver = SecretSantaSolver(runQuery(WishUser.query.filter(WishUser.hidden == False).all),
+    solver = SecretSantaSolver(runQuery(WishUser.query.filter(WishUser.hidden == 0).all),
                                runQuery(Exclusion.query.all),
                                runQuery(History.query.all))
     ret = solver.run()
@@ -833,6 +837,11 @@ def profile_login():
                 flash(gettext("User locked. Please contact an "
                               "administrator."), 'info')
                 return redirect(url_for('index'))
+            elif myUser.hidden:
+                log.info("[System] Login: <%s> is hidden." % myUser.getDisplayName())
+                flash(gettext("User hidden. Please contact an "
+                              "administrator."), 'info')
+                return redirect(url_for('index'))
             elif myUser.checkPassword(request.form['password']):
                 log.info("[System] <%s> logged in" % myUser.getDisplayName())
                 session['logged_in'] = True
@@ -970,7 +979,7 @@ def index():
         'hidden': hidden,
         'oldest': oldest,
         'newest': newest,
-        'users': len(runQuery(WishUser.query.filter(WishUser.hidden == False).all))
+        'users': len(runQuery(WishUser.query.filter(WishUser.hidden == 0).all))
     }
 
     return render_template('index.html', stats=stats)
