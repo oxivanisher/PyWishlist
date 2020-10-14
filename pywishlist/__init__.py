@@ -142,26 +142,6 @@ def getUserById(userId=None):
             return False
 
 
-# def getOtherUsers():
-#     with app.test_request_context():
-#         users = []
-#         try:
-#             ret = runQuery(WishUser.query.all)
-#         except Exception as e:
-#             log.warning(
-#                 "[System] SQL Alchemy Error on getOtherUsers: %s" % (e))
-#             ret = False
-#
-#         if ret:
-#             for user in ret:
-#                 if user.id != session.get('user_id'):
-#                     users.append({'name': user.name,
-#                                   'id': user.id})
-#             return users
-#         else:
-#             return []
-
-
 def getAllUsers():
     with app.test_request_context():
         users = []
