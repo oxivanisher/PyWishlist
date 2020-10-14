@@ -142,31 +142,11 @@ def getUserById(userId=None):
             return False
 
 
-def getOtherUsers():
-    with app.test_request_context():
-        users = []
-        try:
-            ret = runQuery(WishUser.query.all)
-        except Exception as e:
-            log.warning(
-                "[System] SQL Alchemy Error on getOtherUsers: %s" % (e))
-            ret = False
-
-        if ret:
-            for user in ret:
-                if user.id != session.get('user_id'):
-                    users.append({'name': user.name,
-                                  'id': user.id})
-            return users
-        else:
-            return []
-
-
 def getAllUsers():
     with app.test_request_context():
         users = []
         try:
-            users = runQuery(WishUser.query.all)
+            users = runQuery(WishUser.query.filter(WishUser.hidden == 0).all)
         except Exception as e:
             log.warning("[System] SQL Alchemy Error on getAllUsers "
                         ": %s" % (e))
@@ -282,6 +262,9 @@ def before_request():
                 if myUser.locked:
                     session['logmeout'] = True
                     session['logmeoutreason'] = "User is locked"
+                if myUser.hidden:
+                    session['logmeout'] = True
+                    session['logmeoutreason'] = "User is hidden"
                 if myUser.admin != session.get('admin'):
                     session['logmeout'] = True
                     session['logmeoutreason'] = "Admin rights changed"
@@ -417,6 +400,7 @@ def admin_user_management():
                                    'email': user.email,
                                    'admin': user.admin,
                                    'locked': user.locked,
+                                   'hidden': user.hidden,
                                    'veryfied': user.veryfied})
 
     infos = {}
@@ -474,6 +458,24 @@ def admin_user_management_togglelock(userId):
     return redirect(url_for('admin_user_management'))
 
 
+@app.route('/Administration/User_Management/ToggleHidden/<userId>')
+def admin_user_management_togglehidden(userId):
+    check_admin_permissions()
+    myUser = getUserById(userId)
+    if myUser:
+        myUser.load()
+        myUser.hidden = not myUser.hidden
+        log.info("[System] Hidden state of '%s' was changed to: %s"
+                 % (myUser.email, myUser.hidden))
+        db_session.merge(myUser)
+        try:
+            runQuery(db_session.commit)
+        except Exception as e:
+            log.warning("[System] SQL Alchemy Error on Admin toggle "
+                        "hidden: %s" % (e))
+    return redirect(url_for('admin_user_management'))
+
+
 @app.route('/Administration/User_Management/ToggleAdmin/<userId>')
 def admin_user_management_toggleadmin(userId):
     check_admin_permissions()
@@ -502,14 +504,14 @@ def admin_bulk_email():
             okCount = 0
             nokCount = 0
             try:
-                for user in runQuery(WishUser.query.all):
+                for user in runQuery(WishUser.query.filter(WishUser.hidden == 0).all):
                     user.load()
                     if send_email(app,
                                   user.email,
                                   request.form['subject'],
-                                  "<h3>%s %s</h3>" %
-                                  (gettext("Hello"), user.name) +
-                                  request.form['message'] +
+                                  "<h3>%s %s</h3><br>" %
+                                  (gettext("Hello"), user.name) + "\n" +
+                                  request.form['message'] + "\n" +
                                   gettext("<br><br>Have fun and see you "
                                           "soon ;)"),
                                   app.config['EMAILBANNER']):
@@ -570,7 +572,7 @@ def admin_exclusion_remove(id):
 def admin_secretsanta_go():
     check_admin_permissions()
     message = []
-    solver = SecretSantaSolver(runQuery(WishUser.query.all),
+    solver = SecretSantaSolver(runQuery(WishUser.query.filter(WishUser.hidden == 0).all),
                                runQuery(Exclusion.query.all),
                                runQuery(History.query.all))
     ret = solver.run()
@@ -695,13 +697,13 @@ def profile_register():
                               gettext("%(sitetitle)s: Activation Email",
                                       sitetitle=app.config['SITETITLE']),
                               "<h3>%s %s</h3>" %
-                              (gettext("Hello"), request.form['name']) +
+                              (gettext("Hello"), request.form['name']) + "\n" +
                               gettext("We are happy to welcome you to "
                                       "%(sitetitle)s!<br>Please verify your "
                                       "account with <a href='%(url)s'>this "
                                       "link</a>.<br><br>",
                                       sitetitle=app.config['SITETITLE'],
-                                      url=actUrl) +
+                                      url=actUrl) + "\n" +
                               gettext("<br><br>Have fun and see you soon ;)"),
                               app.config['EMAILBANNERWELCOME']):
                     flash(gettext("Please check your mails at %(emailaddr)s",
@@ -813,6 +815,11 @@ def profile_login():
             elif myUser.locked:
                 log.info("[System] Login: <%s> is locked." % myUser.getDisplayName())
                 flash(gettext("User locked. Please contact an "
+                              "administrator."), 'info')
+                return redirect(url_for('index'))
+            elif myUser.hidden:
+                log.info("[System] Login: <%s> is hidden." % myUser.getDisplayName())
+                flash(gettext("User hidden. Please contact an "
                               "administrator."), 'info')
                 return redirect(url_for('index'))
             elif myUser.checkPassword(request.form['password']):
@@ -952,7 +959,7 @@ def index():
         'hidden': hidden,
         'oldest': oldest,
         'newest': newest,
-        'users': len(runQuery(WishUser.query.all))
+        'users': len(runQuery(WishUser.query.filter(WishUser.hidden == 0).all))
     }
 
     return render_template('index.html', stats=stats)

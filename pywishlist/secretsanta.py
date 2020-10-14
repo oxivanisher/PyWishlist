@@ -43,17 +43,20 @@ class SecretSantaSolver:
             pairs = dict([((x, y), random.randint(0, 9)) for x in user_ids for y in user_ids if x != y])
 
             for exclusion_entry in self.exclusions:
-                key1 = (exclusion_entry.userIdA, exclusion_entry.userIdB)
-                key2 = (exclusion_entry.userIdB, exclusion_entry.userIdA)
-                pairs[key1] = max_score
-                pairs[key2] = max_score
+                # ignoring exclusions entries of users which are hidden
+                if exclusion_entry.userIdA in user_ids and exclusion_entry.userIdB in user_ids:
+                    key1 = (exclusion_entry.userIdA, exclusion_entry.userIdB)
+                    key2 = (exclusion_entry.userIdB, exclusion_entry.userIdA)
+                    pairs[key1] = max_score
+                    pairs[key2] = max_score
 
             for history_entry in self.history:
-                current_score = min(timestamps.index(history_entry.date), len(user_ids) / 2) * 10 + random.randint(0, 9)
-                key = (history_entry.donatorId, history_entry.recieverId)
-                if current_score > pairs[key]:
-                    pairs[key] = current_score
-
+                # ignoring history entries of users which are hidden
+                if history_entry.donatorId in user_ids and history_entry.recieverId in user_ids:
+                    current_score = min(timestamps.index(history_entry.date), len(user_ids) / 2) * 10 + random.randint(0, 9)
+                    key = (history_entry.donatorId, history_entry.recieverId)
+                    if current_score > pairs[key]:
+                        pairs[key] = current_score
 
             sorted_pairs = sorted(pairs.items(), key=itemgetter(1), reverse=True)
             solution_pairs = sorted(pairs.items(), key=itemgetter(1), reverse=True)

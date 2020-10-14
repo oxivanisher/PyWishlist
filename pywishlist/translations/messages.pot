@@ -304,6 +304,10 @@ msgid "Locked"
 msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:12
+msgid "Hidden"
+msgstr ""
+
+#: /home/marcu/dev/private/PyWishlist/pywishlist/templates/admin_user_management.html:13
 msgid "Verified"
 msgstr ""
 
@@ -432,11 +436,11 @@ msgid "Hidden wishes"
 msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/index.html:14
-msgid "Oldest wishes"
+msgid "Oldest wish"
 msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/index.html:15
-msgid "Newest wishes"
+msgid "Newest wish"
 msgstr ""
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/login.html:9
