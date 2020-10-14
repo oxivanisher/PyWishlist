@@ -3,21 +3,21 @@
 # This file is distributed under the same license as the PyWishlist project.
 # Marc Urben <aegnor@mittelerde.ch>, 2016.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: aegnor@mittelerde.ch\n"
 "POT-Creation-Date: 2016-10-10 10:17+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2020-10-14 17:49+0200\n"
 "Last-Translator: Marc Urben <aegnor@mittelerde.ch>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:203
 msgid "Passwords do not match!"
@@ -45,12 +45,11 @@ msgstr "Seite nicht gefunden"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:261
 msgid ""
-"The server encountered an internal error, probably a bug in the program. "
-"The administration was automatically informed of this problem."
+"The server encountered an internal error, probably a bug in the program. The "
+"administration was automatically informed of this problem."
 msgstr ""
-"Der Server ist in einen internen Fehler gelaufen, wahrscheinlich durch "
-"einen Bug im Programm. Der Administrator wurde automatisch &uuml;ber den "
-"Fehler informiert."
+"Der Server ist in einen internen Fehler gelaufen, wahrscheinlich durch einen Bug im "
+"Programm. Der Administrator wurde automatisch &uuml;ber den Fehler informiert."
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:494
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:667
@@ -70,9 +69,7 @@ msgstr "<br><br>Viel Spass und bis bald ;)"
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:506
 #, python-format
 msgid "Messages sent: %(okCount)s; Messages not sent: %(nokCount)s"
-msgstr ""
-"Nachrichten versendet: %(okCount)s; Nachrichten nicht versendet: "
-"%(nokCount)s"
+msgstr "Nachrichten versendet: %(okCount)s; Nachrichten nicht versendet: %(nokCount)s"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:533
 msgid "The exclusion could not be saved"
@@ -90,14 +87,12 @@ msgstr "%(sitetitle)s: Wichteln %(year)s"
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:579
 #, python-format
 msgid ""
-"<h3>Hello %(donator)s</h3>You are the Secret Santa to: "
-"%(reciever)s<br>You can login here: <a "
-"href='%(loginurl)s'>%(exturl)s</a><br>Please do not reply to this "
-"email!<br>"
+"<h3>Hello %(donator)s</h3>You are the Secret Santa to: %(reciever)s<br>You can login here: "
+"<a href='%(loginurl)s'>%(exturl)s</a><br>Please do not reply to this email!<br>"
 msgstr ""
-"<h3>Hallo %(donator)s</h3>Du bist das Wichteli von: %(reciever)s<br>Du "
-"kannst dich hier anmelden: <a href='%(loginurl)s'>%(exturl)s</a><br>Bitte"
-" antworte nicht auf diese E-mail!<br>"
+"<h3>Hallo %(donator)s</h3>Du bist das Wichteli von: %(reciever)s<br>Du kannst dich hier "
+"anmelden: <a href='%(loginurl)s'>%(exturl)s</a><br>Bitte antworte nicht auf diese E-mail!"
+"<br>"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:593
 msgid "Calculation not ok"
@@ -131,11 +126,11 @@ msgstr "%(sitetitle)s: Aktiviertungs E-mail"
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:668
 #, fuzzy, python-format
 msgid ""
-"We are happy to welcome you to %(sitetitle)s!<br>Please verify your "
-"account with <a href='%(url)s'>this link</a>.<br><br>"
+"We are happy to welcome you to %(sitetitle)s!<br>Please verify your account with <a "
+"href='%(url)s'>this link</a>.<br><br>"
 msgstr ""
-"Herzlich willkommen zu PyWishlist!<br>Bitte aktiviere deinen Account "
-"indem du auf <a href='%(url)s'>diesen Link</a> klickst.<br><br>"
+"Herzlich willkommen zu PyWishlist!<br>Bitte aktiviere deinen Account indem du auf <a "
+"href='%(url)s'>diesen Link</a> klickst.<br><br>"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:676
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:853
@@ -197,14 +192,13 @@ msgstr "%(sitetitle)s: Passwort zur&uuml;cksetzen"
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:844
 #, python-format
 msgid ""
-"<h3>Hello %(name)s</h3>You can reset your password with <a "
-"href='%(url)s'>this link</a>. If you did not request this password reset,"
-" you can just ignore it. Your current password is still valid.</b>"
+"<h3>Hello %(name)s</h3>You can reset your password with <a href='%(url)s'>this link</a>. "
+"If you did not request this password reset, you can just ignore it. Your current password "
+"is still valid.</b>"
 msgstr ""
-"<h3>Hallo %(name)s</h3>Du kannst dein Passwort mit <a "
-"href='%(url)s'>diesem Link</a> zur&uuml;cksetzen. Wenn du diese Anfrage "
-"nicht gestellt hast, kannst du diese Nachricht ignorieren. Dein Passwort "
-"ist immer noch g&uuml;ltig.</b>"
+"<h3>Hallo %(name)s</h3>Du kannst dein Passwort mit <a href='%(url)s'>diesem Link</a> "
+"zur&uuml;cksetzen. Wenn du diese Anfrage nicht gestellt hast, kannst du diese Nachricht "
+"ignorieren. Dein Passwort ist immer noch g&uuml;ltig.</b>"
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:856
 msgid "No user found with this email address"
@@ -218,12 +212,11 @@ msgstr "%(sitetitle)s: Neues Passwort"
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:884
 #, python-format
 msgid ""
-"<h3>Hello %(name)s</h3>Your new password is: "
-"<b>%(password)s</b><br>Please change it right after you <a "
-"href='%(url)s'>logged in</a>."
+"<h3>Hello %(name)s</h3>Your new password is: <b>%(password)s</b><br>Please change it right "
+"after you <a href='%(url)s'>logged in</a>."
 msgstr ""
-"<h3>Hallo %(name)s</h3>Dein neues Passwort ist: <b>%(password)s</b><br "
-"/>Bitte wechsle es gleich nach dem <a href='%(url)s'>Anmelden</a>."
+"<h3>Hallo %(name)s</h3>Dein neues Passwort ist: <b>%(password)s</b><br />Bitte wechsle es "
+"gleich nach dem <a href='%(url)s'>Anmelden</a>."
 
 #: /home/marcu/dev/private/PyWishlist/pywishlist/__init__.py:893
 msgid "Wrong verification link. Please request a new one."
@@ -528,4 +521,3 @@ msgstr "Alter"
 #: /home/marcu/dev/private/PyWishlist/pywishlist/templates/show_wishes.html:11
 msgid "Hide"
 msgstr "Verstecken"
-
