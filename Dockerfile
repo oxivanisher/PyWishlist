@@ -13,7 +13,7 @@ RUN apk update &&\
     apk add mariadb-client-libs
 RUN apk add --no-cache build-base python-dev py-pip openssl-dev libffi-dev
 ENV LIBRARY_PATH=/lib:/usr/lib
-RUN pip install -r /var/www/requirements.txt
+RUN pip install --upgrade pip && pip install -r /var/www/requirements.txt
 COPY main.py /app/main.py
 COPY config/ /app/config/
 COPY pywishlist/ /app/pywishlist/
