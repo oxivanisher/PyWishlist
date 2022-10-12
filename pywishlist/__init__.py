@@ -826,13 +826,18 @@ def profile_login():
             elif myUser.checkPassword(request.form['password']):
                 myUser.updateLastLogin()
                 db_session.merge(myUser)
+                try:
+                    runQuery(db_session.commit)
+                except Exception as e:
+                    log.warning("[System] SQL Alchemy Error on update last login date: %s" % (e))
+
                 log.info("[System] <%s> logged in" % myUser.getDisplayName())
                 session['logged_in'] = True
                 session['userid'] = myUser.id
                 session['email'] = myUser.email
                 session['name'] = myUser.name
                 session['admin'] = myUser.admin
-                session['logindate'] = myUser.lastLoginDate
+                session['logindate'] = time.time()
                 session['last_lock_check'] = time.time()
                 session['requests'] = 0
                 return redirect(url_for('index'))
