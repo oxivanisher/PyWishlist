@@ -398,6 +398,7 @@ def admin_user_management():
             registredUsers.append({'id': user.id,
                                    'name': user.name,
                                    'email': user.email,
+                                   'lastLogin': user.lastLoginDate,
                                    'admin': user.admin,
                                    'locked': user.locked,
                                    'hidden': user.hidden,
@@ -823,6 +824,13 @@ def profile_login():
                               "administrator."), 'info')
                 return redirect(url_for('index'))
             elif myUser.checkPassword(request.form['password']):
+                myUser.updateLastLogin()
+                db_session.merge(myUser)
+                try:
+                    runQuery(db_session.commit)
+                except Exception as e:
+                    log.warning("[System] SQL Alchemy Error on update last login date: %s" % (e))
+
                 log.info("[System] <%s> logged in" % myUser.getDisplayName())
                 session['logged_in'] = True
                 session['userid'] = myUser.id
