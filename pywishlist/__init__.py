@@ -825,13 +825,14 @@ def profile_login():
                 return redirect(url_for('index'))
             elif myUser.checkPassword(request.form['password']):
                 myUser.updateLastLogin()
+                db_session.merge(myUser)
                 log.info("[System] <%s> logged in" % myUser.getDisplayName())
                 session['logged_in'] = True
                 session['userid'] = myUser.id
                 session['email'] = myUser.email
                 session['name'] = myUser.name
                 session['admin'] = myUser.admin
-                session['logindate'] = time.time()
+                session['logindate'] = myUser.lastLoginDate
                 session['last_lock_check'] = time.time()
                 session['requests'] = 0
                 return redirect(url_for('index'))
