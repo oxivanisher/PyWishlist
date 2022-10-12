@@ -823,6 +823,7 @@ def profile_login():
                               "administrator."), 'info')
                 return redirect(url_for('index'))
             elif myUser.checkPassword(request.form['password']):
+                myUser.updateLastLogin()
                 log.info("[System] <%s> logged in" % myUser.getDisplayName())
                 session['logged_in'] = True
                 session['userid'] = myUser.id

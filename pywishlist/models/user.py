@@ -90,6 +90,9 @@ class WishUser(Base):
         hash_object = hashlib.sha512(password.encode('utf-8'))
         self.password = hash_object.hexdigest()
 
+    def updateLastLogin(self):
+        self.lastLoginDate = int(time.time())
+
     def checkPassword(self, password):
         self.log.info(
             "[User] Checking password for WishUser %s" % (
