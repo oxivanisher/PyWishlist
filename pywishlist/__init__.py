@@ -398,6 +398,7 @@ def admin_user_management():
             registredUsers.append({'id': user.id,
                                    'name': user.name,
                                    'email': user.email,
+                                   'lastLogin': user.lastLoginDate,
                                    'admin': user.admin,
                                    'locked': user.locked,
                                    'hidden': user.hidden,
