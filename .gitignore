@@ -1,8 +1,9 @@
 # My Excludes
 config/pywishlist.sql
+config/pywishlist.cfg
+config/*.db
 dist/*.py
 dist/*.cfg
-config/pywishlist.cfg
 .idea/
 venv/
 pywishlist/static/img/*.jpg

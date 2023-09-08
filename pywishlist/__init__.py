@@ -103,10 +103,24 @@ if not len(app.config['APPSECRET']):
 else:
     app.secret_key = app.config['APPSECRET']
 
+
+# localization methods
+def get_locale():
+    sessionLang = session.get('displayLanguage')
+    if sessionLang:
+        session['currentLocale'] = sessionLang
+        return sessionLang
+    else:
+        browserLang = request.accept_languages.best_match(app.config['LANGUAGES'].keys())
+        session['currentLocale'] = browserLang
+        return browserLang
+
+
 # initialize database
 with app.test_request_context():
     init_db()
     babel = Babel(app)
+    babel.init_app(app, locale_selector=get_locale)
 
 
 # helper methods
@@ -175,19 +189,6 @@ def checkPassword(password1, password2):
     #  - minimal field length
     #  - max length (cut oversize)
     return valid
-
-
-# localization methods
-@babel.localeselector
-def get_locale():
-    sessionLang = session.get('displayLanguage')
-    if sessionLang:
-        session['currentLocale'] = sessionLang
-        return sessionLang
-    else:
-        browserLang = request.accept_languages.best_match(app.config['LANGUAGES'].keys())
-        session['currentLocale'] = browserLang
-        return browserLang
 
 
 # flask error handlers

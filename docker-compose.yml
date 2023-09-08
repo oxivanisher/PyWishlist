@@ -3,7 +3,8 @@ services:
   pywishlist:
     container_name: pywishlist
     restart: unless-stopped
-    build: .
+    image: ghcr.io/oxivanisher/pywishlist:master
+    # build: .
     ports:
       - "80:80"
     volumes:

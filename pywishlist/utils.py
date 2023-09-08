@@ -241,7 +241,7 @@ def waitForDbConnection(maxTries=0):
     retryCount = 0
     while not connected:
         try:
-            db_session.execute("select 1").fetchall()
+            db_session.execute(sqlalchemy.text('select 1')).fetchall()
             connected = True
         except sqlalchemy.exc.OperationalError as e:
             retryCount += 1
